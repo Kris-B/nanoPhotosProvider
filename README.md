@@ -2,7 +2,7 @@ galleryJSON - JSON image provider
 ===========
 
 From a webserver, publish a folder/content (albums/images) structure in JSON.  
-Allows on demand content providing. Each call returns the content of 1 folder.
+Allows on demand content providing. Each call returns the content of 1 folder.  
 Typically to be used to display image gallery in webpages.  
 
 This may be used as an add-on for nanoGALLERY (http://nanogallery.brisbois.fr), but not only.
@@ -13,7 +13,7 @@ This may be used as an add-on for nanoGALLERY (http://nanogallery.brisbois.fr), 
 Part 1: galleryJSON
 -----
 
-galleryJSON.php: is the data provider
+galleryJSON.php: is the data provider  
 galleryJSON.cfg: provider configuration
 
 Data (images and albums) **must** respect following structure:

@@ -10,8 +10,7 @@ This may be used as an add-on for nanoGALLERY (http://nanogallery.brisbois.fr), 
 
 ### Usage
 
-Part 1: galleryJSON
------
+#### Part 1: galleryJSON
 
 galleryJSON.php: is the data provider  
 galleryJSON.cfg: provider configuration
@@ -43,8 +42,7 @@ Title and descritpion: use `$$` in the filename to separate title and descriptio
 Album thumbnail: use leading `@@@@@` on thumbnail file to indicate the thumbnail to use for albums (only in _thumbnails, do not use in _images)
 
 
-Part 2: Usage example with nanoGALLERY for jQuery
------
+#### Part 2: Usage example with nanoGALLERY for jQuery
 
 Use these specific parameters: kind, customSourceProvider and itemsBaseURL.
 

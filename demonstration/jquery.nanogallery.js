@@ -1,5 +1,5 @@
 /**!
- * @preserve nanoGALLERY v5.2.3beta2
+ * @preserve nanoGALLERY v5.2.3
  * Plugin for jQuery by Christophe Brisbois
  * Demo: http://nanogallery.brisbois.fr
  * Sources: https://github.com/Kris-B/nanoGALLERY
@@ -17,18 +17,11 @@
  *  - http://closure-compiler.appspot.com/home - minifying javascript
  *  - http://gpbmike.github.io/refresh-sf/ - minifying css
  */
-
+ 
 
 /*
 
-TODO:
- download high resolution image - data-dldest
- display the images depends on screen resolution
- position toolbar chrome/firefox
- Show "Browser not Supported" message on IE8
- Different title/description options per level (#57)
-
-nanoGALLERY v5.2.3beta2 release notes.
+nanoGALLERY v5.2.3 release notes.
 
 ##### New features
 - **picasaUseUrlCrossDomain**: access Picasa/Google+ using the cross domain URL instead of the standard one.
@@ -36,12 +29,12 @@ nanoGALLERY v5.2.3beta2 release notes.
 - **supportIE8**: enable IE8 support.
   *boolean; Default: true*  
 
-
 ##### Misc
 - bugfix #53 (Chrome browser) scrollbar not enabled back after closing an image displayed in fullscreen
 - bugfix hover out thumbnail animation not triggered
 - bugfix image URL with spaces not supported
 - bugfix imageTransition:'fade' not working
+- bugfix #58 pagination issue when only used on second level
 
 **Visit nanoGALLERY homepage for usage details: [http://nanogallery.brisbois.fr](http://www.nanogallery.brisbois.fr/)**
 
@@ -344,7 +337,6 @@ function nanoGALLERY() {
       url: function() {
         // Flickr API Going SSL-Only on June 27th, 2014
         return 'https://api.flickr.com/services/rest/';
-        //return (location.protocol=='https:' ? 'https://api.flickr.com/services/rest/' : 'http://api.flickr.com/services/rest/');
       },
       thumbSize:'sq',
       thumbSizeX2 : 'sq',
@@ -642,8 +634,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
     }
     return this.split(search).join(replace);
 }
-    
-    
     // detect the animation engine
     // default is jQuery
     if( toType(jQuery.velocity) == 'object' ) {
@@ -676,7 +666,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
       jQuery('head').append('<style>'+s+'</style>');
       jQuery(element).addClass('nanogallery_breadcrumb_icons_off');
     }
-
 
     if( gO.thumbnailLabel.align == 'right' ) {
       var s1 = '.nanogallery_thumbnails_label_align_right ',
@@ -968,7 +957,7 @@ this.thumbImgHeight = 0;           // thumbnail image height
         break;
 
       // CUSTOM STORAGE
-      case 'custom':
+      case 'json':
         NGAddItem(g_i18nTranslations.breadcrumbHome, '', '', '', '', 'album', '', '0', '-1' );
         CustomProcessItems(0,true,-1,false);
         break;
@@ -1376,11 +1365,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
         OpenTouchedThumbnail();
       }
 
-      // currentXPosition=0;
-      // initialTouchPos=null;
-      // lastTouchPos=null;
-      // $currentTouchedThumbnail=null;
-        
       return;
     }
 
@@ -1616,30 +1600,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
     g_curWidth=RetrieveCurWidth();
     
     // RETRIEVE ALL THUMBNAIL SIZES
-    
-    /*
-    if( toType(gO.thumbnailWidth) == 'number' ) {
-      ThumbnailsDefaultSize( 'width', 'l1', gO.thumbnailWidth);
-      ThumbnailsDefaultSize( 'width', 'lN', gO.thumbnailWidth);
-    }
-    else {
-      var ws=gO.thumbnailWidth.split(' ');
-      var w=( ws[0] == 'auto' ? ws[0] : parseInt(ws[0]));
-      ThumbnailsDefaultSize( 'width', 'l1', w);   // default value for all resolutions and navigation levels
-      ThumbnailsDefaultSize( 'width', 'lN', w);
-      for( var i=1; i<ws.length; i++ ) {
-        var r=ws[i].substring(0,2);
-        if( /xs|sm|me|la|xl/i.test(r) ) {
-          var v=( ws[i].substring(2) == 'auto' ? ws[i].substring(2) : parseInt(ws[i].substring(2)));
-          if( toType(r) == 'string' ) {
-            g_tn.settings.width['l1'][r]=v;
-            g_tn.settings.width['lN'][r]=v;
-          }
-        }
-      }
-    }
-    */
-    
     if( toType(gO.thumbnailWidth) == 'number' ) {
       ThumbnailsDefaultSize( 'width', 'l1', gO.thumbnailWidth, 'u');
       ThumbnailsDefaultSize( 'width', 'lN', gO.thumbnailWidth, 'u');
@@ -1746,85 +1706,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
         }
       }
     }
-    
-    
-    
-    
-/*    
-    if( gO.thumbnailL1Width != undefined ) {
-      if( toType(gO.thumbnailL1Width) == 'number' ) {
-        ThumbnailsDefaultSize( 'width', 'l1', gO.thumbnailL1Width);
-      }
-      else {
-        var ws=gO.thumbnailL1Width.split(' ');
-        var w=( ws[0] == 'auto' ? ws[0] : parseInt(ws[0]));
-        ThumbnailsDefaultSize( 'width', 'l1', w);
-        for( var i=1; i<ws.length; i++ ) {
-          var r=ws[i].substring(0,2);
-          if( /xs|sm|me|la|xl/i.test(r) ) {
-            var v=( ws[i].substring(2) == 'auto' ? ws[i].substring(2) : parseInt(ws[i].substring(2)));
-            if( toType(r) == 'string' ) {
-              g_tn.settings.width['l1'][r]=v;
-            }
-          }
-        }
-      }
-    }
-
-    if( toType(gO.thumbnailHeight) == 'number' ) {
-      ThumbnailsDefaultSize( 'height', 'l1', gO.thumbnailHeight);
-      ThumbnailsDefaultSize( 'height', 'lN', gO.thumbnailHeight);
-    }
-    else {
-      var ws=gO.thumbnailHeight.split(' ');
-      var w=( ws[0] == 'auto' ? ws[0] : parseInt(ws[0]));
-      ThumbnailsDefaultSize( 'height', 'l1', w);
-      ThumbnailsDefaultSize( 'height', 'lN', w);
-      for( var i=1; i<ws.length; i++ ) {
-        var r=ws[i].substring(0,2);
-        if( /XS|SM|ME|LA|XL/i.test(r) ) {
-          var v='auto';
-          if( ws[i].substring(2) != 'auto' ) {
-            var c=ws[i][ws[i].length-1];            // crop true/false
-            v=parseInt(ws[i].substring(2));         // value integer/auto
-            if( toType(c) == 'string' ) {
-              g_tn.settings.height['l1'][r+'c']=c;
-              g_tn.settings.height['lN'][r+'c']=c;
-            }
-          }
-          g_tn.settings.height['l1'][r]=v;
-          g_tn.settings.height['lN'][r]=v;
-            
-          /*
-          var v=( ws[i].substring(2) == 'auto' ? ws[i].substring(2) : parseInt(ws[i].substring(2)));
-          if( toType(r) == 'string' ) {
-            g_tn.settings.height['l1'][r]=v;
-            g_tn.settings.height['lN'][r]=v;
-          }
-          */
-/*        }
-      }
-    }
-    if( gO.thumbnailL1Height != undefined ) {
-      if( toType(gO.thumbnailL1Height) == 'number' ) {
-        ThumbnailsDefaultSize( 'height', 'l1', gO.thumbnailL1Height);
-      }
-      else {
-        var ws=gO.thumbnailL1Height.split(' ');
-        var w=( ws[0] == 'auto' ? ws[0] : parseInt(ws[0]));
-        ThumbnailsDefaultSize( 'height', 'l1', w);
-        for( var i=1; i<ws.length; i++ ) {
-          var r=ws[i].substring(0,2);
-          if( /XS|SM|ME|LA|XL/i.test(r) ) {
-            var v=( ws[i].substring(2) == 'auto' ? ws[i].substring(2) : parseInt(ws[i].substring(2)));
-            if( toType(r) == 'string' ) {
-              g_tn.settings.height['l1'][r]=v;
-            }
-          }
-        }
-      }
-    }
-*/  
   }
   
   // ##### THUMBNAIL SIZE MANAGEMENT
@@ -1931,7 +1812,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
     
       for( var key in gO.i18n ) {
         //var value = gO.i18n[key];
-      // now you can use key as the key, value as the... you guessed right, value
         var s=key.substr(llang);
         if( s == ('_'+g_i18nLang) ) {
           g_i18nTranslations[key.substr(0,key.length-s.length)]=gO.i18n[key];
@@ -1940,16 +1820,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
           g_i18nTranslations[key]=gO.i18n[key];
         }
       }
-    
-      // Object.keys(gO.i18n).forEach(function(key) {
-        // var s=key.substr(llang);
-        // if( s == ('_'+g_i18nLang) ) {
-          // g_i18nTranslations[key.substr(0,key.length-s.length)]=gO.i18n[key];
-        // } 
-        // else {
-          // g_i18nTranslations[key]=gO.i18n[key];
-        // }
-      // });
     }
   }
   
@@ -2083,15 +1953,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
         g_tn.outerHeight['lN'][lst[i]]=0;
       }
     }
-//console.log(g_tn.outerWidth);
-
-//    if( SettingsGetTnWidth() != 'auto' ) {
-//      g_tn.outerWidth=$newDiv.outerWidth(true);
-//    }
-//    if( SettingsGetTnHeight() != 'auto' ) {
-//      g_tn.outerHeight=$newDiv.outerHeight(true);
-//    }
-    
     
     // pagination
     g_pgMaxNbThumbnailsPerRow=NbThumbnailsPerRow();
@@ -2124,8 +1985,7 @@ this.thumbImgHeight = 0;           // thumbnail image height
   // ####################################
   // ##### LIST OF ITEMS IN OPTIONS #####
   // ####################################
-  
-  
+
   function GetImageTitle( imageSRC ) {
     if( gO.thumbnailLabel.title == '%filename' ) {
       return (imageSRC.split('/').pop()).replace('_',' ');
@@ -2479,10 +2339,14 @@ this.thumbImgHeight = 0;           // thumbnail image height
       
       var src=gO.itemsBaseURL+item.src;
       src=src.replaceAll('%2F', '/');
+      // src=src.replaceAll('%E9', '%C3%A9');
+      src=src.replaceAll('%E9', 'é');
       // var thumbsrc=decodeURIComponent(gO.itemsBaseURL+item.srct);
       // var thumbsrc=gO.itemsBaseURL+decodeURIComponent(item.srct);
       // var thumbsrc=decodeURI(gO.itemsBaseURL+item.srct);
       var thumbsrc=gO.itemsBaseURL+item.srct;
+       thumbsrc=thumbsrc.replaceAll('%E9', 'é');
+       // thumbsrc=thumbsrc.replaceAll('%E9', '%C3%A9');
        // thumbsrc=thumbsrc.replaceAll('é', '%E9');
        // thumbsrc=thumbsrc.replaceAll('%C3%A9', '%E9');
       // thumbsrc=thumbsrc.replaceAll('+', '%20');
@@ -2644,7 +2508,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
       }
     }
 
-  
     if( ok ) {
       var nb=0;
       
@@ -2885,6 +2748,7 @@ this.thumbImgHeight = 0;           // thumbnail image height
     });
     gI[albumIdx].contentIsLoaded=true;
     gI[albumIdx].contentLength=nb;
+
   }
   
 
@@ -3361,7 +3225,7 @@ this.thumbImgHeight = 0;           // thumbnail image height
     if( g_containerViewerDisplayed ) {
       CloseInternalViewer(false);
     }
-    
+
     if( albumIdx == g_lastOpenAlbumID ) {
       return;
     }
@@ -3483,8 +3347,9 @@ this.thumbImgHeight = 0;           // thumbnail image height
         }
         //$gE.conBC.children().not(':first').remove();
       }
-      
-      
+
+      g_pgMaxNbThumbnailsPerRow=NbThumbnailsPerRow();
+
     }
     
     // Tag-bar
@@ -3518,7 +3383,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
   
   // ##### Open one album
   function OpenAlbum ( albumIdx, processLocationHash, imageID, setLocationHash ) {
-
     switch(gO.kind) {
       case '':
         //renderGallery(albumIdx,0);
@@ -3527,7 +3391,7 @@ this.thumbImgHeight = 0;           // thumbnail image height
       case 'flickr':
         FlickrProcessItems(albumIdx, processLocationHash, imageID, setLocationHash);
         break;
-      case 'custom':
+      case 'json':
         CustomProcessItems(albumIdx, processLocationHash, imageID, setLocationHash);
         break;
       case 'picasa':
@@ -4364,7 +4228,6 @@ this.thumbImgHeight = 0;           // thumbnail image height
     $newDiv.find('img').data('index',idx);
 
     thumbnailPositionContent($newDiv, item);
-
     var $p=$newDiv.detach();
     $p.appendTo( $gE.conTn );
 

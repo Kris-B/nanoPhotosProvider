@@ -1,6 +1,6 @@
 <?php
 /**
-* nanoGALLERY_JSON add-on for nanoGALLERY
+* galleryJSON add-on for nanoGALLERY
 *
 * Publish a folder/content structure in JSON for albums and images to be displayed with the jQuery plugin nanoGALLERY.
 * This is an add-on for nanoGALLERY.
@@ -110,22 +110,44 @@
 
       }
       
+      function CustomEncode( $s ) {
+        // if ( !mb_check_encoding($s, 'UTF-8')) {
+        if( $GLOBALS['isUTF8Encoded'] == true ) {
+          return rawurlencode($s);
+        }
+        else {
+          return utf8_encode($s);
+        }
+      }
+      
+      function CustomDecode( $s ) {
+        // if ( !mb_check_encoding($s, 'UTF-8')) {
+        if( $GLOBALS['isUTF8Encoded'] == true ) {
+          return urldecode($s);
+        }
+        else {
+          return utf8_decode($s);
+        }
+      }
+      
 
       // retrieve the album ID in the URL
       $album='/';
       $albumID=$_GET["albumID"];
       if( !$albumID == '0' && $albumID != '' ) {
-        $album='/'.utf8_decode(urldecode($albumID)).'/';
+        // $album='/'.utf8_decode(urldecode($albumID)).'/';
+        $album='/'.CustomDecode($albumID).'/';
       }
 
       $data = new nanogalleryData();
       $data->fullDir= __DIR__.'/ngcontent'.($album);
 
-      $config = parse_ini_file( __DIR__.'/nanoGALLERY_JSON.cfg' );
+      $config = parse_ini_file( './galleryJSON.cfg' );
       $GLOBALS['fileExtensions'] = $config['images'];
       $GLOBALS['sortOrder'] = strtoupper($config['sortOrder']);
       $GLOBALS['titleDescSeparator'] = strtoupper($config['titleDescSeparator']);
       $GLOBALS['albumThumbnailDetector'] = strtoupper($config['albumThumbnailDetector']);
+      $GLOBALS['isUTF8Encoded'] = $config['isUTF8Encoded'];
       
       $lstImages = array();
       $lstAlbums = array();
@@ -150,18 +172,21 @@
                   if ( is_file( $di.'/'.$image ) && preg_match("/\.(". $GLOBALS['fileExtensions'] .")*$/i", $image) ) {
                     $oneItem = new item();
                     // $oneItem->src=rawurlencode(utf8_encode('ngcontent'.$album.'_images/'.$image));
-                    $oneItem->src=rawurlencode(('ngcontent'.$album.'_images/'.$image));
+                    // $oneItem->src=rawurlencode(('ngcontent'.$album.'_images/'.$image));
+                    $oneItem->src=CustomEncode(('ngcontent'.$album.'_images/'.$image));
                     
                     $tn = $data->fullDir.'_thumbnails/'.$image;
                     if( file_exists($tn) ) {
                       // $oneItem->srct=rawurlencode(utf8_encode('ngcontent'.$album.'_thumbnails/'.$image));
-                      $oneItem->srct=(rawurlencode('ngcontent'.$album.'_thumbnails/'.$image));
+                      // $oneItem->srct=(rawurlencode('ngcontent'.$album.'_thumbnails/'.$image));
+                      $oneItem->srct=(CustomEncode('ngcontent'.$album.'_thumbnails/'.$image));
                     }
                     else {
                       $tn = $data->fullDir.'_thumbnails/'.$GLOBALS['albumThumbnailDetector'].$image;
                       if( file_exists($tn) ) {
                         // $oneItem->srct=rawurlencode(utf8_encode('ngcontent'.$album.'_thumbnails/'.$GLOBALS['albumThumbnailDetector'].$image));
-                        $oneItem->srct=(rawurlencode('ngcontent'.$album.'_thumbnails/'.$GLOBALS['albumThumbnailDetector'].$image));
+                        // $oneItem->srct=(rawurlencode('ngcontent'.$album.'_thumbnails/'.$GLOBALS['albumThumbnailDetector'].$image));
+                        $oneItem->srct=(CustomEncode('ngcontent'.$album.'_thumbnails/'.$GLOBALS['albumThumbnailDetector'].$image));
                       }
                       else {
                         // fallback: use image if thumbnail not found
@@ -199,10 +224,12 @@
                   
                   $oneItem->albumID=$albumID;
                   if( $albumID == '0' || $albumID == '' ) {
-                    $oneItem->ID=rawurlencode(utf8_encode($filename));
+                    // $oneItem->ID=rawurlencode(utf8_encode($filename));
+                    $oneItem->ID=CustomEncode($filename);
                   }
                   else {
-                    $oneItem->ID=$albumID.rawurlencode(utf8_encode('/'.$filename));
+                    // $oneItem->ID=$albumID.rawurlencode(utf8_encode('/'.$filename));
+                    $oneItem->ID=$albumID.CustomEncode('/'.$filename);
                   }
                   
                   $s= GetAlbumThumbnail( $data->fullDir.$filename );
@@ -215,7 +242,8 @@
                     $t=$album.'/'.$filename;
                   }
                   // $oneItem->srct=rawurlencode(utf8_encode('/ngcontent/'.$t.'/'.$s));
-                  $oneItem->srct=rawurlencode(('/ngcontent/'.$t.'/'.$s));
+                  // $oneItem->srct=rawurlencode(('/ngcontent/'.$t.'/'.$s));
+                  $oneItem->srct=CustomEncode(('/ngcontent/'.$t.'/'.$s));
                   
                   $lstAlbums[] = $oneItem;
 

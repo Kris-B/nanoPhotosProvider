@@ -25,18 +25,18 @@ Data (images and albums) **must** respect following structure:
 
 Example:
 
-  ngcontent --> base folder
-    _images
-    _thumbnails
-    folder1
-      _images
-      _thumbnails
-    folder2
-      _images
-      _thumbnails
-      folder2A
-        _images
-        _thumbnails
+  ngcontent --> base folder  
+    _images  
+    _thumbnails  
+    folder1  
+      _image  
+      _thumbnails  
+    folder2  
+      _images  
+      _thumbnails  
+      folder2A  
+        _images  
+        _thumbnails  
 
         
 Title and descritpion: use `$$` in the filename to separate title and description

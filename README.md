@@ -1,8 +1,8 @@
 nanoPhotosProvider
 ===========
-extension for nanoGALLERY
-===========
-
+### extension for nanoGALLERY
+  
+  
 Publish your self-hosted photos simply and automatically to nanoGALLERY.
 Content is providing on demand when browsing the albums of the gallery.
 Generates thumbnails automatically.

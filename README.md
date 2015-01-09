@@ -1,4 +1,6 @@
-nanoPhotosProvider - extension for nanoGALLERY
+nanoPhotosProvider
+===========
+extension for nanoGALLERY
 ===========
 
 Publish your self-hosted photos simply and automatically to nanoGALLERY.
@@ -28,9 +30,9 @@ On your webserver:
 - The page can be located anywhere on your webserver.
 - Install nanoGALLERY for jQuery (see http://nanogallery.brisbois.fr)
 - Configure the call to the plugin:
-  Use the specific parameters: `kind` and `jsonProvider`
-    -`kind`: set value to `json`
-    -`jsonProvider`: URL to the `nanoPhotosProvider.php` file installed in step 1
+  - Use the specific parameters: `kind` and `jsonProvider`
+    - `kind`: set value to `json`
+    - `jsonProvider`: URL to the `nanoPhotosProvider.php` file installed in step 1
 
 Example:
 

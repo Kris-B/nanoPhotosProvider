@@ -1,5 +1,4 @@
-nanoPhotosProvider
-===========
+## nanoPhotosProvider
 ### extension for nanoGALLERY
   
   

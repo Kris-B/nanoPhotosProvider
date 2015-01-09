@@ -1,5 +1,5 @@
-## nanoPhotosProvider
-### extension for nanoGALLERY
+### nanoPhotosProvider
+#### extension for nanoGALLERY
   
   
 Publish your self-hosted photos simply and automatically to nanoGALLERY.

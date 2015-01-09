@@ -1,74 +1,65 @@
-galleryJSON - JSON image provider
+nanoPhotosProvider - extension for nanoGALLERY
 ===========
 
-From a webserver, publish a folder/content (albums/images) structure in JSON.  
-Allows on demand content providing. Each call returns the content of 1 folder.  
-Typically to be used to display image gallery in webpages.  
+Publish your self-hosted photos simply and automatically to nanoGALLERY.
+Content is providing on demand when browsing the albums of the gallery.
+Generates thumbnails automatically.
 
-This may be used as an add-on for nanoGALLERY (http://nanogallery.brisbois.fr), but not only.
+To be used as an add-on for nanoGALLERY (http://nanogallery.brisbois.fr).
 
 
 ### Usage
 
-##### Part 1: galleryJSON
+##### Step 1: installation
 
-galleryJSON.php: is the data provider  
-galleryJSON.cfg: provider configuration
+On your webserver:
+- create a folder named `nanoPhotosProvider` where you want to store your photos
+- in this folder:
+  - copy the files `nanoPhotosProvider.php`, `nanoPhotosProvider.cfg` and `nanoPhotosProvider.Encoding.php`
+  - create a folder named `nanoPhotosContent`
+    - copy your photos here
+    - you can organize your photos in folders
+    - in the filenames, you can separate title and description with `$$`
+    - add leading `@@@@@` to the images to be used as album covers
+  - edit the `nanoPhotosProvider.cfg` to change the behaviour of the application (for example the size of the thumbnails)
 
-Data (images and albums) **must** respect following structure:
-- images are stored in `_images`
-- thumbnails are stored in `_thumbnails`
-- images and thumbnails must have the same filenames
-- each album needs one `_images` and one `_thumbnails` folder
-- top level folder is `ngcontent` (mandatory)
+##### Step 2: configure your HTML page
 
-Example:
-
-&nbsp;&nbsp;ngcontent --> base folder  
-&nbsp;&nbsp;&nbsp;&nbsp;_images  
-&nbsp;&nbsp;&nbsp;&nbsp;_thumbnails  
-&nbsp;&nbsp;&nbsp;&nbsp;folder1  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_image  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_thumbnails  
-&nbsp;&nbsp;&nbsp;&nbsp;folder2  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_images  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_thumbnails  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;folder2A  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_images  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_thumbnails  
-
-        
-Title and descritpion: use `$$` in the filename to separate title and description
-Album thumbnail: use leading `@@@@@` on thumbnail file to indicate the thumbnail to use for albums (only in _thumbnails, do not use in _images)
-
-
-##### Part 2: Usage example with nanoGALLERY for jQuery
-
-Use these specific parameters: kind, customSourceProvider and itemsBaseURL.
-
+- The page can be located anywhere on your webserver.
+- Install nanoGALLERY for jQuery (see http://nanogallery.brisbois.fr)
+- Configure the call to the plugin:
+  Use the specific parameters: `kind` and `jsonProvider`
+    -`kind`: set value to `json`
+    -`jsonProvider`: URL to the `nanoPhotosProvider.php` file installed in step 1
 
 Example:
 
 ```js
 jQuery(document).ready(function () {
   jQuery("#nanoGallery1").nanoGallery({
-    thumbnailWidth:150,thumbnailHeight:150,
-    kind:'json',
-    customSourceProvider:'http://localhost:12345/galleryJSON/galleryJSON.php',
-    itemsBaseURL:'http://localhost:12345/galleryJSON/'
+    thumbnailWidth: 150,
+    thumbnailHeight: 150,
+    kind: 'json',
+    jsonProvider: 'http://mywebsever.com/mypath/nanoPhotosProvider/nanoPhotosProvider.php',
   });
 });
 ```
 
+##### Step 3: test your page to see the result ;-)
 
+##### Step 4: add/change content
+Add files and folders, or renaname them.
+Please note that the thumbnails are never purged, so you may delete the `_thumbnails` folders to force a new generation.
+
+### Supported image formats
+JPEG, GIF and PNG.
 
 ### License
-
-galleryJSON is licensed under [CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/).  
-Only for personal, non-profit organizations, or open source projects (without any kind of fee), you may use nanoGALLERY for free.
-
+nanoPhotosProvider is licensed under [CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/).  
+Only for personal, non-profit organizations, or open source projects (without any kind of fee), you may use nanoPhotosProvider for free.
 
 
 ### Requirements
-* PHP >= v5.2 
+* Webserver
+* PHP >= v5.2 with GD-Library
 

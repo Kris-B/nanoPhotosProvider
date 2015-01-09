@@ -10,10 +10,10 @@
 	</style>
 
   
-  <!-- nanoGALLERY                                                                                                          -->
-  <!-- Plugin for jQuery by Christophe Brisbois                                                                             -->
+  <!-- nanoPhotosProvider for nanoGALLERY                                                                                   -->
+  <!-- by Christophe Brisbois                                                                                               -->
   <!-- Demo & doc: http://nanogallery.brisbois.fr                                                                           -->
-  <!-- Sources: https://github.com/Kris-B/nanoGALLERY                                                                       -->
+  <!-- Sources: https://github.com/Kris-B/nanoPhotosProvider                                                                -->
   <!-- License: For personal, non-profit organizations, or open source projects (without any kind of fee), you may use nanoGALLERY for free.          -->
   <!-- -------- ALL OTHER USES REQUIRE THE PURCHASE OF A PROFESSIONAL LICENSE.                                              -->
 
@@ -44,13 +44,12 @@
 	<script>
 		$(document).ready(function () {
 			jQuery("#nanoGallery1").nanoGallery({
-        thumbnailWidth:150,thumbnailHeight:150,
-				thumbnailHoverEffect:[{name:'imageScaleIn80'},{'name':'borderLighter'}],				
-				thumbnailLabel:{display:true,position:'overImageOnBottom'},
-        viewerDisplayLogo:true,
-        kind:'json',
-        customSourceProvider:'http://localhost:12345/galleryJSON/galleryJSON.php',
-        itemsBaseURL:'http://localhost:12345/galleryJSON/'
+        thumbnailWidth:150, thumbnailHeight:150,
+				thumbnailHoverEffect: [{name: 'imageScaleIn80'}, {'name': 'borderLighter'}],				
+				thumbnailLabel: {display:true,position:'overImageOnBottom'},
+        viewerDisplayLogo: true,
+        kind: 'json',
+        jsonProvider: 'http://localhost:12345/nanoPhotosProvider/nanoPhotosProvider.php'
 			});
       
 		});
@@ -60,14 +59,14 @@
 
 <body>
 
-	<div style="color:#fff;text-align:center;font-size:4.0em;"><span style="color:#fff;">nano</span><span style="color:#6e6;">GALLERY</span></div>
-	<div style="text-align:center;font-size:2em;color:#6e6">jQuery plugin - demonstration page</div>
+	<div style="color:#fff;text-align:center;font-size:3.0em;">nanoPhotosProvider for <span style="color:#fff;">nano</span><span style="color:#6e6;">GALLERY</span></div>
+	<div style="text-align:center;font-size:2em;color:#6e6">Add-on demonstration page</div>
 	<div style="color:#eee;text-align:center;font-size:.9em;"><br>more about nanoGALLERY for jQuery : <a href="http://www.nanogallery.brisbois.fr">www.nanogallery.brisbois.fr</a></div>
 	<br><br><br><br>
 	<div style="color:#eee;text-align:center;font-size:1.2em;">Look at the page source code to find useful information.</div>
 	
 	<br><br><br><br><br><br><br><br><br>
-	<h2 style="background:#555;">----- CUSTOM IMAGE SOURCE (JSON) -----</h2>
+	<h2 style="background:#555;">----- Add-on for self-hosted images -----</h2>
 
 	<div id="nanoGallery1"></div>
 	<br>

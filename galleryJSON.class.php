@@ -23,6 +23,26 @@
  */
 require './nanoPhotosProvider.Encoding.php';
 
+class galleryData
+{
+    public $fullDir = '';
+
+    //public $images;
+    //public $URI;
+}
+
+class item
+{
+    public $src         = '';
+    public $srct        = '';
+    public $title       = '';
+    public $description = '';
+    public $ID          = '';
+    public $albumID     = '0';
+    public $kind        = '';      // album
+
+}
+
 class galleryJSON
 {
 

@@ -25,25 +25,7 @@
   require './galleryJSON.class.php';
 
   // Comment next line to enable warnings (only for debugging purposes)
-  error_reporting(E_ERROR | E_PARSE);
-
-  class galleryData {
-    var $fullDir='';
-    //var $images;
-    //var $URI;
-  }
-
-  class item {
-    var $src='';
-    var $srct='';
-    var $title='';
-    var $description='';
-    var $ID='';
-    var $albumID='0';
-    var $kind='';      // album
-  }
-
-  
+  error_reporting(E_ERROR | E_PARSE); 
   
 
   $t = new galleryJSON();

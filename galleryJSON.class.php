@@ -147,7 +147,12 @@ class galleryJSON
         }
     }
 
-    // RETRIEVE THE COVER IMAGE (THUMBNAIL) OF ONE ALBUM (FOLDER)
+    /**
+     * RETRIEVE THE COVER IMAGE (THUMBNAIL) OF ONE ALBUM (FOLDER)
+     * 
+     * @param string $baseFolder
+     * @return string
+     */
     function GetAlbumCover($baseFolder)
     {
 
@@ -175,7 +180,12 @@ class galleryJSON
         return '';
     }
 
-    // Retrieve the first image of one folder --> ALBUM THUMBNAIL
+    /**
+     * Retrieve the first image of one folder --> ALBUM THUMBNAIL
+     * 
+     * @param string $folder
+     * @return string
+     */
     function GetFirstImageFolder($folder)
     {
         $image = '';
@@ -192,6 +202,12 @@ class galleryJSON
         return $image;
     }
 
+    /**
+     * 
+     * @param object $a
+     * @param object $b
+     * @return int
+     */
     function compare($a, $b)
     {
         $al = strtolower($a->title);
@@ -216,7 +232,13 @@ class galleryJSON
         return ($b) ? +1 : -1;
     }
 
-    // RETRIEVE ONE IMAGE'S THUMBNAIL
+    /**
+     * RETRIEVE ONE IMAGE'S THUMBNAIL
+     * 
+     * @param type $baseFolder
+     * @param type $filename
+     * @return type
+     */
     function GetThumbnail($baseFolder, $filename)
     {
         $tn = $baseFolder . '_thumbnails/' . $filename;
@@ -238,7 +260,13 @@ class galleryJSON
         return $filename;
     }
 
-    // GENERATE ONE THUMBNAIL
+    /**
+     * GENERATE ONE THUMBNAIL
+     * 
+     * @param type $baseFolder
+     * @param type $filename
+     * @return string
+     */
     function GenerateThumbnail($baseFolder, $filename)
     {
         if (!$GLOBALS['thumbnailsGenerate']) {
@@ -327,7 +355,13 @@ class galleryJSON
         return '_thumbnails/' . $filename;
     }
 
-    // Extract title and description from filename
+    /**
+     * Extract title and description from filename
+     * 
+     * @param string $filename
+     * @param boolean $isImage
+     * @return \item
+     */
     function GetTitleDesc($filename, $isImage)
     {
         if ($isImage) {
@@ -358,26 +392,47 @@ class galleryJSON
         return $oneItem;
     }
 
-// Returns only the file extension (without the period).
+    /**
+     * Returns only the file extension (without the period).
+     * 
+     * @param string $filename
+     * @return string
+     */
     function file_ext($filename)
     {
-        if (!preg_match('/./', $filename))
+        if (!preg_match('/./', $filename)) {
             return '';
+        }
         return preg_replace('/^.*./', '', $filename);
     }
 
-    // Returns the file name, less the extension.
+    /**
+     * Returns the file name, less the extension.
+     * 
+     * @param string $filename
+     * @return string
+     */
     function file_ext_strip($filename)
     {
         return preg_replace('/.[^.]*$/', '', $filename);
     }
 
+    /**
+     * 
+     * @param string $s
+     * @return string
+     */
     function CustomEncode($s)
     {
         return \ForceUTF8\Encoding::toUTF8(($s));
         //return \ForceUTF8\Encoding::fixUTF8(($s));
     }
 
+    /**
+     * 
+     * @param type $s
+     * @return type
+     */
     function CustomDecode($s)
     {
         return utf8_decode($s);

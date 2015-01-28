@@ -46,6 +46,7 @@ class item
 class galleryJSON
 {
 
+    protected $config = array();
     public function __construct()
     {
         // retrieve the album ID in the URL
@@ -66,24 +67,24 @@ class galleryJSON
 
         // read configuration
         $config                            = parse_ini_file('./galleryJSON.cfg', true);
-        $GLOBALS['fileExtensions']         = $config['config']['fileExtensions'];
-        $GLOBALS['sortOrder']              = strtoupper($config['config']['sortOrder']);
-        $GLOBALS['titleDescSeparator']     = strtoupper($config['config']['titleDescSeparator']);
-        $GLOBALS['albumCoverDetector']     = strtoupper($config['config']['albumCoverDetector']);
-        $GLOBALS['albumBlackListDetector'] = strtoupper($config['config']['albumBlackListDetector']);
+        $this->config['fileExtensions']         = $config['config']['fileExtensions'];
+        $this->config['sortOrder']              = strtoupper($config['config']['sortOrder']);
+        $this->config['titleDescSeparator']     = strtoupper($config['config']['titleDescSeparator']);
+        $this->config['albumCoverDetector']     = strtoupper($config['config']['albumCoverDetector']);
+        $this->config['albumBlackListDetector'] = strtoupper($config['config']['albumBlackListDetector']);
 
 
         if (isset($config['thumbnailSizes']['width']) && isset($config['thumbnailSizes']['height'])) {
-            $GLOBALS['thumbnailsGenerate']       = true;
-            $GLOBALS['thumbnailSizes']['width']  = $config['thumbnailSizes']['width'];
-            $GLOBALS['thumbnailSizes']['height'] = $config['thumbnailSizes']['height'];
+            $this->config['thumbnailsGenerate']       = true;
+            $this->config['thumbnailSizes']['width']  = $config['thumbnailSizes']['width'];
+            $this->config['thumbnailSizes']['height'] = $config['thumbnailSizes']['height'];
             if (isset($config['thumbnailSizes']['crop'])) {
-                $GLOBALS['thumbnailSizes']['crop'] = $config['thumbnailSizes']['crop'];
+                $this->config['thumbnailSizes']['crop'] = $config['thumbnailSizes']['crop'];
             } else {
-                $GLOBALS['thumbnailSizes']['crop'] = false;
+                $this->config['thumbnailSizes']['crop'] = false;
             }
         } else {
-            $GLOBALS['thumbnailsGenerate'] = false;
+            $this->config['thumbnailsGenerate'] = false;
         }
 
         $lstImages = array();
@@ -93,9 +94,9 @@ class galleryJSON
         // loop the folder to retrieve images and albums
         if ($dh != false) {
             while (false !== ($filename = readdir($dh))) {
-                if ($filename != '.' && $filename != '..' && $filename != '_thumbnails' && substr($filename, 0, strlen($GLOBALS['albumBlackListDetector'])) != $GLOBALS['albumBlackListDetector']) {
+                if ($filename != '.' && $filename != '..' && $filename != '_thumbnails' && substr($filename, 0, strlen($this->config['albumBlackListDetector'])) != $this->config['albumBlackListDetector']) {
 
-                    if (is_file($data->fullDir . $filename) && preg_match("/\.(" . $GLOBALS['fileExtensions'] . ")*$/i", $filename)) {
+                    if (is_file($data->fullDir . $filename) && preg_match("/\.(" . $this->config['fileExtensions'] . ")*$/i", $filename)) {
                         // ONE IMAGE
                         $oneItem = new item();
 
@@ -177,10 +178,10 @@ class galleryJSON
     {
 
         // look for cover image
-        $files = glob($baseFolder . '/' . $GLOBALS['albumCoverDetector'] . '*.*');
+        $files = glob($baseFolder . '/' . $this->config['albumCoverDetector'] . '*.*');
         if (count($files) > 0) {
             $i = basename($files[0]);
-            if (preg_match("/\.(" . $GLOBALS['fileExtensions'] . ")*$/i", $i)) {
+            if (preg_match("/\.(" . $this->config['fileExtensions'] . ")*$/i", $i)) {
                 $tn = $this->GetThumbnail($baseFolder, $i);
                 if ($tn != '') {
                     return $tn;
@@ -212,7 +213,7 @@ class galleryJSON
 
         $dh       = opendir($folder);
         while (false !== ($filename = readdir($dh))) {
-            if (is_file($folder . '/' . $filename) && preg_match("/\.(" . $GLOBALS['fileExtensions'] . ")*$/i", $filename)) {
+            if (is_file($folder . '/' . $filename) && preg_match("/\.(" . $this->config['fileExtensions'] . ")*$/i", $filename)) {
                 $image = $filename;
                 break;
             }
@@ -236,7 +237,7 @@ class galleryJSON
             return 0;
         }
         $b = false;
-        switch ($GLOBALS['sortOrder']) {
+        switch ($this->config['sortOrder']) {
             case 'DESC' :
                 if ($al < $bl) {
                     $b = true;
@@ -289,7 +290,7 @@ class galleryJSON
      */
     protected function GenerateThumbnail($baseFolder, $filename)
     {
-        if (!$GLOBALS['thumbnailsGenerate']) {
+        if (!$this->config['thumbnailsGenerate']) {
             return '';
         }
 
@@ -318,13 +319,13 @@ class galleryJSON
         $height = $size[1];
 
         $tnFilename  = $baseFolder . '/_thumbnails/' . $filename;
-        $thumbWidth  = $GLOBALS['thumbnailSizes']['width'];
-        $thumbHeight = $GLOBALS['thumbnailSizes']['height'];
+        $thumbWidth  = $this->config['thumbnailSizes']['width'];
+        $thumbHeight = $this->config['thumbnailSizes']['height'];
 
         $originalAspect = $width / $height;
         $thumbAspect    = $thumbWidth / $thumbHeight;
 
-        if ($GLOBALS['thumbnailSizes']['crop']) {
+        if ($this->config['thumbnailSizes']['crop']) {
             // CROP THE IMAGE
             // some inspiration found in donkeyGallery (from Gix075) https://github.com/Gix075/donkeyGallery 
             if ($originalAspect >= $thumbAspect) {
@@ -389,26 +390,26 @@ class galleryJSON
         }
 
         $oneItem = new item();
-        if (strpos($filename, $GLOBALS['titleDescSeparator']) > 0) {
+        if (strpos($filename, $this->config['titleDescSeparator']) > 0) {
             // title and description
-            $s              = explode($GLOBALS['titleDescSeparator'], $filename);
+            $s              = explode($this->config['titleDescSeparator'], $filename);
             $oneItem->title = $this->CustomEncode($s[0]);
             if ($isImage) {
-                $oneItem->description = CustomEncode(preg_replace('/.[^.]*$/', '', $s[1]));
+                $oneItem->description = $this->CustomEncode(preg_replace('/.[^.]*$/', '', $s[1]));
             } else {
-                $oneItem->description = CustomEncode($s[1]);
+                $oneItem->description = $this->CustomEncode($s[1]);
             }
         } else {
             // only title
             if ($isImage) {
-                $oneItem->title = CustomEncode($filename);  //(preg_replace('/.[^.]*$/', '', $filename));
+                $oneItem->title = $this->CustomEncode($filename);  //(preg_replace('/.[^.]*$/', '', $filename));
             } else {
-                $oneItem->title = CustomEncode($filename);
+                $oneItem->title = $this->CustomEncode($filename);
             }
             $oneItem->description = '';
         }
 
-        $oneItem->title = str_replace($GLOBALS['albumCoverDetector'], '', $oneItem->title);   // filter cover detector string
+        $oneItem->title = str_replace($this->config['albumCoverDetector'], '', $oneItem->title);   // filter cover detector string
         return $oneItem;
     }
 

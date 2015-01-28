@@ -153,7 +153,7 @@ class galleryJSON
      * @param string $baseFolder
      * @return string
      */
-    function GetAlbumCover($baseFolder)
+    protected function GetAlbumCover($baseFolder)
     {
 
         // look for cover image
@@ -186,7 +186,7 @@ class galleryJSON
      * @param string $folder
      * @return string
      */
-    function GetFirstImageFolder($folder)
+    protected function GetFirstImageFolder($folder)
     {
         $image = '';
 
@@ -208,7 +208,7 @@ class galleryJSON
      * @param object $b
      * @return int
      */
-    function compare($a, $b)
+    protected function compare($a, $b)
     {
         $al = strtolower($a->title);
         $bl = strtolower($b->title);
@@ -239,7 +239,7 @@ class galleryJSON
      * @param type $filename
      * @return type
      */
-    function GetThumbnail($baseFolder, $filename)
+    protected function GetThumbnail($baseFolder, $filename)
     {
         $tn = $baseFolder . '_thumbnails/' . $filename;
 
@@ -267,7 +267,7 @@ class galleryJSON
      * @param type $filename
      * @return string
      */
-    function GenerateThumbnail($baseFolder, $filename)
+    protected function GenerateThumbnail($baseFolder, $filename)
     {
         if (!$GLOBALS['thumbnailsGenerate']) {
             return '';
@@ -362,7 +362,7 @@ class galleryJSON
      * @param boolean $isImage
      * @return \item
      */
-    function GetTitleDesc($filename, $isImage)
+    protected function GetTitleDesc($filename, $isImage)
     {
         if ($isImage) {
             $filename = file_ext_strip($filename);
@@ -398,7 +398,7 @@ class galleryJSON
      * @param string $filename
      * @return string
      */
-    function file_ext($filename)
+    protected function file_ext($filename)
     {
         if (!preg_match('/./', $filename)) {
             return '';
@@ -412,7 +412,7 @@ class galleryJSON
      * @param string $filename
      * @return string
      */
-    function file_ext_strip($filename)
+    protected function file_ext_strip($filename)
     {
         return preg_replace('/.[^.]*$/', '', $filename);
     }
@@ -422,7 +422,7 @@ class galleryJSON
      * @param string $s
      * @return string
      */
-    function CustomEncode($s)
+    protected function CustomEncode($s)
     {
         return \ForceUTF8\Encoding::toUTF8(($s));
         //return \ForceUTF8\Encoding::fixUTF8(($s));
@@ -433,7 +433,7 @@ class galleryJSON
      * @param type $s
      * @return type
      */
-    function CustomDecode($s)
+    protected function CustomDecode($s)
     {
         return utf8_decode($s);
         // return $s;

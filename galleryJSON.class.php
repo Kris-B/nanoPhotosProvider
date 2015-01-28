@@ -45,8 +45,8 @@ class item
 
 class galleryJSON
 {
-
     protected $config = array();
+
     public function __construct()
     {
         // retrieve the album ID in the URL
@@ -65,27 +65,7 @@ class galleryJSON
         $data          = new galleryData();
         $data->fullDir = __DIR__ . '/nanoPhotosContent' . ($album);
 
-        // read configuration
-        $config                            = parse_ini_file('./galleryJSON.cfg', true);
-        $this->config['fileExtensions']         = $config['config']['fileExtensions'];
-        $this->config['sortOrder']              = strtoupper($config['config']['sortOrder']);
-        $this->config['titleDescSeparator']     = strtoupper($config['config']['titleDescSeparator']);
-        $this->config['albumCoverDetector']     = strtoupper($config['config']['albumCoverDetector']);
-        $this->config['albumBlackListDetector'] = strtoupper($config['config']['albumBlackListDetector']);
-
-
-        if (isset($config['thumbnailSizes']['width']) && isset($config['thumbnailSizes']['height'])) {
-            $this->config['thumbnailsGenerate']       = true;
-            $this->config['thumbnailSizes']['width']  = $config['thumbnailSizes']['width'];
-            $this->config['thumbnailSizes']['height'] = $config['thumbnailSizes']['height'];
-            if (isset($config['thumbnailSizes']['crop'])) {
-                $this->config['thumbnailSizes']['crop'] = $config['thumbnailSizes']['crop'];
-            } else {
-                $this->config['thumbnailSizes']['crop'] = false;
-            }
-        } else {
-            $this->config['thumbnailsGenerate'] = false;
-        }
+        $this->setConfig('./nanoPhotosProvider.Encoding.php');
 
         $lstImages = array();
         $lstAlbums = array();
@@ -165,6 +145,30 @@ class galleryJSON
         } else {
             // return in JSON
             echo $output;
+        }
+    }
+
+    protected function setConfig($filePath)
+    {
+        $config                                 = parse_ini_file($filePath, true);
+        $this->config['fileExtensions']         = $config['config']['fileExtensions'];
+        $this->config['sortOrder']              = strtoupper($config['config']['sortOrder']);
+        $this->config['titleDescSeparator']     = strtoupper($config['config']['titleDescSeparator']);
+        $this->config['albumCoverDetector']     = strtoupper($config['config']['albumCoverDetector']);
+        $this->config['albumBlackListDetector'] = strtoupper($config['config']['albumBlackListDetector']);
+
+
+        if (isset($config['thumbnailSizes']['width']) && isset($config['thumbnailSizes']['height'])) {
+            $this->config['thumbnailsGenerate']       = true;
+            $this->config['thumbnailSizes']['width']  = $config['thumbnailSizes']['width'];
+            $this->config['thumbnailSizes']['height'] = $config['thumbnailSizes']['height'];
+            if (isset($config['thumbnailSizes']['crop'])) {
+                $this->config['thumbnailSizes']['crop'] = $config['thumbnailSizes']['crop'];
+            } else {
+                $this->config['thumbnailSizes']['crop'] = false;
+            }
+        } else {
+            $this->config['thumbnailsGenerate'] = false;
         }
     }
 

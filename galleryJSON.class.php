@@ -56,7 +56,7 @@ class galleryJSON
         }
         if (!$albumID == '0' && $albumID != '' && $albumID != null) {
             // $album='/'.utf8_decode(urldecode($albumID)).'/';
-            $album = '/' . CustomDecode($albumID) . '/';
+            $album = '/' . $this->CustomDecode($albumID) . '/';
         } else {
             $albumID = '0';
         }
@@ -99,13 +99,13 @@ class galleryJSON
                         // ONE IMAGE
                         $oneItem = new item();
 
-                        $e                    = GetTitleDesc($filename, true);
+                        $e                    = $this->GetTitleDesc($filename, true);
                         $oneItem->title       = $e->title;
                         $oneItem->description = $e->description;
-                        $oneItem->src         = CustomEncode('nanoPhotosContent' . $album . '/' . $filename);
+                        $oneItem->src         = $this->CustomEncode('nanoPhotosContent' . $album . '/' . $filename);
 
-                        $tn                  = GetThumbnail($data->fullDir, $filename);
-                        $oneItem->srct       = CustomEncode('nanoPhotosContent' . $album . $tn);
+                        $tn                  = $this->GetThumbnail($data->fullDir, $filename);
+                        $oneItem->srct       = $this->CustomEncode('nanoPhotosContent' . $album . $tn);
                         $size                = getimagesize($data->fullDir . $tn);
                         $oneItem->imgtWidth  = $size[0];
                         $oneItem->imgtHeight = $size[1];
@@ -118,18 +118,18 @@ class galleryJSON
                         $oneItem       = new item();
                         $oneItem->kind = 'album';
 
-                        $e                    = GetTitleDesc($filename, false);
+                        $e                    = $this->GetTitleDesc($filename, false);
                         $oneItem->title       = $e->title;
                         $oneItem->description = $e->description;
 
                         $oneItem->albumID = $albumID;
                         if ($albumID == '0' || $albumID == '') {
-                            $oneItem->ID = CustomEncode($filename);
+                            $oneItem->ID = $this->CustomEncode($filename);
                         } else {
-                            $oneItem->ID = $albumID . CustomEncode('/' . $filename);
+                            $oneItem->ID = $albumID . $this->CustomEncode('/' . $filename);
                         }
 
-                        $s = GetAlbumCover($data->fullDir . $filename . '/');
+                        $s = $this->GetAlbumCover($data->fullDir . $filename . '/');
                         if ($s != '') {
                             // a cover has been found
                             $path = '';
@@ -138,7 +138,7 @@ class galleryJSON
                             } else {
                                 $path = $album . '/' . $filename;
                             }
-                            $oneItem->srct       = CustomEncode('/nanoPhotosContent/' . $path . '/' . $s);
+                            $oneItem->srct       = $this->CustomEncode('/nanoPhotosContent/' . $path . '/' . $s);
                             $size                = getimagesize(__DIR__ . '/nanoPhotosContent' . '/' . $path . '/' . $s);
                             $oneItem->imgtWidth  = $size[0];
                             $oneItem->imgtHeight = $size[1];
@@ -181,7 +181,7 @@ class galleryJSON
         if (count($files) > 0) {
             $i = basename($files[0]);
             if (preg_match("/\.(" . $GLOBALS['fileExtensions'] . ")*$/i", $i)) {
-                $tn = GetThumbnail($baseFolder, $i);
+                $tn = $this->GetThumbnail($baseFolder, $i);
                 if ($tn != '') {
                     return $tn;
                 }
@@ -189,9 +189,9 @@ class galleryJSON
         }
 
         // no cover image found --> use the first image for the cover
-        $i = GetFirstImageFolder($baseFolder);
+        $i = $this->GetFirstImageFolder($baseFolder);
         if ($i != '') {
-            $tn = GetThumbnail($baseFolder, $i);
+            $tn = $this->GetThumbnail($baseFolder, $i);
             if ($tn != '') {
                 return $tn;
             }
@@ -271,7 +271,7 @@ class galleryJSON
         }
 
         // generate the thumbnail
-        $tn = GenerateThumbnail($baseFolder, $filename);
+        $tn = $this->GenerateThumbnail($baseFolder, $filename);
         if ($tn != '') {
             return $tn;
         }
@@ -385,14 +385,14 @@ class galleryJSON
     protected function GetTitleDesc($filename, $isImage)
     {
         if ($isImage) {
-            $filename = file_ext_strip($filename);
+            $filename = $this->file_ext_strip($filename);
         }
 
         $oneItem = new item();
         if (strpos($filename, $GLOBALS['titleDescSeparator']) > 0) {
             // title and description
             $s              = explode($GLOBALS['titleDescSeparator'], $filename);
-            $oneItem->title = CustomEncode($s[0]);
+            $oneItem->title = $this->CustomEncode($s[0]);
             if ($isImage) {
                 $oneItem->description = CustomEncode(preg_replace('/.[^.]*$/', '', $s[1]));
             } else {

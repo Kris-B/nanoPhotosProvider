@@ -46,7 +46,8 @@ class item
 class galleryJSON
 {
     protected $config = array();
-
+    const CONFIG_FILE = './nanoPhotosProvider.Encoding.php';
+    const CONTENT_FOLDER = '/nanoPhotosContent';
     public function __construct()
     {
         // retrieve the album ID in the URL
@@ -63,9 +64,9 @@ class galleryJSON
         }
 
         $data          = new galleryData();
-        $data->fullDir = __DIR__ . '/nanoPhotosContent' . ($album);
+        $data->fullDir = __DIR__ . self::CONTENT_FOLDER . ($album);
 
-        $this->setConfig('./nanoPhotosProvider.Encoding.php');
+        $this->setConfig(self::CONFIG_FILE);
 
         $lstImages = array();
         $lstAlbums = array();
@@ -119,8 +120,8 @@ class galleryJSON
                             } else {
                                 $path = $album . '/' . $filename;
                             }
-                            $oneItem->srct       = $this->CustomEncode('/nanoPhotosContent/' . $path . '/' . $s);
-                            $size                = getimagesize(__DIR__ . '/nanoPhotosContent' . '/' . $path . '/' . $s);
+                            $oneItem->srct       = $this->CustomEncode(self::CONTENT_FOLDER . $path . '/' . $s);
+                            $size                = getimagesize(__DIR__ . self::CONTENT_FOLDER . '/' . $path . '/' . $s);
                             $oneItem->imgtWidth  = $size[0];
                             $oneItem->imgtHeight = $size[1];
 

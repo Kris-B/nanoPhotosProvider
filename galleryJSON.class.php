@@ -46,96 +46,54 @@ class item
 class galleryJSON
 {
     protected $config = array();
-    const CONFIG_FILE = './nanoPhotosProvider.Encoding.php';
+    protected $data;
+    protected $albumID;
+    protected $album;
+            
+    const CONFIG_FILE    = './nanoPhotosProvider.cfg';
     const CONTENT_FOLDER = '/nanoPhotosContent';
+
     public function __construct()
     {
         // retrieve the album ID in the URL
-        $album   = '/';
-        $albumID = '';
+        $this->album   = '/';
+        $this->albumID = '';
         if (isset($_GET['albumID'])) {
-            $albumID = $_GET['albumID'];
+            $this->albumID = $_GET['albumID'];
         }
-        if (!$albumID == '0' && $albumID != '' && $albumID != null) {
-            // $album='/'.utf8_decode(urldecode($albumID)).'/';
-            $album = '/' . $this->CustomDecode($albumID) . '/';
+        if (!$this->albumID == '0' && $this->albumID != '' && $this->albumID != null) {
+            // $this->album='/'.utf8_decode(urldecode($this->albumID)).'/';
+            $this->album = '/' . $this->CustomDecode($this->albumID) . '/';
         } else {
-            $albumID = '0';
+            $this->albumID = '0';
         }
 
-        $data          = new galleryData();
-        $data->fullDir = __DIR__ . self::CONTENT_FOLDER . ($album);
-
+        $this->data          = new galleryData();
+        $this->data->fullDir = __DIR__ . self::CONTENT_FOLDER . ($this->album);
         $this->setConfig(self::CONFIG_FILE);
 
         $lstImages = array();
         $lstAlbums = array();
 
-        $dh = opendir($data->fullDir);
+        $dh = opendir($this->data->fullDir);
+
         // loop the folder to retrieve images and albums
         if ($dh != false) {
             while (false !== ($filename = readdir($dh))) {
-                if ($filename != '.' && $filename != '..' && $filename != '_thumbnails' && substr($filename, 0, strlen($this->config['albumBlackListDetector'])) != $this->config['albumBlackListDetector']) {
-
-                    if (is_file($data->fullDir . $filename) && preg_match("/\.(" . $this->config['fileExtensions'] . ")*$/i", $filename)) {
-                        // ONE IMAGE
-                        $oneItem = new item();
-
-                        $e                    = $this->GetTitleDesc($filename, true);
-                        $oneItem->title       = $e->title;
-                        $oneItem->description = $e->description;
-                        $oneItem->src         = $this->CustomEncode('nanoPhotosContent' . $album . '/' . $filename);
-
-                        $tn                  = $this->GetThumbnail($data->fullDir, $filename);
-                        $oneItem->srct       = $this->CustomEncode('nanoPhotosContent' . $album . $tn);
-                        $size                = getimagesize($data->fullDir . $tn);
-                        $oneItem->imgtWidth  = $size[0];
-                        $oneItem->imgtHeight = $size[1];
-
-                        $oneItem->albumID = $albumID;
-
-                        $lstImages[] = $oneItem;
-                    } else {
-                        // ONE ALBUM
-                        $oneItem       = new item();
-                        $oneItem->kind = 'album';
-
-                        $e                    = $this->GetTitleDesc($filename, false);
-                        $oneItem->title       = $e->title;
-                        $oneItem->description = $e->description;
-
-                        $oneItem->albumID = $albumID;
-                        if ($albumID == '0' || $albumID == '') {
-                            $oneItem->ID = $this->CustomEncode($filename);
-                        } else {
-                            $oneItem->ID = $albumID . $this->CustomEncode('/' . $filename);
-                        }
-
-                        $s = $this->GetAlbumCover($data->fullDir . $filename . '/');
-                        if ($s != '') {
-                            // a cover has been found
-                            $path = '';
-                            if ($albumID == '0') {
-                                $path = $filename;
-                            } else {
-                                $path = $album . '/' . $filename;
-                            }
-                            $oneItem->srct       = $this->CustomEncode(self::CONTENT_FOLDER . $path . '/' . $s);
-                            $size                = getimagesize(__DIR__ . self::CONTENT_FOLDER . '/' . $path . '/' . $s);
-                            $oneItem->imgtWidth  = $size[0];
-                            $oneItem->imgtHeight = $size[1];
-
-                            $lstAlbums[] = $oneItem;
-                        }
-                    }
+                if ($filename != '.' &&
+                        $filename != '..' &&
+                        $filename != '_thumbnails' &&
+                        substr($filename, 0, strlen($this->config['albumBlackListDetector'])) != $this->config['albumBlackListDetector']) 
+                {
+                    $lstImages[] = $this->prepare_data($filename);
                 }
             }
             closedir($dh);
         }
 
         // sort data
-        usort($lstAlbums, 'compare');
-        usort($lstImages, 'compare');
+        usort($lstAlbums, array('galleryJSON','compare'));
+        usort($lstImages, array('galleryJSON','compare'));
 
         // return the data
         header('Content-Type: application/json; charset=utf-8');
@@ -463,6 +421,58 @@ class galleryJSON
     {
         return utf8_decode($s);
         // return $s;
+    }
+
+    protected function prepare_data($filename)
+    {
+        $oneItem = new item();
+        if (is_file($this->data->fullDir . $filename) && preg_match("/\.(" . $this->config['fileExtensions'] . ")*$/i", $filename)) {
+            // ONE IMAGE
+
+            $e                    = $this->GetTitleDesc($filename, true);
+            $oneItem->title       = $e->title;
+            $oneItem->description = $e->description;
+            $oneItem->src         = $this->CustomEncode('nanoPhotosContent' . $this->album . '/' . $filename);
+
+            $tn                  = $this->GetThumbnail($this->data->fullDir, $filename);
+            $oneItem->srct       = $this->CustomEncode('nanoPhotosContent' . $this->album . $tn);
+            $size                = getimagesize($this->data->fullDir . $tn);
+            $oneItem->imgtWidth  = $size[0];
+            $oneItem->imgtHeight = $size[1];
+
+            $oneItem->albumID = $this->albumID;
+            return $oneItem;
+        } else {
+            // ONE ALBUM
+            $oneItem->kind = 'album';
+
+            $e                    = $this->GetTitleDesc($filename, false);
+            $oneItem->title       = $e->title;
+            $oneItem->description = $e->description;
+
+            $oneItem->albumID = $this->albumID;
+            if ($this->albumID == '0' || $this->albumID == '') {
+                $oneItem->ID = $this->CustomEncode($filename);
+            } else {
+                $oneItem->ID = $this->albumID . $this->CustomEncode('/' . $filename);
+            }
+
+            $s = $this->GetAlbumCover($this->data->fullDir . $filename . '/');
+            if ($s != '') {
+                // a cover has been found
+                $path = '';
+                if ($this->albumID == '0') {
+                    $path = $filename;
+                } else {
+                    $path = $this->album . '/' . $filename;
+                }
+                $oneItem->srct       = $this->CustomEncode(self::CONTENT_FOLDER . $path . '/' . $s);
+                $size                = getimagesize(__DIR__ . self::CONTENT_FOLDER . '/' . $path . '/' . $s);
+                $oneItem->imgtWidth  = $size[0];
+                $oneItem->imgtHeight = $size[1];
+                return $oneItem;
+            }
+        }
     }
 
 }

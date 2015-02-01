@@ -74,7 +74,7 @@ class galleryJSON
 
         $lstImages = array();
         $lstAlbums = array();
-
+        
         $dh = opendir($this->data->fullDir);
 
         // loop the folder to retrieve images and albums
@@ -466,7 +466,7 @@ class galleryJSON
                 } else {
                     $path = $this->album . '/' . $filename;
                 }
-                $oneItem->srct       = $this->CustomEncode(self::CONTENT_FOLDER . $path . '/' . $s);
+                $oneItem->srct       = $this->CustomEncode(self::CONTENT_FOLDER .'/'. $path . '/' . $s);
                 $size                = getimagesize(__DIR__ . self::CONTENT_FOLDER . '/' . $path . '/' . $s);
                 $oneItem->imgtWidth  = $size[0];
                 $oneItem->imgtHeight = $size[1];

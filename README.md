@@ -19,7 +19,7 @@ To be used as an add-on for nanoGALLERY (http://nanogallery.brisbois.fr).
 On your webserver:
 - create a folder named `nanoPhotosProvider` where you want to store your photos
 - in this folder:
-  - copy the files `nanoPhotosProvider.php`, `nanoPhotosProvider.cfg` and `nanoPhotosProvider.Encoding.php`
+  - copy the files `nanoPhotosProvider.php`, `nanoPhotosProvider.class.php`, `nanoPhotosProvider.cfg` and `nanoPhotosProvider.Encoding.php`
   - create a folder named `nanoPhotosContent`
     - copy your photos here
     - you can organize your photos in folders

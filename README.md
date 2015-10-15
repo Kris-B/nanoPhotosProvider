@@ -1,4 +1,4 @@
-## nanoPhotosProvider
+# nanoPhotosProvider
 ### extension for nanoGALLERY
     
   
@@ -61,7 +61,7 @@ JPEG, GIF and PNG.
 <br />
 
 ### Known bug
-The nanoGALLERY option `locationHash` should not be enabled the albums have more than 2 levels.  
+The nanoGALLERY option `locationHash` should not be enabled if albums have more than 2 levels.  
   
   
 ### License

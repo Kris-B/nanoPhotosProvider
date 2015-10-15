@@ -62,8 +62,8 @@ JPEG, GIF and PNG.
 
 ### Known bug
 The nanoGALLERY option `locationHash` should not be enabled the albums have more than 2 levels.  
-
-
+  
+  
 ### License
 nanoPhotosProvider is licensed under [CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/).  
 Only for personal, non-profit organizations, or open source projects (without any kind of fee), you may use nanoPhotosProvider for free.

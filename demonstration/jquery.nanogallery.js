@@ -1,5 +1,5 @@
 /**!
- * @preserve nanoGALLERY v5.8.0
+ * @preserve nanoGALLERY v5.9.0beta1
  * Plugin for jQuery by Christophe Brisbois
  * Demo: http://nanogallery.brisbois.fr
  * Sources: https://github.com/Kris-B/nanoGALLERY
@@ -22,35 +22,12 @@
 
 /*
 
-nanoGALLERY v5.8.0 release notes.  
+nanoGALLERY v5.9.0beta1 release notes.  
   
-##### New API methods  
-- **closeViewer**: close the image viewer.  
-  `$('#yourElement').nanoGallery('closeViewer');`  
-  (credits: Victor A. Banuelos - https://github.com/vbanuelos)  
-- **paginationPreviousPage**: go to previous gallery page (when in pagination mode).  
-  `$('#yourElement').nanoGallery('paginationPreviousPage');`  
-- **paginationNextPage**: go to next gallery page (when in pagination mode).  
-  `$('#yourElement').nanoGallery('paginationNextPage');`  
-- **paginationCountPages**: returns the number of gallery pages (when in pagination mode).  
-  `var countPages = $('#yourElement').nanoGallery('paginationCountPages');`  
-- **paginationGotoPage**: go to a specific gallery page (when in pagination mode).  
-  `$('#yourElement').nanoGallery('paginationGotoPage', pageNumber);`  
-- **getCurrentViewedItem**: get the currently viewed item. Returns `null` if viewer not displayed.
-  `var item=$('#yourElement').nanoGallery('getCurrentViewedItem');`  
-  (credits: Daniel Eck - https://github.com/Ecksters)  
-- **getCurrentViewedItemIdx**: get the index of the currently viewed image. Returns `-1` if viewer not displayed.
-  `var itemIdx=$('#yourElement').nanoGallery('getCurrentViewedItemIdx');`  
-  (credits: Daniel Eck - https://github.com/Ecksters)  
+- fixed support of `nanoPhotosProvider`
+- removed option 'jsonCharset'
 
-  
-##### Misc
-- Picasa/Google+: now supports more than 1.000 images per album (credits: Giovanni Chiodi).  
-- bugfix: hover animations becoming choppy after navigating fastly in images.  
-- bugfix: loading CSS animation consuming memory even if not visible.  
-- bugfix: issue #78 - NGTweenable undefined when loading in a page using AMD and requirejs (credits: Jeff Mills - https://github.com/jefftmills)  
-  
-**Many thanks to Giovanni Chiodi, AlexRed, Jeff Mills, Victor A. Banuelos and Daniel Eck for their contribution.**  
+THIS IS AN EARLY BETA VERSION.
   
 **Visit nanoGALLERY homepage for usage details: [http://nanogallery.brisbois.fr](http://www.nanogallery.brisbois.fr/)**  
 

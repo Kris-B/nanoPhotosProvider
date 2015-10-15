@@ -1,10 +1,10 @@
 <?php
 
 /**
- * galleryJSON add-on for nanoGALLERY (or other image galleries)
+ * nanoPhotosProvider add-on for nanoGALLERY
  *
- * This is an add-on for nanoGALLERY (image gallery for jQuery - http://nanogallery.brisbois.fr).
- * This PHP application will publish your images and albums from a webserver to nanoGALLERY.
+ * This is an add-on for nanoGALLERY (image gallery - http://nanogallery.brisbois.fr).
+ * This PHP application will publish your images and albums from a PHP webserver to nanoGALLERY.
  * The content is provided on demand, one album at one time.
  * Thumbnails are generated automatically.
  * 
@@ -13,12 +13,13 @@
  *
  *
  * PHP 5.2+
- * @version    0.2.0
- * @author     Christophe BRISBOIS - http://www.brisbois.fr/
- * @copyright  Copyright 2014
- * @license    CC BY-NC 3.0
- * @link       https://github.com/Kris-B/galleryJSON
- * @Support    https://github.com/Kris-B/galleryJSON/issues
+ * @version       0.9.0
+ * @author        Christophe BRISBOIS - http://www.brisbois.fr/
+ * @Contributor   Ruplahlava - https://github.com/Ruplahlava
+ * @copyright     Copyright 2014
+ * @license       CC BY-NC 3.0
+ * @link          https://github.com/Kris-B/nanoPhotosProvider
+ * @Support       https://github.com/Kris-B/nanoPhotosProvider/issues
  *
  */
 require './nanoPhotosProvider.Encoding.php';
@@ -39,7 +40,7 @@ class item
     public $description = '';
     public $ID          = '';
     public $albumID     = '0';
-    public $kind        = '';      // album
+    public $kind        = '';      // album, image
 
 }
 
@@ -51,7 +52,7 @@ class galleryJSON
     protected $album;
             
     const CONFIG_FILE    = './nanoPhotosProvider.cfg';
-    const CONTENT_FOLDER = '/nanoPhotosContent';
+    //const CONTENT_FOLDER = '/nanoPhotosContent';
 
     public function __construct()
     {
@@ -59,7 +60,8 @@ class galleryJSON
         $this->album   = '/';
         $this->albumID = '';
         if (isset($_GET['albumID'])) {
-            $this->albumID = $_GET['albumID'];
+            // $this->albumID = $_GET['albumID'];
+            $this->albumID = rawurldecode($_GET['albumID']);
         }
         if (!$this->albumID == '0' && $this->albumID != '' && $this->albumID != null) {
             // $this->album='/'.utf8_decode(urldecode($this->albumID)).'/';
@@ -69,8 +71,9 @@ class galleryJSON
         }
 
         $this->data          = new galleryData();
-        $this->data->fullDir = __DIR__ . self::CONTENT_FOLDER . ($this->album);
         $this->setConfig(self::CONFIG_FILE);
+        // $this->data->fullDir = __DIR__ . self::CONTENT_FOLDER . ($this->album);
+        $this->data->fullDir = __DIR__ . ($this->config['contentFolder']) . ($this->album);
 
         $lstImages = array();
         $lstAlbums = array();
@@ -110,6 +113,7 @@ class galleryJSON
     protected function setConfig($filePath)
     {
         $config                                 = parse_ini_file($filePath, true);
+        $this->config['contentFolder']          = $config['config']['contentFolder'];
         $this->config['fileExtensions']         = $config['config']['fileExtensions'];
         $this->config['sortOrder']              = strtoupper($config['config']['sortOrder']);
         $this->config['titleDescSeparator']     = strtoupper($config['config']['titleDescSeparator']);
@@ -253,7 +257,7 @@ class galleryJSON
      */
     protected function GenerateThumbnail($baseFolder, $filename)
     {
-        if (!$this->config['thumbnailsGenerate']) {
+        if (!$this->config['thumbnailsGenerate'] == true ) {
             return '';
         }
 
@@ -429,18 +433,24 @@ class galleryJSON
         if (is_file($this->data->fullDir . $filename) && preg_match("/\.(" . $this->config['fileExtensions'] . ")*$/i", $filename)) {
             // ONE IMAGE
 
+            $oneItem->kind = 'image';
             $e                    = $this->GetTitleDesc($filename, true);
             $oneItem->title       = $e->title;
             $oneItem->description = $e->description;
-            $oneItem->src         = $this->CustomEncode('nanoPhotosContent' . $this->album . '/' . $filename);
+            $oneItem->src         = rawurlencode($this->CustomEncode($this->config['contentFolder'] . $this->album . '/' . $filename));
 
             $tn                  = $this->GetThumbnail($this->data->fullDir, $filename);
-            $oneItem->srct       = $this->CustomEncode('nanoPhotosContent' . $this->album . $tn);
+            $oneItem->srct       = rawurlencode($this->CustomEncode($this->config['contentFolder'] . $this->album . $tn));
             $size                = getimagesize($this->data->fullDir . $tn);
             $oneItem->imgtWidth  = $size[0];
             $oneItem->imgtHeight = $size[1];
 
-            $oneItem->albumID = $this->albumID;
+            $oneItem->albumID = rawurlencode($this->albumID);
+            if ($this->albumID == '0' || $this->albumID == '') {
+                $oneItem->ID = rawurlencode($this->CustomEncode($e->title));
+            } else {
+                $oneItem->ID = rawurlencode($this->albumID . $this->CustomEncode('/' . $e->title));
+            }
             return $oneItem;
         } else {
             // ONE ALBUM
@@ -450,11 +460,13 @@ class galleryJSON
             $oneItem->title       = $e->title;
             $oneItem->description = $e->description;
 
-            $oneItem->albumID = $this->albumID;
+            $oneItem->albumID = rawurlencode($this->albumID);
             if ($this->albumID == '0' || $this->albumID == '') {
-                $oneItem->ID = $this->CustomEncode($filename);
+                // $oneItem->ID = $this->CustomEncode($filename);
+                $oneItem->ID = rawurlencode($this->CustomEncode($filename));
             } else {
-                $oneItem->ID = $this->albumID . $this->CustomEncode('/' . $filename);
+                // $oneItem->ID = $this->albumID . $this->CustomEncode('/' . $filename);
+                $oneItem->ID = rawurlencode($this->albumID . $this->CustomEncode('/' . $filename));
             }
 
             $s = $this->GetAlbumCover($this->data->fullDir . $filename . '/');
@@ -466,8 +478,9 @@ class galleryJSON
                 } else {
                     $path = $this->album . '/' . $filename;
                 }
-                $oneItem->srct       = $this->CustomEncode(self::CONTENT_FOLDER .'/'. $path . '/' . $s);
-                $size                = getimagesize(__DIR__ . self::CONTENT_FOLDER . '/' . $path . '/' . $s);
+                $oneItem->srct       = rawurlencode($this->CustomEncode($this->config['contentFolder'] .'/'. $path . '/' . $s));
+                // $oneItem->srct       = $this->CustomEncode(self::CONTENT_FOLDER .'/'. $path . '/' . $s);
+                $size                = getimagesize(__DIR__ . $this->config['contentFolder'] . '/' . $path . '/' . $s);
                 $oneItem->imgtWidth  = $size[0];
                 $oneItem->imgtHeight = $size[1];
                 return $oneItem;

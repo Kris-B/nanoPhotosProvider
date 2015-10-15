@@ -1,17 +1,13 @@
-### nanoPhotosProvider
-#### extension for nanoGALLERY
+## nanoPhotosProvider
+### extension for nanoGALLERY
+    
   
-  
-<br />
-<br />
-Publish your self-hosted photos simply and automatically to nanoGALLERY.
-Content is providing on demand when browsing the albums of the gallery.
-Generates thumbnails automatically.
+Publish your self-hosted photos simply and automatically to nanoGALLERY.  
+Content is providing on demand when browsing the albums of the gallery.  
+Generates thumbnails automatically.  
 
 To be used as an add-on for nanoGALLERY (http://nanogallery.brisbois.fr).
 
-<br />
-<br />
 ### Usage
 
 ##### Step 1: installation
@@ -63,6 +59,11 @@ Please note that the thumbnails are never purged, so you may delete the `_thumbn
 JPEG, GIF and PNG.
 
 <br />
+
+### Known bug
+The nanoGALLERY option `locationHash` should not be enabled the albums have more than 2 levels.  
+
+
 ### License
 nanoPhotosProvider is licensed under [CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/).  
 Only for personal, non-profit organizations, or open source projects (without any kind of fee), you may use nanoPhotosProvider for free.

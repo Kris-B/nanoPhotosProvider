@@ -1,10 +1,10 @@
 <?php
 
 /**
- * galleryJSON add-on for nanoGALLERY (or other image galleries)
+ * nanoPhotosProvider add-on for nanoGALLERY
  *
- * This is an add-on for nanoGALLERY (image gallery for jQuery - http://nanogallery.brisbois.fr).
- * This PHP application will publish your images and albums from a webserver to nanoGALLERY.
+ * This is an add-on for nanoGALLERY (image gallery - http://nanogallery.brisbois.fr).
+ * This PHP application will publish your images and albums from a PHP webserver to nanoGALLERY.
  * The content is provided on demand, one album at one time.
  * Thumbnails are generated automatically.
  * 
@@ -13,19 +13,21 @@
  *
  *
  * PHP 5.2+
- * @version    0.2.0
- * @author     Christophe BRISBOIS - http://www.brisbois.fr/
- * @copyright  Copyright 2014
- * @license    CC BY-NC 3.0
- * @link       https://github.com/Kris-B/galleryJSON
- * @Support    https://github.com/Kris-B/galleryJSON/issues
+ * @version       0.9.0
+ * @author        Christophe BRISBOIS - http://www.brisbois.fr/
+ * @Contributor   Ruplahlava - https://github.com/Ruplahlava
+ * @copyright     Copyright 2014
+ * @license       CC BY-NC 3.0
+ * @link          https://github.com/Kris-B/nanoPhotosProvider
+ * @Support       https://github.com/Kris-B/nanoPhotosProvider/issues
  *
  */
-require './galleryJSON.class.php';
+require './nanoPhotosProvider.JSON.class.php';
+
 // Available values development, production
 // Codeigniter env switch https://github.com/bcit-ci/CodeIgniter/
 
-define('ENVIRONMENT', 'development');
+define('ENVIRONMENT', 'production');
 
 switch (ENVIRONMENT) {
     case 'development':

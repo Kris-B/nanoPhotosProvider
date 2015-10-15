@@ -49,7 +49,10 @@
 				thumbnailLabel: {display:true,position:'overImageOnBottom'},
         viewerDisplayLogo: true,
         kind: 'json',
-        jsonProvider: 'http://localhost:12345/nanoPhotosProvider/nanoPhotosProvider.php'
+        locationHash: false,
+        galleryToolbarWidthAligned: false,
+        //jsonCharset: 'UTF-8'
+        jsonProvider: 'http://localhost:12345/nanoPhotosProvider.php'
 			});
       
 		});
@@ -59,14 +62,14 @@
 
 <body>
 
-	<div style="color:#fff;text-align:center;font-size:3.0em;">nanoPhotosProvider for <span style="color:#fff;">nano</span><span style="color:#6e6;">GALLERY</span></div>
-	<div style="text-align:center;font-size:2em;color:#6e6">Add-on demonstration page</div>
-	<div style="color:#eee;text-align:center;font-size:.9em;"><br>more about nanoGALLERY for jQuery : <a href="http://www.nanogallery.brisbois.fr">www.nanogallery.brisbois.fr</a></div>
+	<div style="color:#fff;text-align:center;font-size:2.0em;">nanoPhotosProvider for <span style="color:#fff;">nano</span><span style="color:#6e6;">GALLERY</span></div>
+	<div style="text-align:center;font-size:1.5em;color:#6e6">Add-on demonstration page</div>
+	<div style="color:#eee;text-align:center;font-size:.8em;"><br>more about nanoGALLERY : <a href="http://www.nanogallery.brisbois.fr">www.nanogallery.brisbois.fr</a></div>
 	<br><br><br><br>
-	<div style="color:#eee;text-align:center;font-size:1.2em;">Look at the page source code to find useful information.</div>
+	<div style="color:#eee;text-align:center;font-size:0.8em;">Look at the page source code to find useful information.</div>
 	
-	<br><br><br><br><br><br><br><br><br>
-	<h2 style="background:#555;">----- Add-on for self-hosted images -----</h2>
+	<br><br><br>
+	<h2 style="background:#555;">----- nanoGALLERY with self-hosted images -----</h2>
 
 	<div id="nanoGallery1"></div>
 	<br>

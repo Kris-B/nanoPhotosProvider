@@ -15,13 +15,17 @@ To be used as an add-on for nanoGALLERY (http://nanogallery.brisbois.fr).
 On your webserver:
 - create a folder named `nanoPhotosProvider` where you want to store your photos
 - in this folder:
-  - copy the files `nanoPhotosProvider.php`, `nanoPhotosProvider.class.php`, `nanoPhotosProvider.cfg` and `nanoPhotosProvider.Encoding.php`
-  - create a folder named `nanoPhotosContent`
-    - copy your photos here
-    - you can organize your photos in folders
-    - in the filenames, you can separate title and description with `$$`
-    - add leading `@@@@@` to the images to be used as album covers
-  - edit the `nanoPhotosProvider.cfg` to change the behaviour of the application (for example the size of the thumbnails)  
+  - copy the files:
+    - `nanoPhotosProvider.php`,
+    - `nanoPhotosProvider.class.php`,
+    - `nanoPhotosProvider.cfg` and
+    - `nanoPhotosProvider.Encoding.php`
+  - create a folder named `nanoPhotosContent`  
+    - copy your photos here  
+    - you can organize your photos in folders (= albums)  
+    - in the filenames, you can separate title and description with `$$`  
+    - add leading `@@@@@` to the filename of the images to be used as album covers  
+  - edit the `nanoPhotosProvider.cfg` file for custom settings  
 
 <br />
 ##### :two: Step 2: configure your HTML page
@@ -30,20 +34,21 @@ On your webserver:
 - Install nanoGALLERY for jQuery (see http://nanogallery.brisbois.fr)
 - Configure the call to the plugin:
   - Use the specific parameters: `kind` and `jsonProvider`
-    - `kind`: set value to `json`
+    - `kind`: set value to `'json'`
     - `jsonProvider`: URL to the `nanoPhotosProvider.php` file installed in step 1
 
 Example:
 
 ```js
-jQuery(document).ready(function () {
-  jQuery("#nanoGallery1").nanoGallery({
-    thumbnailWidth: 150,
-    thumbnailHeight: 150,
-    kind: 'json',
-    jsonProvider: 'http://mywebsever.com/mypath/nanoPhotosProvider/nanoPhotosProvider.php',
-  });
-});
+    jQuery(document).ready(function () {
+      jQuery("#nanoGallery1").nanoGallery({
+        thumbnailWidth: 150,
+        thumbnailHeight: 150,
+        kind: 'json',
+        jsonProvider: 'http://mywebsever.com/mypath/nanoPhotosProvider/nanoPhotosProvider.php',
+        locationHash: false
+      });
+    });
 ```
 <br />
 <br />
@@ -52,7 +57,7 @@ jQuery(document).ready(function () {
 <br />
 ##### :four: Step 4: add/change content
 Add files and folders, or renaname them.
-Please note that the thumbnails are never purged, so you may delete the `_thumbnails` folders to force a new generation.
+Please note that the generated thumbnails are never purged, so you may delete the `_thumbnails` folders to force a new generation.
   
   
   
@@ -64,8 +69,8 @@ Section | Option | default value | Description
 config | fileExtensions | "jpg\|jpeg\|png\|gif" | Supported file extensions
  | sortOrder | "asc" | Filename sort ordr
  | titleDescSeparator | "$$" | Separator between title and description in the name of the file
- | albumBlackListDetector | "!!!!!" | Ignore albums (folders) containing this sequence
- | albumCoverDetector | "@@@@@" | 
+ | albumBlackListDetector | "!!!!!" | Ignore albums (folders) containing this sequence in their name
+ | albumCoverDetector | "@@@@@" | Set leading sequence in filename of the images to be used as album covers  
  | contentFolder | "/nanoPhotosContent" | Folder where albums and images are stored
 thumbnailSizes | width | 150 | Thumbnail width in pixels
  | height | 150 | Thumbnail height in pixels
@@ -88,6 +93,7 @@ Only for personal, non-profit organizations, or open source projects (without an
 
 
 ### :white_circle: Requirements
+* nanoGALLERY (http://nanogallery.brisbois.fr)
 * Webserver
 * PHP >= v5.2 with GD-Library
 

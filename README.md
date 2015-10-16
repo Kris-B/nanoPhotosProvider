@@ -1,16 +1,16 @@
 # nanoPhotosProvider
-### extension for nanoGALLERY
+### :white_circle: extension for nanoGALLERY
     
   
 Publish your self-hosted photos simply and automatically to nanoGALLERY.  
-Content is providing on demand when browsing the albums of the gallery.  
+Content is provided on demand when browsing the albums of the gallery.  
 Generates thumbnails automatically.  
 
 To be used as an add-on for nanoGALLERY (http://nanogallery.brisbois.fr).
 
-### Usage
+### :white_circle: Usage
 
-##### Step 1: installation
+##### :one: Step 1: installation
 
 On your webserver:
 - create a folder named `nanoPhotosProvider` where you want to store your photos
@@ -24,7 +24,7 @@ On your webserver:
   - edit the `nanoPhotosProvider.cfg` to change the behaviour of the application (for example the size of the thumbnails)  
 
 <br />
-##### Step 2: configure your HTML page
+##### :two: Step 2: configure your HTML page
 
 - The page can be located anywhere on your webserver.
 - Install nanoGALLERY for jQuery (see http://nanogallery.brisbois.fr)
@@ -47,29 +47,29 @@ jQuery(document).ready(function () {
 ```
 <br />
 <br />
-##### Step 3: test your page to see the result ;-)
+##### :three: Step 3: test your page to see the result ;-)
 
 <br />
-##### Step 4: add/change content
+##### :four: Step 4: add/change content
 Add files and folders, or renaname them.
 Please note that the thumbnails are never purged, so you may delete the `_thumbnails` folders to force a new generation.
 
 <br />
-### Supported image formats
+### :white_circle: Supported image formats
 JPEG, GIF and PNG.
 
 <br />
 
-### Known bug
+### :warning: Known bug
 The nanoGALLERY option `locationHash` should not be enabled if albums have more than 2 levels.  
   
   
-### License
+### :copyright: License
 nanoPhotosProvider is licensed under [CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/).  
 Only for personal, non-profit organizations, or open source projects (without any kind of fee), you may use nanoPhotosProvider for free.
 
 
-### Requirements
+### :white_circle: Requirements
 * Webserver
 * PHP >= v5.2 with GD-Library
 

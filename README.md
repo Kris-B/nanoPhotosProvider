@@ -53,6 +53,24 @@ jQuery(document).ready(function () {
 ##### :four: Step 4: add/change content
 Add files and folders, or renaname them.
 Please note that the thumbnails are never purged, so you may delete the `_thumbnails` folders to force a new generation.
+  
+  
+  
+### :white_circle: Custom configuration
+Custom settings are defined in `nanoPhotosProvider.cfg`
+
+Section | Option | default value | Description
+------------ | ------------- | ------------ | -------------
+config | fileExtensions | "jpg\|jpeg\|png\|gif" | Supported file extensions
+ | sortOrder | "asc" | Filename sort ordr
+ | titleDescSeparator | "$$" | Separator between title and description in the name of the file
+ | albumBlackListDetector | "!!!!!" | Ignore albums (folders) containing this sequence
+ | albumCoverDetector | "@@@@@" | 
+ | contentFolder | "/nanoPhotosContent" | Folder where albums and images are stored
+thumbnailSizes | width | 150 | Thumbnail width in pixels
+ | height | 150 | Thumbnail height in pixels
+ | crop | false | Crop images to avoid black borders
+ 
 
 <br />
 ### :white_circle: Supported image formats

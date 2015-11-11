@@ -80,7 +80,6 @@ class galleryJSON
         
         $dh = opendir($this->data->fullDir);
 
-        // determine the name of the hidden cover files (without the extension)
         $hideFilesContaining = $this->config['hideFilesContaining'];
 
         // loop the folder to retrieve images and albums

@@ -1,13 +1,13 @@
 /**!
- * @preserve nanoGALLERY v5.9.0beta1
+ * @preserve nanoGALLERY v5.9.1
  * Plugin for jQuery by Christophe Brisbois
  * Demo: http://nanogallery.brisbois.fr
  * Sources: https://github.com/Kris-B/nanoGALLERY
  *
- * License: For personal, non-profit organizations, or open source projects (without any kind of fee), you may use nanoGALLERY for jQuery for free. 
+ * License: For personal, non-profit organizations, or open source projects (without any kind of fee), you may use nanoGALLERY for jQuery for free.
  * -------- ALL OTHER USES REQUIRE THE PURCHASE OF A PROFESSIONAL LICENSE.
- * 
- * 
+ *
+ *
  * Components:
  *  - jQuery (http://www.jquery.com) - version >= 1.7.1
  *  - jQuery Color plugin - is embedded
@@ -18,18 +18,17 @@
  *  - javascript minifying: grunt-contrib-uglify (https://github.com/gruntjs/grunt-contrib-uglify)
  *  - css minifying: grunt-contrib-cssmin (https://github.com/gruntjs/grunt-contrib-cssmin)
  */
- 
+
 
 /*
 
-nanoGALLERY v5.9.0beta1 release notes.  
-  
-- fixed support of `nanoPhotosProvider`
-- removed option 'jsonCharset'
+nanoGALLERY v5.9.1 release notes.
 
-THIS IS AN EARLY BETA VERSION.
-  
-**Visit nanoGALLERY homepage for usage details: [http://nanogallery.brisbois.fr](http://www.nanogallery.brisbois.fr/)**  
+- bugfix: issue #97 - ThumbnailL1 issue  
+- bugfix: images incorrectly displayed in some cases
+
+
+**Visit nanoGALLERY homepage for usage details: [http://nanogallery.brisbois.fr](http://www.nanogallery.brisbois.fr/)**
 
 */
 
@@ -39,11 +38,11 @@ THIS IS AN EARLY BETA VERSION.
  */
 
 // NG BUILD:
-// 
+//
 // replace "Tweenable" with "NGTweenable"
 // replace "define.amd" with "define.amdDISABLED"
 /*! shifty - v1.5.0 - 2015-05-31 - http://jeremyckahn.github.io/shifty */
-(function(){var t=this,n=function(){"use strict";function n(){}function e(t,n){var e;for(e in t)Object.hasOwnProperty.call(t,e)&&n(e)}function i(t,n){return e(n,function(e){t[e]=n[e]}),t}function r(t,n){e(n,function(e){t[e]===void 0&&(t[e]=n[e])})}function o(t,n,e,i,r,o,u){var s,c,h,p=o>t?0:(t-o)/r;for(s in n)n.hasOwnProperty(s)&&(c=u[s],h="function"==typeof c?c:f[c],n[s]=a(e[s],i[s],h,p));return n}function a(t,n,e,i){return t+(n-t)*e(i)}function u(t,n){var i=h.prototype.filter,r=t._filterArgs;e(i,function(e){i[e][n]!==void 0&&i[e][n].apply(t,r)})}function s(t,n,e,i,r,a,s,c,h,f,p){g=n+e+i,y=Math.min(p||d(),g),v=y>=g,M=i-(g-y),t.isPlaying()&&!v?(t._scheduleId=f(t._timeoutHandler,m),u(t,"beforeTween"),n+e>y?o(1,r,a,s,1,1,c):o(y,r,a,s,i,n+e,c),u(t,"afterTween"),h(r,t._attachment,M)):t.isPlaying()&&v&&(h(s,t._attachment,M),t.stop(!0))}function c(t,n){var i={},r=typeof n;return"string"===r||"function"===r?e(t,function(t){i[t]=n}):e(t,function(t){i[t]||(i[t]=n[t]||l)}),i}function h(t,n){this._currentState=t||{},this._configured=!1,this._scheduleFunction=p,n!==void 0&&this.setConfig(n)}var f,p,l="linear",_=500,m=1e3/60,w=Date.now?Date.now:function(){return+new Date},d="undefined"!=typeof SHIFTY_DEBUG_NOW?SHIFTY_DEBUG_NOW:w;p="undefined"!=typeof window?window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||window.mozCancelRequestAnimationFrame&&window.mozRequestAnimationFrame||setTimeout:setTimeout;var g,y,v,M;return h.prototype.tween=function(t){return this._isTweening?this:(void 0===t&&this._configured||this.setConfig(t),this._timestamp=d(),this._start(this.get(),this._attachment),this.resume())},h.prototype.setConfig=function(t){t=t||{},this._configured=!0,this._attachment=t.attachment,this._pausedAtTime=null,this._scheduleId=null,this._delay=t.delay||0,this._start=t.start||n,this._step=t.step||n,this._finish=t.finish||n,this._duration=t.duration||_,this._currentState=i({},t.from)||this.get(),this._originalState=this.get(),this._targetState=i({},t.to)||this.get();var e=this;this._timeoutHandler=function(){s(e,e._timestamp,e._delay,e._duration,e._currentState,e._originalState,e._targetState,e._easing,e._step,e._scheduleFunction)};var o=this._currentState,a=this._targetState;return r(a,o),this._easing=c(o,t.easing||l),this._filterArgs=[o,this._originalState,a,this._easing],u(this,"tweenCreated"),this},h.prototype.get=function(){return i({},this._currentState)},h.prototype.set=function(t){this._currentState=t},h.prototype.pause=function(){return this._pausedAtTime=d(),this._isPaused=!0,this},h.prototype.resume=function(){return this._isPaused&&(this._timestamp+=d()-this._pausedAtTime),this._isPaused=!1,this._isTweening=!0,this._timeoutHandler(),this},h.prototype.seek=function(t){t=Math.max(t,0);var n=d();return 0===this._timestamp+t?this:(this._timestamp=n-t,this.isPlaying()||(this._isTweening=!0,this._isPaused=!1,s(this,this._timestamp,this._delay,this._duration,this._currentState,this._originalState,this._targetState,this._easing,this._step,this._scheduleFunction,n),this.pause()),this)},h.prototype.stop=function(e){return this._isTweening=!1,this._isPaused=!1,this._timeoutHandler=n,(t.cancelAnimationFrame||t.webkitCancelAnimationFrame||t.oCancelAnimationFrame||t.msCancelAnimationFrame||t.mozCancelRequestAnimationFrame||t.clearTimeout)(this._scheduleId),e&&(u(this,"beforeTween"),o(1,this._currentState,this._originalState,this._targetState,1,0,this._easing),u(this,"afterTween"),u(this,"afterTweenEnd"),this._finish.call(this,this._currentState,this._attachment)),this},h.prototype.isPlaying=function(){return this._isTweening&&!this._isPaused},h.prototype.setScheduleFunction=function(t){this._scheduleFunction=t},h.prototype.dispose=function(){var t;for(t in this)this.hasOwnProperty(t)&&delete this[t]},h.prototype.filter={},h.prototype.formula={linear:function(t){return t}},f=h.prototype.formula,i(h,{now:d,each:e,tweenProps:o,tweenProp:a,applyFilter:u,shallowCopy:i,defaults:r,composeEasingObject:c}),"function"==typeof SHIFTY_DEBUG_NOW&&(t.timeoutHandler=s),"object"==typeof exports?module.exports=h:"function"==typeof define&&define.amdDISABLED?define(function(){return h}):t.NGTweenable===void 0&&(t.NGTweenable=h),h}();(function(){n.shallowCopy(n.prototype.formula,{easeInQuad:function(t){return Math.pow(t,2)},easeOutQuad:function(t){return-(Math.pow(t-1,2)-1)},easeInOutQuad:function(t){return 1>(t/=.5)?.5*Math.pow(t,2):-.5*((t-=2)*t-2)},easeInCubic:function(t){return Math.pow(t,3)},easeOutCubic:function(t){return Math.pow(t-1,3)+1},easeInOutCubic:function(t){return 1>(t/=.5)?.5*Math.pow(t,3):.5*(Math.pow(t-2,3)+2)},easeInQuart:function(t){return Math.pow(t,4)},easeOutQuart:function(t){return-(Math.pow(t-1,4)-1)},easeInOutQuart:function(t){return 1>(t/=.5)?.5*Math.pow(t,4):-.5*((t-=2)*Math.pow(t,3)-2)},easeInQuint:function(t){return Math.pow(t,5)},easeOutQuint:function(t){return Math.pow(t-1,5)+1},easeInOutQuint:function(t){return 1>(t/=.5)?.5*Math.pow(t,5):.5*(Math.pow(t-2,5)+2)},easeInSine:function(t){return-Math.cos(t*(Math.PI/2))+1},easeOutSine:function(t){return Math.sin(t*(Math.PI/2))},easeInOutSine:function(t){return-.5*(Math.cos(Math.PI*t)-1)},easeInExpo:function(t){return 0===t?0:Math.pow(2,10*(t-1))},easeOutExpo:function(t){return 1===t?1:-Math.pow(2,-10*t)+1},easeInOutExpo:function(t){return 0===t?0:1===t?1:1>(t/=.5)?.5*Math.pow(2,10*(t-1)):.5*(-Math.pow(2,-10*--t)+2)},easeInCirc:function(t){return-(Math.sqrt(1-t*t)-1)},easeOutCirc:function(t){return Math.sqrt(1-Math.pow(t-1,2))},easeInOutCirc:function(t){return 1>(t/=.5)?-.5*(Math.sqrt(1-t*t)-1):.5*(Math.sqrt(1-(t-=2)*t)+1)},easeOutBounce:function(t){return 1/2.75>t?7.5625*t*t:2/2.75>t?7.5625*(t-=1.5/2.75)*t+.75:2.5/2.75>t?7.5625*(t-=2.25/2.75)*t+.9375:7.5625*(t-=2.625/2.75)*t+.984375},easeInBack:function(t){var n=1.70158;return t*t*((n+1)*t-n)},easeOutBack:function(t){var n=1.70158;return(t-=1)*t*((n+1)*t+n)+1},easeInOutBack:function(t){var n=1.70158;return 1>(t/=.5)?.5*t*t*(((n*=1.525)+1)*t-n):.5*((t-=2)*t*(((n*=1.525)+1)*t+n)+2)},elastic:function(t){return-1*Math.pow(4,-8*t)*Math.sin((6*t-1)*2*Math.PI/2)+1},swingFromTo:function(t){var n=1.70158;return 1>(t/=.5)?.5*t*t*(((n*=1.525)+1)*t-n):.5*((t-=2)*t*(((n*=1.525)+1)*t+n)+2)},swingFrom:function(t){var n=1.70158;return t*t*((n+1)*t-n)},swingTo:function(t){var n=1.70158;return(t-=1)*t*((n+1)*t+n)+1},bounce:function(t){return 1/2.75>t?7.5625*t*t:2/2.75>t?7.5625*(t-=1.5/2.75)*t+.75:2.5/2.75>t?7.5625*(t-=2.25/2.75)*t+.9375:7.5625*(t-=2.625/2.75)*t+.984375},bouncePast:function(t){return 1/2.75>t?7.5625*t*t:2/2.75>t?2-(7.5625*(t-=1.5/2.75)*t+.75):2.5/2.75>t?2-(7.5625*(t-=2.25/2.75)*t+.9375):2-(7.5625*(t-=2.625/2.75)*t+.984375)},easeFromTo:function(t){return 1>(t/=.5)?.5*Math.pow(t,4):-.5*((t-=2)*Math.pow(t,3)-2)},easeFrom:function(t){return Math.pow(t,4)},easeTo:function(t){return Math.pow(t,.25)}})})(),function(){function t(t,n,e,i,r,o){function a(t){return((l*t+_)*t+m)*t}function u(t){return((w*t+d)*t+g)*t}function s(t){return(3*l*t+2*_)*t+m}function c(t){return 1/(200*t)}function h(t,n){return u(p(t,n))}function f(t){return t>=0?t:0-t}function p(t,n){var e,i,r,o,u,c;for(r=t,c=0;8>c;c++){if(o=a(r)-t,n>f(o))return r;if(u=s(r),1e-6>f(u))break;r-=o/u}if(e=0,i=1,r=t,e>r)return e;if(r>i)return i;for(;i>e;){if(o=a(r),n>f(o-t))return r;t>o?e=r:i=r,r=.5*(i-e)+e}return r}var l=0,_=0,m=0,w=0,d=0,g=0;return m=3*n,_=3*(i-n)-m,l=1-m-_,g=3*e,d=3*(r-e)-g,w=1-g-d,h(t,c(o))}function e(n,e,i,r){return function(o){return t(o,n,e,i,r,1)}}n.setBezierFunction=function(t,i,r,o,a){var u=e(i,r,o,a);return u.displayName=t,u.x1=i,u.y1=r,u.x2=o,u.y2=a,n.prototype.formula[t]=u},n.unsetBezierFunction=function(t){delete n.prototype.formula[t]}}(),function(){function t(t,e,i,r,o,a){return n.tweenProps(r,e,t,i,1,a,o)}var e=new n;e._filterArgs=[],n.interpolate=function(i,r,o,a,u){var s=n.shallowCopy({},i),c=u||0,h=n.composeEasingObject(i,a||"linear");e.set({});var f=e._filterArgs;f.length=0,f[0]=s,f[1]=i,f[2]=r,f[3]=h,n.applyFilter(e,"tweenCreated"),n.applyFilter(e,"beforeTween");var p=t(i,s,r,o,h,c);return n.applyFilter(e,"afterTween"),p}}(),function(t){function n(t,n){var e,i=[],r=t.length;for(e=0;r>e;e++)i.push("_"+n+"_"+e);return i}function e(t){var n=t.match(M);return n?(1===n.length||t[0].match(v))&&n.unshift(""):n=["",""],n.join(O)}function i(n){t.each(n,function(t){var e=n[t];"string"==typeof e&&e.match(S)&&(n[t]=r(e))})}function r(t){return s(S,t,o)}function o(t){var n=a(t);return"rgb("+n[0]+","+n[1]+","+n[2]+")"}function a(t){return t=t.replace(/#/,""),3===t.length&&(t=t.split(""),t=t[0]+t[0]+t[1]+t[1]+t[2]+t[2]),b[0]=u(t.substr(0,2)),b[1]=u(t.substr(2,2)),b[2]=u(t.substr(4,2)),b}function u(t){return parseInt(t,16)}function s(t,n,e){var i=n.match(t),r=n.replace(t,O);if(i)for(var o,a=i.length,u=0;a>u;u++)o=i.shift(),r=r.replace(O,e(o));return r}function c(t){return s(T,t,h)}function h(t){for(var n=t.match(F),e=n.length,i=t.match(I)[0],r=0;e>r;r++)i+=parseInt(n[r],10)+",";return i=i.slice(0,-1)+")"}function f(i){var r={};return t.each(i,function(t){var o=i[t];if("string"==typeof o){var a=d(o);r[t]={formatString:e(o),chunkNames:n(a,t)}}}),r}function p(n,e){t.each(e,function(t){for(var i=n[t],r=d(i),o=r.length,a=0;o>a;a++)n[e[t].chunkNames[a]]=+r[a];delete n[t]})}function l(n,e){t.each(e,function(t){var i=n[t],r=_(n,e[t].chunkNames),o=m(r,e[t].chunkNames);i=w(e[t].formatString,o),n[t]=c(i)})}function _(t,n){for(var e,i={},r=n.length,o=0;r>o;o++)e=n[o],i[e]=t[e],delete t[e];return i}function m(t,n){k.length=0;for(var e=n.length,i=0;e>i;i++)k.push(t[n[i]]);return k}function w(t,n){for(var e=t,i=n.length,r=0;i>r;r++)e=e.replace(O,+n[r].toFixed(4));return e}function d(t){return t.match(F)}function g(n,e){t.each(e,function(t){var i,r=e[t],o=r.chunkNames,a=o.length,u=n[t];if("string"==typeof u){var s=u.split(" "),c=s[s.length-1];for(i=0;a>i;i++)n[o[i]]=s[i]||c}else for(i=0;a>i;i++)n[o[i]]=u;delete n[t]})}function y(n,e){t.each(e,function(t){var i=e[t],r=i.chunkNames,o=r.length,a=n[r[0]],u=typeof a;if("string"===u){for(var s="",c=0;o>c;c++)s+=" "+n[r[c]],delete n[r[c]];n[t]=s.substr(1)}else n[t]=a})}var v=/(\d|\-|\.)/,M=/([^\-0-9\.]+)/g,F=/[0-9.\-]+/g,T=RegExp("rgb\\("+F.source+/,\s*/.source+F.source+/,\s*/.source+F.source+"\\)","g"),I=/^.*\(/,S=/#([0-9]|[a-f]){3,6}/gi,O="VAL",b=[],k=[];t.prototype.filter.token={tweenCreated:function(t,n,e){i(t),i(n),i(e),this._tokenData=f(t)},beforeTween:function(t,n,e,i){g(i,this._tokenData),p(t,this._tokenData),p(n,this._tokenData),p(e,this._tokenData)},afterTween:function(t,n,e,i){l(t,this._tokenData),l(n,this._tokenData),l(e,this._tokenData),y(i,this._tokenData)}}}(n)}).call(null);
+(function(){var t=this,n=function(){"use strict";function n(){}function e(t,n){var e;for(e in t)Object.hasOwnProperty.call(t,e)&&n(e)}function i(t,n){return e(n,function(e){t[e]=n[e]}),t}function r(t,n){e(n,function(e){t[e]===void 0&&(t[e]=n[e])})}function o(t,n,e,i,r,o,u){var s,c,h,p=o>t?0:(t-o)/r;for(s in n)n.hasOwnProperty(s)&&(c=u[s],h="function"==typeof c?c:f[c],n[s]=a(e[s],i[s],h,p));return n}function a(t,n,e,i){return t+(n-t)*e(i)}function u(t,n){var i=h.prototype.filter,r=t._filterArgs;e(i,function(e){i[e][n]!==void 0&&i[e][n].apply(t,r)})}function s(t,n,e,i,r,a,s,c,h,f,p){g=n+e+i,y=Math.min(p||d(),g),v=y>=g,M=i-(g-y),t.isPlaying()&&!v?(t._scheduleId=f(t._timeoutHandler,m),u(t,"beforeTween"),n+e>y?o(1,r,a,s,1,1,c):o(y,r,a,s,i,n+e,c),u(t,"afterTween"),h(r,t._attachment,M)):t.isPlaying()&&v&&(h(s,t._attachment,M),t.stop(!0))}function c(t,n){var i={},r=typeof n;return"string"===r||"function"===r?e(t,function(t){i[t]=n}):e(t,function(t){i[t]||(i[t]=n[t]||l)}),i}function h(t,n){this._currentState=t||{},this._configured=!1,this._scheduleFunction=p,n!==void 0&&this.setConfig(n)}var f,p,l="linear",_=500,m=1e3/60,w=Date.now?Date.now:function(){return+new Date},d="undefined"!=typeof SHIFTY_DEBUG_NOW?SHIFTY_DEBUG_NOW:w;p="undefined"!=typeof window?window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||window.mozCancelRequestAnimationFrame&&window.mozRequestAnimationFrame||setTimeout:setTimeout;var g,y,v,M;return h.prototype.tween=function(t){return this._isTweening?this:(void 0===t&&this._configured||this.setConfig(t),this._timestamp=d(),this._start(this.get(),this._attachment),this.resume())},h.prototype.setConfig=function(t){t=t||{},this._configured=!0,this._attachment=t.attachment,this._pausedAtTime=null,this._scheduleId=null,this._delay=t.delay||0,this._start=t.start||n,this._step=t.step||n,this._finish=t.finish||n,this._duration=t.duration||_,this._currentState=i({},t.from)||this.get(),this._originalState=this.get(),this._targetState=i({},t.to)||this.get();var e=this;this._timeoutHandler=function(){s(e,e._timestamp,e._delay,e._duration,e._currentState,e._originalState,e._targetState,e._easing,e._step,e._scheduleFunction)};var o=this._currentState,a=this._targetState;return r(a,o),this._easing=c(o,t.easing||l),this._filterArgs=[o,this._originalState,a,this._easing],u(this,"tweenCreated"),this},h.prototype.get=function(){return i({},this._currentState)},h.prototype.set=function(t){this._currentState=t},h.prototype.pause=function(){return this._pausedAtTime=d(),this._isPaused=!0,this},h.prototype.resume=function(){return this._isPaused&&(this._timestamp+=d()-this._pausedAtTime),this._isPaused=!1,this._isTweening=!0,this._timeoutHandler(),this},h.prototype.seek=function(t){t=Math.max(t,0);var n=d();return 0===this._timestamp+t?this:(this._timestamp=n-t,this.isPlaying()||(this._isTweening=!0,this._isPaused=!1,s(this,this._timestamp,this._delay,this._duration,this._currentState,this._originalState,this._targetState,this._easing,this._step,this._scheduleFunction,n),this.pause()),this)},h.prototype.stop=function(e){return this._isTweening=!1,this._isPaused=!1,this._timeoutHandler=n,(t.cancelAnimationFrame||t.webkitCancelAnimationFrame||t.oCancelAnimationFrame||t.msCancelAnimationFrame||t.mozCancelRequestAnimationFrame||t.clearTimeout)(this._scheduleId),e&&(u(this,"beforeTween"),o(1,this._currentState,this._originalState,this._targetState,1,0,this._easing),u(this,"afterTween"),u(this,"afterTweenEnd"),this._finish.call(this,this._currentState,this._attachment)),this},h.prototype.isPlaying=function(){return this._isTweening&&!this._isPaused},h.prototype.setScheduleFunction=function(t){this._scheduleFunction=t},h.prototype.dispose=function(){var t;for(t in this)this.hasOwnProperty(t)&&delete this[t]},h.prototype.filter={},h.prototype.formula={linear:function(t){return t}},f=h.prototype.formula,i(h,{now:d,each:e,tweenProps:o,tweenProp:a,applyFilter:u,shallowCopy:i,defaults:r,composeEasingObject:c}),"function"==typeof SHIFTY_DEBUG_NOW&&(t.timeoutHandler=s),"object"==typeof exports?module.exports=h:"function"==typeof define&&define.amd?define('ngTweenable', function(){return h}):t.NGTweenable===void 0&&(t.NGTweenable=h),h}();(function(){n.shallowCopy(n.prototype.formula,{easeInQuad:function(t){return Math.pow(t,2)},easeOutQuad:function(t){return-(Math.pow(t-1,2)-1)},easeInOutQuad:function(t){return 1>(t/=.5)?.5*Math.pow(t,2):-.5*((t-=2)*t-2)},easeInCubic:function(t){return Math.pow(t,3)},easeOutCubic:function(t){return Math.pow(t-1,3)+1},easeInOutCubic:function(t){return 1>(t/=.5)?.5*Math.pow(t,3):.5*(Math.pow(t-2,3)+2)},easeInQuart:function(t){return Math.pow(t,4)},easeOutQuart:function(t){return-(Math.pow(t-1,4)-1)},easeInOutQuart:function(t){return 1>(t/=.5)?.5*Math.pow(t,4):-.5*((t-=2)*Math.pow(t,3)-2)},easeInQuint:function(t){return Math.pow(t,5)},easeOutQuint:function(t){return Math.pow(t-1,5)+1},easeInOutQuint:function(t){return 1>(t/=.5)?.5*Math.pow(t,5):.5*(Math.pow(t-2,5)+2)},easeInSine:function(t){return-Math.cos(t*(Math.PI/2))+1},easeOutSine:function(t){return Math.sin(t*(Math.PI/2))},easeInOutSine:function(t){return-.5*(Math.cos(Math.PI*t)-1)},easeInExpo:function(t){return 0===t?0:Math.pow(2,10*(t-1))},easeOutExpo:function(t){return 1===t?1:-Math.pow(2,-10*t)+1},easeInOutExpo:function(t){return 0===t?0:1===t?1:1>(t/=.5)?.5*Math.pow(2,10*(t-1)):.5*(-Math.pow(2,-10*--t)+2)},easeInCirc:function(t){return-(Math.sqrt(1-t*t)-1)},easeOutCirc:function(t){return Math.sqrt(1-Math.pow(t-1,2))},easeInOutCirc:function(t){return 1>(t/=.5)?-.5*(Math.sqrt(1-t*t)-1):.5*(Math.sqrt(1-(t-=2)*t)+1)},easeOutBounce:function(t){return 1/2.75>t?7.5625*t*t:2/2.75>t?7.5625*(t-=1.5/2.75)*t+.75:2.5/2.75>t?7.5625*(t-=2.25/2.75)*t+.9375:7.5625*(t-=2.625/2.75)*t+.984375},easeInBack:function(t){var n=1.70158;return t*t*((n+1)*t-n)},easeOutBack:function(t){var n=1.70158;return(t-=1)*t*((n+1)*t+n)+1},easeInOutBack:function(t){var n=1.70158;return 1>(t/=.5)?.5*t*t*(((n*=1.525)+1)*t-n):.5*((t-=2)*t*(((n*=1.525)+1)*t+n)+2)},elastic:function(t){return-1*Math.pow(4,-8*t)*Math.sin((6*t-1)*2*Math.PI/2)+1},swingFromTo:function(t){var n=1.70158;return 1>(t/=.5)?.5*t*t*(((n*=1.525)+1)*t-n):.5*((t-=2)*t*(((n*=1.525)+1)*t+n)+2)},swingFrom:function(t){var n=1.70158;return t*t*((n+1)*t-n)},swingTo:function(t){var n=1.70158;return(t-=1)*t*((n+1)*t+n)+1},bounce:function(t){return 1/2.75>t?7.5625*t*t:2/2.75>t?7.5625*(t-=1.5/2.75)*t+.75:2.5/2.75>t?7.5625*(t-=2.25/2.75)*t+.9375:7.5625*(t-=2.625/2.75)*t+.984375},bouncePast:function(t){return 1/2.75>t?7.5625*t*t:2/2.75>t?2-(7.5625*(t-=1.5/2.75)*t+.75):2.5/2.75>t?2-(7.5625*(t-=2.25/2.75)*t+.9375):2-(7.5625*(t-=2.625/2.75)*t+.984375)},easeFromTo:function(t){return 1>(t/=.5)?.5*Math.pow(t,4):-.5*((t-=2)*Math.pow(t,3)-2)},easeFrom:function(t){return Math.pow(t,4)},easeTo:function(t){return Math.pow(t,.25)}})})(),function(){function t(t,n,e,i,r,o){function a(t){return((l*t+_)*t+m)*t}function u(t){return((w*t+d)*t+g)*t}function s(t){return(3*l*t+2*_)*t+m}function c(t){return 1/(200*t)}function h(t,n){return u(p(t,n))}function f(t){return t>=0?t:0-t}function p(t,n){var e,i,r,o,u,c;for(r=t,c=0;8>c;c++){if(o=a(r)-t,n>f(o))return r;if(u=s(r),1e-6>f(u))break;r-=o/u}if(e=0,i=1,r=t,e>r)return e;if(r>i)return i;for(;i>e;){if(o=a(r),n>f(o-t))return r;t>o?e=r:i=r,r=.5*(i-e)+e}return r}var l=0,_=0,m=0,w=0,d=0,g=0;return m=3*n,_=3*(i-n)-m,l=1-m-_,g=3*e,d=3*(r-e)-g,w=1-g-d,h(t,c(o))}function e(n,e,i,r){return function(o){return t(o,n,e,i,r,1)}}n.setBezierFunction=function(t,i,r,o,a){var u=e(i,r,o,a);return u.displayName=t,u.x1=i,u.y1=r,u.x2=o,u.y2=a,n.prototype.formula[t]=u},n.unsetBezierFunction=function(t){delete n.prototype.formula[t]}}(),function(){function t(t,e,i,r,o,a){return n.tweenProps(r,e,t,i,1,a,o)}var e=new n;e._filterArgs=[],n.interpolate=function(i,r,o,a,u){var s=n.shallowCopy({},i),c=u||0,h=n.composeEasingObject(i,a||"linear");e.set({});var f=e._filterArgs;f.length=0,f[0]=s,f[1]=i,f[2]=r,f[3]=h,n.applyFilter(e,"tweenCreated"),n.applyFilter(e,"beforeTween");var p=t(i,s,r,o,h,c);return n.applyFilter(e,"afterTween"),p}}(),function(t){function n(t,n){var e,i=[],r=t.length;for(e=0;r>e;e++)i.push("_"+n+"_"+e);return i}function e(t){var n=t.match(M);return n?(1===n.length||t[0].match(v))&&n.unshift(""):n=["",""],n.join(O)}function i(n){t.each(n,function(t){var e=n[t];"string"==typeof e&&e.match(S)&&(n[t]=r(e))})}function r(t){return s(S,t,o)}function o(t){var n=a(t);return"rgb("+n[0]+","+n[1]+","+n[2]+")"}function a(t){return t=t.replace(/#/,""),3===t.length&&(t=t.split(""),t=t[0]+t[0]+t[1]+t[1]+t[2]+t[2]),b[0]=u(t.substr(0,2)),b[1]=u(t.substr(2,2)),b[2]=u(t.substr(4,2)),b}function u(t){return parseInt(t,16)}function s(t,n,e){var i=n.match(t),r=n.replace(t,O);if(i)for(var o,a=i.length,u=0;a>u;u++)o=i.shift(),r=r.replace(O,e(o));return r}function c(t){return s(T,t,h)}function h(t){for(var n=t.match(F),e=n.length,i=t.match(I)[0],r=0;e>r;r++)i+=parseInt(n[r],10)+",";return i=i.slice(0,-1)+")"}function f(i){var r={};return t.each(i,function(t){var o=i[t];if("string"==typeof o){var a=d(o);r[t]={formatString:e(o),chunkNames:n(a,t)}}}),r}function p(n,e){t.each(e,function(t){for(var i=n[t],r=d(i),o=r.length,a=0;o>a;a++)n[e[t].chunkNames[a]]=+r[a];delete n[t]})}function l(n,e){t.each(e,function(t){var i=n[t],r=_(n,e[t].chunkNames),o=m(r,e[t].chunkNames);i=w(e[t].formatString,o),n[t]=c(i)})}function _(t,n){for(var e,i={},r=n.length,o=0;r>o;o++)e=n[o],i[e]=t[e],delete t[e];return i}function m(t,n){k.length=0;for(var e=n.length,i=0;e>i;i++)k.push(t[n[i]]);return k}function w(t,n){for(var e=t,i=n.length,r=0;i>r;r++)e=e.replace(O,+n[r].toFixed(4));return e}function d(t){return t.match(F)}function g(n,e){t.each(e,function(t){var i,r=e[t],o=r.chunkNames,a=o.length,u=n[t];if("string"==typeof u){var s=u.split(" "),c=s[s.length-1];for(i=0;a>i;i++)n[o[i]]=s[i]||c}else for(i=0;a>i;i++)n[o[i]]=u;delete n[t]})}function y(n,e){t.each(e,function(t){var i=e[t],r=i.chunkNames,o=r.length,a=n[r[0]],u=typeof a;if("string"===u){for(var s="",c=0;o>c;c++)s+=" "+n[r[c]],delete n[r[c]];n[t]=s.substr(1)}else n[t]=a})}var v=/(\d|\-|\.)/,M=/([^\-0-9\.]+)/g,F=/[0-9.\-]+/g,T=RegExp("rgb\\("+F.source+/,\s*/.source+F.source+/,\s*/.source+F.source+"\\)","g"),I=/^.*\(/,S=/#([0-9]|[a-f]){3,6}/gi,O="VAL",b=[],k=[];t.prototype.filter.token={tweenCreated:function(t,n,e){i(t),i(n),i(e),this._tokenData=f(t)},beforeTween:function(t,n,e,i){g(i,this._tokenData),p(t,this._tokenData),p(n,this._tokenData),p(e,this._tokenData)},afterTween:function(t,n,e,i){l(t,this._tokenData),l(n,this._tokenData),l(e,this._tokenData),y(i,this._tokenData)}}}(n)}).call(null);
 
 
 // ##########################################
@@ -79,7 +78,7 @@ THIS IS AN EARLY BETA VERSION.
       _this.nG= new nanoGALLERY();
       _this.nG.Initiate(_this.e, _this.options );
     };
-      
+
     // PUBLIC EXPOSED METHODS
     _this.test = function() {
       //alert('test');
@@ -92,7 +91,7 @@ THIS IS AN EARLY BETA VERSION.
     // Run initializer
     _this.init();
   };
- 
+
   jQuery.nanoGallery.defaultOptions = {
     userID : '',
     kind : '',
@@ -104,6 +103,7 @@ THIS IS AN EARLY BETA VERSION.
     flickrSkipOriginal : true,
     galleryToolbarWidthAligned : true, galleryToolbarHideIcons : false,
     galleryFullpageButton : false, galleryFullpageBgColor : '#111',
+    galleryEnableKeyboard : false,
     galleryRenderStep : 10,
     breadcrumbAutoHideTopLevel : false,
     displayBreadcrumb : false,
@@ -122,10 +122,10 @@ THIS IS AN EARLY BETA VERSION.
     fancyBoxOptions : null,
     imageTransition : 'slide',
     openOnStart : '',
-    viewerToolbar : { 
+    viewerToolbar : {
       display:true, position : 'bottom', style : 'innerImage', autoMinimize:800,
       standard:'minimizeButton , previousButton, pageCounter ,nextButton,playPauseButton,fullscreenButton,infoButton,linkOriginalButton,closeButton,label',
-      minimized:'minimizeButton,label'  
+      minimized:'minimizeButton,label'
     },
     thumbnailAlignment : 'center',
     thumbnailWidth : 230, thumbnailHeight : 154,
@@ -155,6 +155,7 @@ THIS IS AN EARLY BETA VERSION.
     demoViewportWidth : 0,
     slideshowDelay : 3000, slideshowAutoStart : false,
     photoSorting : '', albumSorting : '', dataSorting : '',
+    albumMax: 0,
     lazyBuild : 'none', lazyBuildTreshold : 150,
     debugMode: false,
     i18n : {
@@ -184,6 +185,10 @@ THIS IS AN EARLY BETA VERSION.
       switch(args){
         case 'reload':
           $(this).data('nanoGallery').nG.ReloadAlbum();
+          return $(this);
+          break;
+        case 'refreshSize':
+          $(this).data('nanoGallery').nG.RefreshSize();
           return $(this);
           break;
         case 'getSelectedItems':
@@ -230,6 +235,12 @@ THIS IS AN EARLY BETA VERSION.
         case 'closeViewer':
           $(this).data('nanoGallery').nG.closeViewer();
           break;
+        case 'minimizeToolbar':
+          $(this).data('nanoGallery').nG.minimizeToolbar();
+          break;
+        case 'maximizeToolbar':
+          $(this).data('nanoGallery').nG.maximizeToolbar();
+          break;
         case 'displayItem':
           $(this).data('nanoGallery').nG.displayItem(option);
           break;
@@ -251,12 +262,21 @@ THIS IS AN EARLY BETA VERSION.
         case 'getCurrentViewedItemIdx':
           return $(this).data('nanoGallery').nG.GetCurrentViewedItemIdx();
           break;
+        case 'moveToNextAlbum':
+          return $(this).data('nanoGallery').nG.moveToNextAlbum();
+          break;
+        case 'moveToPreviousAlbum':
+          return $(this).data('nanoGallery').nG.moveToPreviousAlbum();
+          break;
+        case 'galleryCountImages':
+          return $(this).data('nanoGallery').nG.galleryCountImages();
+          break;
       }
       return $(this);
 
     }
   };
-  
+
 
   // ##############################
   // ##### nanoGALLERY script #####
@@ -267,9 +287,9 @@ THIS IS AN EARLY BETA VERSION.
     console.dir(G);
   }
 
-  
+
   function nanoGALLERY() {
-    
+
     /**
     * Force reload the current album, if provided by Json
     */
@@ -303,9 +323,9 @@ THIS IS AN EARLY BETA VERSION.
           G.I[i].albumID = -1;    // remove link to parent album
         }
       }
-      
+
       G.I[albumIdx].contentIsLoaded = false;
-      
+
       G.lastOpenAlbumID = -1;
       switch(G.O.kind) {
         case 'json':
@@ -318,12 +338,46 @@ THIS IS AN EARLY BETA VERSION.
       }
 
     };
-    
+
+    /**
+    * When in Album view, moves to next album
+    */
+    this.moveToNextAlbum = function () {
+      DisplayNextAlbum();
+    }
+
+    /**
+    * When in Album view, moves to previous album
+    */
+    this.moveToPreviousAlbum = function () {
+      DisplayPreviousAlbum();
+    }
+
+
     // Closes the image viewer
     this.closeViewer = function () {
       CloseInternalViewer(true);
       return false;
     };
+
+    // Toggle Toolbar between standard and minimized
+    this.minimizeToolbar = function () {
+      ToolbarVisibilityMin();
+      return false;
+    };
+
+    // Toggle Toolbar between standard and minimized
+    this.maximizeToolbar = function () {
+      ToolbarVisibilityStd();
+      return false;
+    };
+
+    /**
+    * Force recheck of container size and resize accordingly
+    */
+    this.RefreshSize = function(){
+      ResizeGallery();
+    }
 
     // Display one item
     // itemID syntax:
@@ -332,10 +386,10 @@ THIS IS AN EARLY BETA VERSION.
     this.displayItem = function( itemID ){
       return OpenItem( false, itemID, true );
     };
-    
-    
+
+
     // manage gallery pagination
-    
+
     // Pagination - goto previous page
     this.paginationPreviousPage = function () {
       paginationPreviousPage();
@@ -357,7 +411,7 @@ THIS IS AN EARLY BETA VERSION.
     this.paginationCountPages = function () {
       var aIdx=G.$E.conPagin.data('galleryIdx'),
       n1=0;
-      
+
       // pagination - max lines per page mode
       if( G.pgMaxLinesPerPage > 0 ) {
         n1=G.I[aIdx].contentLength / (G.pgMaxLinesPerPage * G.pgMaxNbThumbnailsPerRow);
@@ -366,10 +420,13 @@ THIS IS AN EARLY BETA VERSION.
       return n2;
     };
 
-
+    // Viewer - Count number of images
+    this.galleryCountImages = function () {
+      return galleryCountImages();
+    }
 
     /**
-     * Get an item by its index 
+     * Get an item by its index
      * @param {int} index
      * @returns {object}
      */
@@ -377,9 +434,9 @@ THIS IS AN EARLY BETA VERSION.
       if(isNaN(index)){
         throw 'index must be a number';
       }
-      return G.I[index];  
+      return G.I[index];
     };
-    
+
     /**
      * Get an array of every items handled by nanoGallery
      * @returns {nanoGALLERY.G.I|Array}
@@ -387,7 +444,7 @@ THIS IS AN EARLY BETA VERSION.
     this.GetItems = function(){
       return G.I;
     };
-    
+
     /**
      * Get the index of an item in the G.I array
      * @param {object} items
@@ -410,7 +467,7 @@ THIS IS AN EARLY BETA VERSION.
       }
       return indexes;
     };
-    
+
     /**
      * Set one or several items selected
      * @param {array} items
@@ -423,7 +480,7 @@ THIS IS AN EARLY BETA VERSION.
         }
       }
     };
-    
+
     /**
      * Set one or several items unselected
      * @param {array} items
@@ -436,7 +493,7 @@ THIS IS AN EARLY BETA VERSION.
         }
       }
     };
-    
+
     /**
      * Returns an array of selected items
      * @returns {Array}
@@ -469,7 +526,7 @@ THIS IS AN EARLY BETA VERSION.
         return -1;
       }
     };
-    
+
     /**
      * Returns the value of an option
      * @param {string} option
@@ -478,7 +535,7 @@ THIS IS AN EARLY BETA VERSION.
     this.Get = function(option){
         return G.O[option];
     };
-    
+
     /**
      * Set a new value for a defined option
      * @param {string} option
@@ -493,13 +550,13 @@ THIS IS AN EARLY BETA VERSION.
           value = G.selectMode;
         }
       }
-      if(value === true || value === false || value === 'image' || 
+      if(value === true || value === false || value === 'image' ||
                   value === 'album'){
         G.selectModeForce = (value!==false);
         G.selectMode = value;
         if(value === 'album' || value == 'image'){
           G.$E.base.find('.nanoGalleryThumbnailContainer').each(function(){
-            if(($(this).hasClass('album') && value === 'image') || 
+            if(($(this).hasClass('album') && value === 'image') ||
                 (!$(this).hasClass('album') && value === 'album')){
               $(this).addClass('unselectable');
             }else{
@@ -526,7 +583,7 @@ THIS IS AN EARLY BETA VERSION.
     var G=this;
     G.I = [];                   // gallery items
     G.O = null;                 // user options
-    G.$E = { 
+    G.$E = {
       base: null,             // $g_baseControl = null,
       conTnParent: null,      // $g_containerThumbnailsParent
       conLoadingB: null,      // loading bar - nanoGalleryLBarOff
@@ -583,7 +640,7 @@ THIS IS AN EARLY BETA VERSION.
       settings: {                     // user defined width/height to display depending on the screen size
         width: {  l1 : { xs:0, sm:0, me:0, la:0, xl:0, xsc:'u', smc:'u', mec:'u', lac:'u', xlc:'u' },
                   lN : { xs:0, sm:0, me:0, la:0, xl:0, xsc:'u', smc:'u', mec:'u', lac:'u', xlc:'u' } },
-        height: { l1 : { xs:0, sm:0, me:0, la:0, xl:0, xsc:'u', smc:'u', mec:'u', lac:'u', xlc:'u' }, 
+        height: { l1 : { xs:0, sm:0, me:0, la:0, xl:0, xsc:'u', smc:'u', mec:'u', lac:'u', xlc:'u' },
                   lN : { xs:0, sm:0, me:0, la:0, xl:0, xsc:'u', smc:'u', mec:'u', lac:'u', xlc:'u' } },
         getH: function() {
           return G.tn.settings.height[G.curNavLevel][G.curWidth];
@@ -616,8 +673,8 @@ THIS IS AN EARLY BETA VERSION.
     G.slideshowDelay = 3000;          // slideshow mode delay
     G.touchAutoOpenDelayTimerID = 0;
     G.supportFullscreenAPI = false;
-    
-    
+
+
     G.viewerIsFullscreen = false;
     G.bodyOverflowInitial = null;
     G.i18nLang = '';
@@ -681,13 +738,13 @@ THIS IS AN EARLY BETA VERSION.
           return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
       }
     })();
-    
+
     G.isIOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent );
     G.isGingerbread= /Android 2\.3\.[3-7]/i.test(navigator.userAgent),
     G.openNoDelay= false,
     G.startDateTime= new Date(),
     G.toRender= [];
-    
+
     // ### Picasa/Google+
     // square format : 32, 48, 64, 72, 104, 144, 150, 160 (cropped)
     // details: https://developers.google.com/picasa-web/docs/2.0/reference
@@ -700,7 +757,7 @@ THIS IS AN EARLY BETA VERSION.
       thumbAvailableSizes : new Array(32, 48, 64, 72, 94, 104, 110, 128, 144, 150, 160, 200, 220, 288, 320, 400, 512, 576, 640, 720, 800, 912, 1024, 1152, 1280, 1440, 1600),
       thumbAvailableSizesCropped : ' 32 48 64 72 104 144 150 160 '
     };
-    
+
     // ### Flickr
     // Details: http://www.flickr.com/services/api/misc.urls.html
     G.flickr = {
@@ -717,7 +774,7 @@ THIS IS AN EARLY BETA VERSION.
       photoAvailableSizesStr : new Array('sq','t','q','s','m','z','b','l','h','k'),
       ApiKey : "2f0e634b471fdb47446abcb9c5afebdc"
     };
-    
+
     // Color schemes - Gallery
     G.colorScheme_default = {
       navigationbar : { background:'none', borderTop:'1px solid #555', borderBottom:'1px solid #555', borderRight:'', borderLeft:'', color:'#ccc', colorHover:'#fff' },
@@ -766,11 +823,12 @@ THIS IS AN EARLY BETA VERSION.
       background:'rgba(1, 1, 1, 0.75)', imageBorder:'4px solid #ffd7b7', imageBoxShadow:'#ffb600 0px 0px 20px', barBackground:'#a67600', barBorder:'2px solid #111', barColor:'#eee', barDescriptionColor:'#aaa'    };
     G.colorSchemeViewer_light = {
       background:'rgba(187, 187, 187, 0.75)', imageBorder:'none', imageBoxShadow:'#888 0px 0px 0px', barBackground:'rgba(4, 4, 4, 0.7)', barBorder:'0px solid #111', barColor:'#eee', barDescriptionColor:'#aaa'    };
-    
 
-  
+
+
+
     /* ##### THUMBNAIL ELEMENT STRUCTURE #####
-     
+
     +--------------------------+  -> G.tn.borderHeight/2        -+
     |                          |                                 | G.tn.outerHeight
     |+------------------------+|  -> =0 (always)            -+   | item.thumbFullHeight
@@ -814,7 +872,7 @@ THIS IS AN EARLY BETA VERSION.
           ID = paramID;
         }
         this.GetID = function () { return ID; };
-        
+
         // public
         this.title = paramTitle;        // image title
         this.description = '';          // image description
@@ -857,7 +915,7 @@ THIS IS AN EARLY BETA VERSION.
 
       // public (shared across instances)
       NGItems.prototype = {
-      
+
         // cached sub elements
         $getElt: function( elt, forceRefresh ) {
           if( this.$Elts[elt] !== undefined && !forceRefresh == true ) {
@@ -870,7 +928,7 @@ THIS IS AN EARLY BETA VERSION.
         },
 
         // set thumbnail image real height for current level/resolution, and for all others level/resolutions having the same settings
-        thumbSetImgHeight: function(h) {              
+        thumbSetImgHeight: function(h) {
           var lst=['xs','sm','me','la','xl'];
           for( var i=0; i< lst.length; i++ ) {
             if( G.tn.settings.height.l1[lst[i]] == G.tn.settings.getH() && G.tn.settings.width.l1[lst[i]] == G.tn.settings.getW() ) {
@@ -885,7 +943,7 @@ THIS IS AN EARLY BETA VERSION.
         },
 
         // set thumbnail image real width for current level/resolution, and for all others level/resolutions having the same settings
-        thumbSetImgWidth: function(w) {              
+        thumbSetImgWidth: function(w) {
           var lst=['xs','sm','me','la','xl'];
           for( var i=0; i< lst.length; i++ ) {
             if( G.tn.settings.height.l1[lst[i]] == G.tn.settings.getH() && G.tn.settings.width.l1[lst[i]] == G.tn.settings.getW() ) {
@@ -898,9 +956,9 @@ THIS IS AN EARLY BETA VERSION.
             }
           }
         },
-      
+
         // Returns Thumbnail image
-        thumbImg: function () {   
+        thumbImg: function () {
           var tnImg = { src:'', width:0, height:0 };
 
           if( this.title == 'dummydummydummy' ) {
@@ -912,7 +970,7 @@ THIS IS AN EARLY BETA VERSION.
           tnImg.height=this.thumbs.height[G.curNavLevel][G.curWidth];
           return tnImg;
         },
-        
+
         // for future use...
         responsiveURL: function () {
           var url = '';
@@ -934,7 +992,7 @@ THIS IS AN EARLY BETA VERSION.
       return NGItems;
     })();
 
-    
+
     // ##########################
     // ##### INITIALIZATION #####
     // ##########################
@@ -960,11 +1018,11 @@ THIS IS AN EARLY BETA VERSION.
           G.O.thumbnailLabel[opt]=value;
         }
       };
-      
+
       G.$E.base = jQuery(element);
       G.baseEltID = G.$E.base.attr('id');
       G.bodyOverflowInitial=jQuery('body').css('overflow');
-      
+
       //    [TODO] deep linking support only once per page
       //    if( G.O.locationHash ) {
       //      alert(location.hash);
@@ -984,8 +1042,8 @@ THIS IS AN EARLY BETA VERSION.
             throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
           }
 
-          var aArgs = Array.prototype.slice.call(arguments, 1), 
-              fToBind = this, 
+          var aArgs = Array.prototype.slice.call(arguments, 1),
+              fToBind = this,
               fNOP = function () {},
               fBound = function () {
                 return fToBind.apply(this instanceof fNOP && oThis
@@ -1000,7 +1058,7 @@ THIS IS AN EARLY BETA VERSION.
           return fBound;
         };
       }
-      
+
       String.prototype.replaceAll = function(search, replace) {
       if (replace === undefined) {
           return this.toString();
@@ -1019,7 +1077,7 @@ THIS IS AN EARLY BETA VERSION.
         if( toType(jQuery.transit) == 'object' ) {
           G.aengine='transition';
         }
-    
+
       // Set theme and colorScheme
       jQuery(element).addClass('nanogallery_theme_'+G.O.theme);
       SetColorScheme(element);
@@ -1053,7 +1111,7 @@ THIS IS AN EARLY BETA VERSION.
         jQuery('head').append('<style>'+s+'</style>');
         jQuery(element).addClass('nanogallery_thumbnails_label_align_center');
       }
-        
+
       if( G.O.thumbnailLabel.get('align') == 'left' ) {
         var s1 = '.nanogallery_thumbnails_label_align_left ',
         s = s1+'.nanoGalleryContainer .nanoGalleryThumbnailContainer .labelImage { text-align : left !important; }'+'\n';
@@ -1065,7 +1123,7 @@ THIS IS AN EARLY BETA VERSION.
       G.$E.conNavBCon=jQuery('<div class="nanoGalleryNavigationbarContainer"></div>').appendTo(element);
       G.$E.conNavBCon.hide();//css('visibility','hidden');
       G.$E.conNavB=jQuery('<div class="nanoGalleryNavigationbar"></div>').appendTo(G.$E.conNavBCon);
-      
+
       var sRTL='';
       if( G.O.RTL ) {
         sRTL='style="text-align:right;direction:rtl;"';
@@ -1135,7 +1193,7 @@ THIS IS AN EARLY BETA VERSION.
           return false;
         }
       }
-      
+
       // check parameters consistency
       checkPluginParameters();
 
@@ -1159,24 +1217,24 @@ THIS IS AN EARLY BETA VERSION.
       } else {
         nanoConsoleLog('Your browser does not support the fullscreen API. Fullscreen button will not be displayed.');
       }
-      
+
       // cache some thumbnails data (sizes, styles...)
       ThumbnailDefCaches();
-      
+
       G.L.nbMaxTnPerRow=NbThumbnailsPerRow();
 
       // display an image on start and in fullscreen
       if( G.O.viewerFullscreen && G.O.openOnStart.indexOf('/') > 0 ) {
         ngscreenfull.request();
       }
-      
+
       // lazy build the gallery
       if( G.O.lazyBuild != 'loadData' ) { NGFinalize(); }
-     
+
       // GLOBAL EVENT MANAGEMENT
       // Page resize
       var resizeTimeOut=0;
-      jQuery(window).resize( function() { 
+      jQuery(window).resize( function() {
         if( resizeTimeOut ) clearTimeout(resizeTimeOut);
         if( G.containerViewerDisplayed ) {
             ResizeInternalViewer();
@@ -1185,8 +1243,8 @@ THIS IS AN EARLY BETA VERSION.
           resizeTimeOut = setTimeout(function () {
             var nw=RetrieveCurWidth();
             // if( G.curAlbumIdx != -1 && G.curWidth != nw ) {
-            if( G.curAlbumIdx != -1 && 
-                  ( G.tn.settings.getH() != G.tn.settings.height[G.curNavLevel][nw] || 
+            if( G.curAlbumIdx != -1 &&
+                  ( G.tn.settings.getH() != G.tn.settings.height[G.curNavLevel][nw] ||
                   G.tn.settings.getW() != G.tn.settings.width[G.curNavLevel][nw] ) ) {
               // thumbnail size changed --> render the gallery with the new sizes
               G.curWidth=nw;
@@ -1199,7 +1257,7 @@ THIS IS AN EARLY BETA VERSION.
           }, 50);
         }
       });
-      
+
       // Event page scrolled
       G.$E.base.on('scroll', function () {
         OnScroll();
@@ -1208,7 +1266,7 @@ THIS IS AN EARLY BETA VERSION.
         OnScroll();
       });
     }
-    
+
     function OnScroll() {
       if( G.scrollTimeOut ) clearTimeout(G.scrollTimeOut);
       G.scrollTimeOut = setTimeout(function () {
@@ -1220,17 +1278,18 @@ THIS IS AN EARLY BETA VERSION.
               NGFinalize();
             }
           }
-        
+
           if( G.delayedAlbumIdx != -1 && inViewportVert(G.$E.conTnParent,G.O.lazyBuildTreshold) ){
             DisplayAlbumFinalize( G.delayedAlbumIdx, G.delayedSetLocationHash );
           }
-          
+
           thumbnailsLazySetSrc();
           return;
         }
       }, 100);
     }
-    
+
+
     function getSpecialKeysPressed(e){
       G.isShiftPressed = e.shiftKey;
       G.isAltPressed = e.altKey;
@@ -1245,7 +1304,7 @@ THIS IS AN EARLY BETA VERSION.
         t:'test'
       };
     }
-  
+
     // Message for unsupported browser
     function BrowserNotification() {
       var m='Your browser version is not supported anymore. The image gallery cannot be displayed. <br><br>Please update to a more recent one. Download:<br>';
@@ -1255,7 +1314,7 @@ THIS IS AN EARLY BETA VERSION.
       m+='&nbsp;&nbsp;&nbsp; <a href="http://www.apple.com/safari/download/">Safari</a>';
       nanoAlert(m, false);
     }
-  
+
     // Original author : John Hrvatin, Lead Program Manager, Internet Explorer - http://blogs.msdn.com/b/ie/archive/2011/10/28/a-best-practice-for-programming-with-vendor-prefixes.aspx
     function FirstSupportedPropertyName(prefixedPropertyNames) {
       var tempDiv = document.createElement("div");
@@ -1270,7 +1329,7 @@ THIS IS AN EARLY BETA VERSION.
     // Finalize initialization
     // #####
     function NGFinalize() {
-    
+
       var sizeImageMax=Math.max(window.screen.width, window.screen.height);
       if( window.devicePixelRatio != undefined ) {
         if( window.devicePixelRatio > 1 ) {
@@ -1301,12 +1360,12 @@ THIS IS AN EARLY BETA VERSION.
       }
       var si=0;
       if( G.O.itemsBaseURL.length >0 ) {G.O.itemsBaseURL+='/';}
-      
+
       switch(G.O.kind) {
         // MARKUP / API
         case '':
           NGAddItem(G.i18nTranslations.breadcrumbHome, '', '', '', '', 'album', '', '0', '-1' );
-          
+
           if( G.O.items !== undefined && G.O.items !== null ) {
             ProcessItemOption();
             if( !ProcessLocationHash(false) ) {
@@ -1325,7 +1384,7 @@ THIS IS AN EARLY BETA VERSION.
               nanoAlert('error: no image to process.');
           }
           break;
-        
+
         // FLICKR STORAGE
         case 'flickr':
           if( !G.O.flickrSkipOriginal ) {
@@ -1366,8 +1425,8 @@ THIS IS AN EARLY BETA VERSION.
             else {
               NGAddItem(G.i18nTranslations.breadcrumbHome, '', '', '', '', 'album', '', G.O.album, '-1' );
             }
-            
-            
+
+
           }
           else {
             NGAddItem(G.i18nTranslations.breadcrumbHome, '', '', '', '', 'album', '', '0', '-1' );
@@ -1378,6 +1437,7 @@ THIS IS AN EARLY BETA VERSION.
 
 
       // Keyboard management --> Image Viewer
+      // Keyboard management --> Album Viewer (Else section)
       jQuery(document).keyup(function(e) {
         getSpecialKeysPressed(e);
         if( G.containerViewerDisplayed ) {
@@ -1402,6 +1462,26 @@ THIS IS AN EARLY BETA VERSION.
             case 35:    // END
             case 36:    // BEGIN
           }
+        } else if ( !G.containerViewerDisplayed && G.curAlbumIdx > 0 && G.O.galleryEnableKeyboard ) {
+          switch( e.keyCode) {
+            case 27:    // Esc key
+              DisplayAlbum(0, 'false');
+              break;
+            case 38:    // UP
+            case 39:    // RIGHT
+            case 33:    // PAGE UP
+              DisplayNextAlbum();
+              break;
+            case 40:    // DOWN
+            case 37:    // LEFT
+            case 34:    // PAGE DOWN
+              DisplayPreviousAlbum();
+              break;
+            case 32:    // SPACE
+            case 13:    // ENTER
+            case 35:    // END
+            case 36:    // BEGIN
+          }
         }
       });
 
@@ -1409,14 +1489,14 @@ THIS IS AN EARLY BETA VERSION.
       jQuery(window).click(getSpecialKeysPressed);
       jQuery(window).mousemove(getSpecialKeysPressed);
 
-      
+
       // browser back-button to close the image currently displayed
       if( G.O.locationHash ) {
         jQuery(window).bind( 'hashchange', function() {
           ProcessLocationHash(true);
         });
       }
-      
+
       // gallery fullpage
       if( G.O.galleryFullpageButton ) {
         if( G.O.RTL ) {
@@ -1429,7 +1509,7 @@ THIS IS AN EARLY BETA VERSION.
           if( G.$E.conNavBFullpage.hasClass('setFullPageButton') ) {
             // switch to fullpage display mode
             if( G.containerViewerDisplayed ) { return; }
-            if( G.O.maxWidth > 0 ) { 
+            if( G.O.maxWidth > 0 ) {
               jQuery(G.$E.base).css({'maxWidth':''});
             }
             G.$E.conNavBFullpage.removeClass('setFullPageButton').addClass('removeFullPageButton');
@@ -1463,9 +1543,9 @@ THIS IS AN EARLY BETA VERSION.
           }
         });
        }
-      
+
     }
-  
+
 
     function ScrollbarSetVisible() {
       //jQuery('body').css({overflow:'initial'});
@@ -1478,11 +1558,11 @@ THIS IS AN EARLY BETA VERSION.
         jQuery('body').css({overflow:'auto'});
       }
     }
-  
-  
+
+
     function ElementTranslateX( element, posX ) {
-      jQuery(element).css({ 'left': posX }); 
-      
+      jQuery(element).css({ 'left': posX });
+
       // [TODO] - translateX needs some code refactoring...
       //var transformStyle = 'translateX('+posX+'px)';
       //element.style.msTransform = transformStyle;
@@ -1491,7 +1571,7 @@ THIS IS AN EARLY BETA VERSION.
       //element.style.transform = transformStyle;
     }
 
-    
+
     // ##### USER EVENTS HANDLING ON GALLERY (click, hover, swipe, drag)
     // based on "Implement Custom Gestures" from Google
     // https://developers.google.com/web/fundamentals/input/touch-input/touchevents/
@@ -1504,20 +1584,20 @@ THIS IS AN EARLY BETA VERSION.
       currentXPosition=0,
       onlyX=false,
       startViewport=null;
-      
+
       var initialViewport=0;
-      
+
       function OpenThumbnail( n ) {
         if( n == undefined ) { return; }
-        
+
         if( G.$currentTouchedThumbnail != null) { ThumbnailHoverOut(G.$currentTouchedThumbnail); }
         G.$currentTouchedThumbnail=null;
-        
-        
+
+
         if( typeof G.O.fnThumbnailClicked === 'function'){
           if( !G.O.fnThumbnailClicked(G.I[n].$elt, G.I[n]) ) { return; }
         }
-        
+
         // open URL
         if( G.I[n].destinationURL !== undefined && G.I[n].destinationURL.length >0 ) {
           window.location = G.I[n].destinationURL;
@@ -1534,7 +1614,7 @@ THIS IS AN EARLY BETA VERSION.
         }
       }
 
-      
+
       // Handle the start of gestures -->  click event
       this.handleGestureStartNoDelay = function(e) {
         // delay to ignore click event after touchstart event
@@ -1552,17 +1632,17 @@ THIS IS AN EARLY BETA VERSION.
           //e.eventDefault();
           return false;
         }
-        
+
         getSpecialKeysPressed(e);
-        
+
         // if items are selectable, cannot limit on user speed
         if( (new Date().getTime()) - G.timeLastTouchStart < 400 && G.O.itemsSelectable !== true ) {
-          return; 
+          return;
         }
         G.openNoDelay=true;
         this.handleGestureStart(e);
       }.bind(this);
-      
+
       // Handle the start of gestures
       this.handleGestureStart = function(e) {
         var eType=(jQuery(e.target).get(0).tagName).toUpperCase();
@@ -1573,15 +1653,15 @@ THIS IS AN EARLY BETA VERSION.
           return false;
         }
 
-        if( (new Date().getTime()) - G.timeImgChanged < 400 && G.O.itemsSelectable !== true ) { 
+        if( (new Date().getTime()) - G.timeImgChanged < 400 && G.O.itemsSelectable !== true ) {
           return;
-        }     
-        
+        }
+
         if( (new Date().getTime()) - G.timeLastTouchStart < 400 && G.O.itemsSelectable !== true ) {
           return;
         }
         G.timeLastTouchStart=new Date().getTime();
-        
+
         var target = e.target || e.srcElement;
         var found=false;
         while( target != G.$E.conTn[0] ) {       // go element parent up to find the thumbnail element
@@ -1595,7 +1675,7 @@ THIS IS AN EARLY BETA VERSION.
           }
           target = target.parentNode;
         }
-        
+
         if( !found ) { return; }
 
         // handle thumbnail selection
@@ -1618,16 +1698,16 @@ THIS IS AN EARLY BETA VERSION.
           },500);
         }
 
-      
+
         initialViewport=getViewport();
-        
+
         //if(e.touches && e.touches.length > 1) { return; }
         initialTouchPos = getGesturePointFromEvent(e);
 
         initialOffsetTop=getViewport().t;
 
         //if( G.gallerySwipeInitDone ) { return; }
-        
+
         // Add the move and end listeners
         if (window.navigator.msPointerEnabled) {
           // Pointer events are supported.
@@ -1638,23 +1718,23 @@ THIS IS AN EARLY BETA VERSION.
           document.addEventListener('touchmove', this.handleGestureMove, true);
           document.addEventListener('touchend', this.handleGestureEnd, true);
           document.addEventListener('touchcancel', this.handleGestureEnd, true);
-        
+
           // Add Mouse Listeners
           document.addEventListener('mousemove', this.handleGestureMove, true);
           document.addEventListener('mouseup', this.handleGestureEnd, true);
         }
-        
+
         // makes content unselectable --> avoid image drag during 'mouse swipe'
         G.$E.base.addClass('unselectable').find('*').attr('draggable', 'false').attr('unselectable', 'on');
         G.gallerySwipeInitDone=true;
-        
+
       }.bind(this);
-      
+
       // Handle move gestures
       this.handleGestureMove = function (e) {
         //e.preventDefault(); // --> uncomment this to avoid viewport scrolling on touchscreen
         lastTouchPos = getGesturePointFromEvent(e);
-        
+
         if( isAnimating ) { return; }
 
         if( G.O.paginationSwipe ) {
@@ -1670,18 +1750,18 @@ THIS IS AN EARLY BETA VERSION.
 
       }.bind(this);
 
-      
+
       // Handle end gestures
       this.handleGestureEnd = function(e) {
         if( e.cancelable ) { e.preventDefault(); }
         e.stopPropagation();
-        
+
         // if(e.touches && e.touches.length > 0) {
         //   return;
         // }
         isAnimating = false;
         onlyX=false;
-        
+
         // Remove Event Listeners
         if (window.navigator.msPointerEnabled) {
           // Remove Pointer Event Listeners
@@ -1692,7 +1772,7 @@ THIS IS AN EARLY BETA VERSION.
           document.removeEventListener('touchmove', this.handleGestureMove, true);
           document.removeEventListener('touchend', this.handleGestureEnd, true);
           document.removeEventListener('touchcancel', this.handleGestureEnd, true);
-        
+
           // Remove Mouse Listeners
           document.removeEventListener('mousemove', this.handleGestureMove, true);
           document.removeEventListener('mouseup', this.handleGestureEnd, true);
@@ -1705,12 +1785,12 @@ THIS IS AN EARLY BETA VERSION.
             clearTimeout(G.touchSelectTO);
           }
         }
-        
+
         // allow text + image selection again
         G.$E.base.addClass('unselectable').find('*').attr('draggable', 'true').attr('unselectable', 'off');
 
         updateSwipeRestPosition();
-        
+
         initialTouchPos=null;
         lastTouchPos=null;
         currentXPosition=0;
@@ -1718,21 +1798,21 @@ THIS IS AN EARLY BETA VERSION.
         startViewport=null;
 
       }.bind(this);
-      
-      
+
+
       function OpenTouchedThumbnail() {
         currentXPosition=0;
         initialTouchPos=null;
         lastTouchPos=null;
         ElementTranslateX(G.$E.conTn[0],0);
-        
+
         if( G.containerViewerDisplayed ) {
           G.$currentTouchedThumbnail=null;
           G.openNoDelay=false;
         }
         else {
           if( G.$currentTouchedThumbnail != null ) {
-            
+
             if( Math.abs(initialViewport.t-getViewport().t) > 10 ) {
               // viewport has been scrolled (touchscreen)--> open is cancelled
               ThumbnailHoverOut(G.$currentTouchedThumbnail);
@@ -1740,14 +1820,14 @@ THIS IS AN EARLY BETA VERSION.
               G.openNoDelay=false;
               return;
             }
-            
+
             var $t=G.$currentTouchedThumbnail;
             var n=$t.data('index');
             if( n == undefined ) { return; }
-            
+
             if( ( G.curNavLevel == 'l1' && G.O.touchAnimationL1 !== undefined ? G.O.touchAnimationL1: G.O.touchAnimation) && !G.openNoDelay ) {
               // automatically opens the touched thumbnail (to disply an image or to open an album)
-              if( G.O.touchAutoOpenDelay > 0 ) { 
+              if( G.O.touchAutoOpenDelay > 0 ) {
                 ThumbnailHoverOutAll();
                 ThumbnailHover($t);
                 window.clearInterval(G.touchAutoOpenDelayTimerID);
@@ -1788,7 +1868,7 @@ THIS IS AN EARLY BETA VERSION.
         }
         return;
       }
-      
+
       function updateSwipeRestPosition() {
 
         if( lastTouchPos == null || initialTouchPos == null ) {      // touchend without touchmove
@@ -1843,10 +1923,10 @@ THIS IS AN EARLY BETA VERSION.
 
         return point;
       }
-      
+
       function onAnimFrame() {
         if(!isAnimating) { return; }
-        
+
         if( G.pgMaxLinesPerPage > 0 && G.tn.settings.getH() != 'auto' && G.tn.settings.getW() != 'auto'  ) {
           var differenceInX = initialTouchPos.x - lastTouchPos.x;
           ElementTranslateX(elementToSwipe,currentXPosition - differenceInX);
@@ -1865,7 +1945,7 @@ THIS IS AN EARLY BETA VERSION.
           //}
         }
       }
-      
+
       function ThumbnailOnMouseleave(e) {
         var target = e.target || e.srcElement;
         if( jQuery(target).hasClass('nanoGalleryThumbnailContainer') ) {
@@ -1874,7 +1954,7 @@ THIS IS AN EARLY BETA VERSION.
         }
       }
 
-      
+
       // Check if MS pointer events are supported.
       if (window.navigator.msPointerEnabled) {
         // Add Pointer Event Listener
@@ -1883,12 +1963,12 @@ THIS IS AN EARLY BETA VERSION.
       else {
         // Add Touch Listener
         elementToSwipe.addEventListener('touchstart', this.handleGestureStart, true);
-        
+
         // Add Mouse Listener
         if( !G.isIOS ) {
           var thatObject = this;
           elementToSwipe.addEventListener('mousedown', function(e){
-              // filter : if the user uses the right click, 
+              // filter : if the user uses the right click,
               // do not do anything
               if(e.button != 2){
                 thatObject.handleGestureStartNoDelay(e);
@@ -1896,11 +1976,11 @@ THIS IS AN EARLY BETA VERSION.
           }, true);
         }
       }
-      
+
       // MOUSE OVER
       elementToSwipe.addEventListener('mouseenter', ThumbnailOnMouseenter, true);
       elementToSwipe.addEventListener('mouseleave', ThumbnailOnMouseleave, true);
-      
+
     }
 
 
@@ -1914,27 +1994,27 @@ THIS IS AN EARLY BETA VERSION.
         var vendors = ['ms', 'moz', 'webkit', 'o'];
         for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
             window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-            window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
+            window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
                                        || window[vendors[x]+'CancelRequestAnimationFrame'];
         }
-     
+
         if (!window.requestAnimationFrame)
             window.requestAnimationFrame = function(callback, element) {
                 var currTime = new Date().getTime();
                 var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-                var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+                var id = window.setTimeout(function() { callback(currTime + timeToCall); },
                   timeToCall);
                 lastTime = currTime + timeToCall;
                 return id;
             };
-     
+
         if (!window.cancelAnimationFrame)
             window.cancelAnimationFrame = function(id) {
                 clearTimeout(id);
             };
     }());
 
-  
+
     // ##### CHECK PLUGIN PARAMETERS CONSISTENCY
     function checkPluginParameters() {
 
@@ -1948,7 +2028,7 @@ THIS IS AN EARLY BETA VERSION.
       if( G.O.userID.toUpperCase() == 'CBRISBOIS@GMAIL.COM' || G.O.userID == '111186676244625461692' ) {
         if( G.O.blackList == '' || G.O.blackList.toUpperCase() == 'SCRAPBOOK|PROFIL' ) { G.O.blackList='profil|scrapbook|forhomepage'; }
       }
-      
+
       if( G.O.blackList != '' ) { G.blackList=G.O.blackList.toUpperCase().split('|'); }
       if( G.O.whiteList != '' ) { G.whiteList=G.O.whiteList.toUpperCase().split('|'); }
       if( G.O.albumList != '' ) { G.albumList=G.O.albumList.toUpperCase().split('|'); }
@@ -1967,12 +2047,12 @@ THIS IS AN EARLY BETA VERSION.
       }
       else { G.O.album=''; }
 
-      if( G.O.maxWidth > 0 ) { 
+      if( G.O.maxWidth > 0 ) {
         jQuery(G.$E.base).css({'maxWidth':G.O.maxWidth});
         jQuery(G.$E.base).css({'margin-left':'auto'});
         jQuery(G.$E.base).css({'margin-right':'auto'});
       }
-    
+
       if( toType(G.O.slideshowDelay) == 'number' && G.O.slideshowDelay >= 2000 ) {
         G.slideshowDelay=G.O.slideshowDelay;
       }
@@ -2017,7 +2097,7 @@ THIS IS AN EARLY BETA VERSION.
 
       }
       */
-      
+
       // random sorting
       var s1=G.O.albumSorting.toUpperCase();
       if( s1.indexOf('RANDOM') == 0 && s1.length > 6 ) {
@@ -2035,8 +2115,13 @@ THIS IS AN EARLY BETA VERSION.
         }
         G.O.photoSorting='random';
       }
-
       
+      var mA=parseInt(G.O.albumMax);
+      if( mA > 0 ) {
+        G.maxAlbums=n;
+      }
+
+
       // thumbnails hover effects - Level1
       var tL1HE=G.O.thumbnailL1HoverEffect;
       if( tL1HE !== undefined ) {
@@ -2071,7 +2156,7 @@ THIS IS AN EARLY BETA VERSION.
             nanoAlert('incorrect parameter for "thumbnailL1HoverEffect".');
         }
       }
-      
+
       // thumbnails hover effects - other levels
       var tHE=G.O.thumbnailHoverEffect;
       switch( toType(tHE) ) {
@@ -2105,7 +2190,7 @@ THIS IS AN EARLY BETA VERSION.
           nanoAlert('incorrect parameter for "thumbnailHoverEffect".');
       }
 
-      
+
       if( G.tnHE.length == 0 ) {
         if( G.tnL1HE.length == 0 ) {
           G.O.touchAnimationL1=false;
@@ -2113,10 +2198,10 @@ THIS IS AN EARLY BETA VERSION.
         G.O.touchAnimation=false;
       }
 
-      
+
       // management of screen width
       G.curWidth=RetrieveCurWidth();
-      
+
       // RETRIEVE ALL THUMBNAIL SIZES
       if( toType(G.O.thumbnailWidth) == 'number' ) {
         ThumbnailsDefaultSize( 'width', 'l1', G.O.thumbnailWidth, 'u');
@@ -2170,8 +2255,8 @@ THIS IS AN EARLY BETA VERSION.
           }
         }
       }
-      
-      
+
+
       if( toType(G.O.thumbnailHeight) == 'number' ) {
         ThumbnailsDefaultSize( 'height', 'l1', G.O.thumbnailHeight, 'u');
         ThumbnailsDefaultSize( 'height', 'lN', G.O.thumbnailHeight, 'u');
@@ -2225,7 +2310,7 @@ THIS IS AN EARLY BETA VERSION.
         }
       }
     }
-  
+
 
     // ##### THUMBNAIL SIZE MANAGEMENT
     function ThumbnailsDefaultSize( dir, level, v, crop ) {
@@ -2240,31 +2325,31 @@ THIS IS AN EARLY BETA VERSION.
       G.tn.settings[dir][level]['lac']=crop;
       G.tn.settings[dir][level]['xlc']=crop;
     }
-    
+
     function RetrieveCurWidth() {
-      
+
       var vpW= getViewport().w;
-      
+
       if( G.O.breakpointSizeSM > 0 && vpW < G.O.breakpointSizeSM) { return 'xs'; }
       if( G.O.breakpointSizeME > 0 && vpW < G.O.breakpointSizeME) { return 'sm'; }
       if( G.O.breakpointSizeLA > 0 && vpW < G.O.breakpointSizeLA) { return 'me'; }
       if( G.O.breakpointSizeXL > 0 && vpW < G.O.breakpointSizeXL) { return 'la'; }
-      
+
       return 'xl';
     }
 
     function RetrieveMaxWidth() {
       var vpW= Math.max(getViewport().w, getViewport().h);
-      
+
       if( G.O.breakpointSizeSM > 0 && vpW < G.O.breakpointSizeSM) { return 'xs'; }
       if( G.O.breakpointSizeME > 0 && vpW < G.O.breakpointSizeME) { return 'sm'; }
       if( G.O.breakpointSizeLA > 0 && vpW < G.O.breakpointSizeLA) { return 'me'; }
       if( G.O.breakpointSizeXL > 0 && vpW < G.O.breakpointSizeXL) { return 'la'; }
-      
+
       return 'xl';
     }
-  
-  
+
+
     // HOVER EFFECTS
     function NewTHoverEffect() {
       // easing : jQuery supports only 'swing' and 'linear'
@@ -2275,45 +2360,45 @@ THIS IS AN EARLY BETA VERSION.
       }
       return oDef;
     }
-  
-  
+
+
     // check if effect is compatible with the used animation engine
     // check also consistency of thumbnail configuration with hover effect
     function isAEngineSupported( effect ) {
-      
+
       // var isBasic = /labelOpacity50|borderLighter|borderDarker/i.test(effect),
       var isBasic = /labelOpacity50|borderLighter|borderDarker/i.test(effect),
       // isStd = /imageFlipVertical|imageFlipHorizontal|imageRotateCornerBR|imageRotateCornerBL|rotateCornerBL|rotateCornerBR|imageScale150|overScale|overScaleOutside|imageScaleIn80|imageScale150Outside|scale120|scaleLabelOverImage|slideUp|slideDown|slideLeft|slideRight|imageSlideUp|imageSlideDown|imageSlideLeft|imageSlideRight|labelAppear|labelAppear75|descriptionAppear|labelSlideDown|labelSlideUp|labelSlideUpTop|imageInvisible|imageOpacity50|descriptionSlideUp|labelSplitVert|labelSplit4|labelAppearSplitVert|labelAppearSplit4|imageSplitVert|imageSplit4|imageSlide2Up|imageSlide2Down|imageSlide2Left|imageSlide2Right|imageSlide2Random|imageSlide2UpRight|imageSlide2UpLeft|imageSlide2DownRight|imageSlide2DownLeft/i.test(effect),
       isStd = /imageFlipVertical|imageFlipHorizontal|imageRotateCornerBR|imageRotateCornerBL|rotateCornerBL|rotateCornerBR|imageScale150|overScale|overScaleOutside|imageScaleIn80|imageScale150Outside|scale120|scaleLabelOverImage|slideUp|slideDown|slideLeft|slideRight|imageSlideUp|imageSlideDown|imageSlideLeft|imageSlideRight|labelAppear|labelAppear75|descriptionAppear|labelSlideDown|labelSlideUp|labelSlideUpTop|imageInvisible|imageOpacity50|descriptionSlideUp|labelSplitVert|labelSplit4|labelAppearSplitVert|labelAppearSplit4|imageSplitVert|imageSplit4/i.test(effect),
       // isAdv = /imageScaleIn80|imageScale150|imageScale150Outside|scale120|overScale|overScaleOutside|scaleLabelOverImage|imageFlipHorizontal|imageFlipVertical|rotateCornerBR|rotateCornerBL|imageRotateCornerBR|imageRotateCornerBL|imageExplode/i.test(effect);
       isAdv = /imageExplode/i.test(effect);
-      
+
       G.O.touchAutoOpenDelay= parseInt(G.O.touchAutoOpenDelay);
       if( G.O.touchAutoOpenDelay == 0 ) {
         G.O.touchAutoOpenDelay=1000;
       }
-      
+
 
       if( !isBasic && !isStd && !isAdv ) {
         nanoAlert('Unknow parameter value: thumbnailHoverEffect="'+effect+'".');
         return false;
       }
-      
+
       if( G.O.thumbnailLabel.get('position') == 'onBottom' && !/borderLighter|borderDarker|imageOpacity50|imageScale150|imageScaleIn80|imageSlide2Up|imageSlide2Down|imageSlide2Left|imageSlide2Right|imageSlide2Random|imageSlide2UpRight|imageSlide2UpLeft|imageSlide2DownRight|imageSlide2DownLeft|imageScale150Outside|scale120/i.test(effect) ) {
         nanoAlert('The parameter combination thumbnailHoverEffect="'+effect+'" and thumbnailLabel.position="onBottom" is not supported.');
         return false;
       }
-      
+
       if( (isAdv && (G.aengine == 'animate' || G.CSStransformName == null) ) ) {
         nanoConsoleLog('Parameter thumbnailHoverEffect="'+effect+'" requires one of the additionals jQuery plugins "Velocity" or "Transit".');
         return false;
       }
-      
+
       return true;
-      
+
     }
 
-    
+
     // I18N : define text translations
     function i18n() {
 
@@ -2322,15 +2407,15 @@ THIS IS AN EARLY BETA VERSION.
       if( G.i18nLang === 'UNDEFINED') { G.i18nLang=''; }
 
       var llang=-('_'+G.i18nLang).length;
-      
+
       if( toType(G.O.i18n) == 'object' ){
-      
+
         for( var key in G.O.i18n ) {
           //var value = G.O.i18n[key];
           var s=key.substr(llang);
           if( s == ('_'+G.i18nLang) ) {
             G.i18nTranslations[key.substr(0,key.length-s.length)]=G.O.i18n[key];
-          } 
+          }
           else {
             G.i18nTranslations[key]=G.O.i18n[key];
           }
@@ -2338,7 +2423,7 @@ THIS IS AN EARLY BETA VERSION.
       }
     }
 
-    
+
     // Location Hash
     function ProcessLocationHash(isTriggeredByEvent) {
 
@@ -2348,7 +2433,7 @@ THIS IS AN EARLY BETA VERSION.
         G.O.openOnStart='';
         return OpenItem( false, ID, true );
       }
-    
+
       // standard use case -> location hash processing
       if( !G.O.locationHash ) { return false; }
 
@@ -2358,7 +2443,7 @@ THIS IS AN EARLY BETA VERSION.
       hash=location.hash;
 
       if( hash == G.lastLocationHash ) { return; }
-      
+
       if( hash == '' ) {
         if( G.lastOpenAlbumID != -1 ) {
           // back button and no hash --> display first album
@@ -2367,15 +2452,15 @@ THIS IS AN EARLY BETA VERSION.
           return true;
         }
       }
-      
+
       if( hash.indexOf(curGal) == 0 ) {
         var ID=hash.substring(curGal.length);
         return OpenItem( isTriggeredByEvent, ID, !isTriggeredByEvent );
       }
-    
+
       //return {albumID:albID, imageID:imgID};
     }
-    
+
     function OpenItem( isTriggeredByEvent, ID, openAlbumOnViewerClose ) {
       var albumID=null,
       imageID=null,
@@ -2383,7 +2468,7 @@ THIS IS AN EARLY BETA VERSION.
       albumIdx=-1,
       imageIdx=-1,
       l=G.I.length;
-      
+
       if( p > 0 ) {
         albumID=ID.substring(0,p);
         imageID=ID.substring(p+1);
@@ -2435,13 +2520,13 @@ THIS IS AN EARLY BETA VERSION.
         OpenAlbum(albumIdx,false,-1,isTriggeredByEvent);
         return true;
       }
-    
-    }
-    
-    
-    
 
-    
+    }
+
+
+
+
+
     // build a dummy thumbnail to get different sizes and to cache them
     function ThumbnailDefCaches() {
       G.I=[];
@@ -2456,10 +2541,10 @@ THIS IS AN EARLY BETA VERSION.
 
       // G.tn.imgcBorderWidth=$newDiv.find('.imgContainer').outerWidth(true)-$newDiv.find('.imgContainer').width();
       // G.tn.imgcBorderHeight=$newDiv.find('.imgContainer').outerHeight(true)-$newDiv.find('.imgContainer').height();
-      
+
       // G.tn.labelBorderHeight=$newDiv.find('.labelImage').outerHeight(true)-$newDiv.find('.labelImage').height();
       // G.tn.labelBorderWidth=$newDiv.find('.labelImage').outerWidth(true)-$newDiv.find('.labelImage').width();
-      
+
       // if( G.O.thumbnailLabel.position == 'onBottom' ) {
         // G.tn.labelHeight=$newDiv.find('.labelImage').outerHeight(true);
       // }
@@ -2497,9 +2582,9 @@ THIS IS AN EARLY BETA VERSION.
           // G.tn.outerHeight['lN'][lst[i]]=0;
         // }
       // }
-      
-      
-      
+
+
+
       // Retrieve LN
       G.curNavLevel='lN';
       var desc='';
@@ -2512,10 +2597,10 @@ THIS IS AN EARLY BETA VERSION.
 
       G.tn.imgcBorderWidth=$newDiv.find('.imgContainer').outerWidth(true)-$newDiv.find('.imgContainer').width();
       G.tn.imgcBorderHeight=$newDiv.find('.imgContainer').outerHeight(true)-$newDiv.find('.imgContainer').height();
-      
+
       G.tn.labelBorderHeight=$newDiv.find('.labelImage').outerHeight(true)-$newDiv.find('.labelImage').height();
       G.tn.labelBorderWidth=$newDiv.find('.labelImage').outerWidth(true)-$newDiv.find('.labelImage').width();
-      
+
       if( G.O.thumbnailLabel.get('position') == 'onBottom' ) {
         G.tn.labelHeight.lN=$newDiv.find('.labelImage').outerHeight(true);
         G.tn.labelHeight.l1=G.tn.labelHeight.lN;
@@ -2531,7 +2616,7 @@ THIS IS AN EARLY BETA VERSION.
         //  G.tn.outerWidth['l1'][lst[i]]=0;
         //}
         w=G.tn.settings.width['lN'][lst[i]];
-        w=G.tn.settings.width['l1'][lst[i]];
+        //w=G.tn.settings.width['l1'][lst[i]];
         if( w != 'auto' ) {
           G.tn.outerWidth['lN'][lst[i]]=w+G.tn.borderWidth+G.tn.imgcBorderWidth;
           G.tn.outerWidth['l1'][lst[i]]=w+G.tn.borderWidth+G.tn.imgcBorderWidth;
@@ -2550,7 +2635,7 @@ THIS IS AN EARLY BETA VERSION.
         //  G.tn.outerHeight['l1'][lst[i]]=0;
         //}
         h=G.tn.settings.height['lN'][lst[i]];
-        h=G.tn.settings.height['l1'][lst[i]];
+        //h=G.tn.settings.height['l1'][lst[i]];
         if( h != 'auto' ) {
           G.tn.outerHeight['lN'][lst[i]]=h+G.tn.borderHeight+G.tn.imgcBorderHeight+G.tn.labelHeight.get();
           G.tn.outerHeight['l1'][lst[i]]=h+G.tn.borderHeight+G.tn.imgcBorderHeight+G.tn.labelHeight.get();
@@ -2575,10 +2660,10 @@ THIS IS AN EARLY BETA VERSION.
 
       G.tn.imgcBorderWidth=$newDiv.find('.imgContainer').outerWidth(true)-$newDiv.find('.imgContainer').width();
       G.tn.imgcBorderHeight=$newDiv.find('.imgContainer').outerHeight(true)-$newDiv.find('.imgContainer').height();
-      
+
       G.tn.labelBorderHeight=$newDiv.find('.labelImage').outerHeight(true)-$newDiv.find('.labelImage').height();
       G.tn.labelBorderWidth=$newDiv.find('.labelImage').outerWidth(true)-$newDiv.find('.labelImage').width();
-      
+
       if( G.O.thumbnailLabel.get('position') == 'onBottom' ) {
         G.tn.labelHeight.l1=$newDiv.find('.labelImage').outerHeight(true);
       }
@@ -2616,22 +2701,29 @@ THIS IS AN EARLY BETA VERSION.
         //  G.tn.outerHeight['lN'][lst[i]]=0;
         //}
       }
-      
-      
+
+
       // pagination
       G.pgMaxNbThumbnailsPerRow=NbThumbnailsPerRow();
-      
+
       // backup values used in animations/transitions
       G.custGlobals.oldBorderColor=$newDiv.css('border-color-top');
       if( G.custGlobals.oldBorderColor == '' || G.custGlobals.oldBorderColor == null || G.custGlobals.oldBorderColor == undefined ) { G.custGlobals.oldBorderColor='#000'; }
       G.custGlobals.oldLabelOpacity=$newDiv.find('.labelImage').css('opacity');
       var c=jQuery.Color($newDiv.find('.labelImage'),'backgroundColor');
-      G.custGlobals.oldLabelRed=c.red();
-      G.custGlobals.oldLabelGreen=c.green();
-      G.custGlobals.oldLabelBlue=c.blue();
+      if( c == 'transparent' ) {
+        G.custGlobals.oldLabelRed=0;
+        G.custGlobals.oldLabelGreen=0;
+        G.custGlobals.oldLabelBlue=0;
+      }
+      else {
+        G.custGlobals.oldLabelRed=c.red();
+        G.custGlobals.oldLabelGreen=c.green();
+        G.custGlobals.oldLabelBlue=c.blue();
+      }
 
       G.I=[];
-      
+
       // thumbnail content CSS styles
       if( G.O.thumbnailLabel.display ) {
         switch( G.O.thumbnailLabel.position ){
@@ -2732,7 +2824,7 @@ THIS IS AN EARLY BETA VERSION.
     }
 
 
-    
+
     // ####################################
     // ##### LIST OF ITEMS IN OPTIONS #####
     // ####################################
@@ -2741,18 +2833,18 @@ THIS IS AN EARLY BETA VERSION.
       if( G.O.thumbnailLabel.get('title') == '%filename' ) {
         return (imageSRC.split('/').pop()).replace('_',' ');
       }
-      
+
       if( G.O.thumbnailLabel.get('title') == '%filenameNoExt' ) {
         var s=imageSRC.split('/').pop();
         return (s.split('.').shift()).replace('_',' ');
       }
       return imageSRC;
     }
-      
+
     function ProcessItemOption() {
-      
+
       var foundAlbumID=false;
-      
+
       if( typeof G.O.dataSorting !== 'undefined' ) {
         if( G.O.dataSorting == 'random' ) {
           G.O.items=AreaShuffle(G.O.items);
@@ -2760,13 +2852,13 @@ THIS IS AN EARLY BETA VERSION.
           G.O.items=G.O.items.reverse();
         }
       }
-      
+
       jQuery.each(G.O.items, function(i,item){
-        
+
         var title='';
         title=GetI18nItem(item,'title');
         if( title === undefined ) { title=''; }
-        
+
         var src=G.O.itemsBaseURL;
         if( item['src'+RetrieveMaxWidth().toUpperCase()] !== undefined ) {
           src+=item['src'+RetrieveMaxWidth().toUpperCase()];
@@ -2782,7 +2874,7 @@ THIS IS AN EARLY BETA VERSION.
         else {
           thumbsrc=src;
         }
-        
+
         var thumbsrcX2='';
         if( item.srct2x !== undefined && item.srct2x.length>0 ) {
           thumbsrcX2=G.O.itemsBaseURL+item.srct2x;
@@ -2832,7 +2924,7 @@ THIS IS AN EARLY BETA VERSION.
         if( item.kind !== undefined && item.kind.length>0 ) {
           kind=item.kind;
         }
-        
+
         var newItem=NGAddItem(title, thumbsrc, src, description, destinationURL, kind, tags, ID, albumID );
 
         // thumbnail image size
@@ -2857,12 +2949,12 @@ THIS IS AN EARLY BETA VERSION.
         if( item.customData !== null ) {
           newItem.customData=cloneJSObject(item.customData);
         }
-        
+
         if( typeof G.O.fnProcessData == 'function' ) {
           G.O.fnProcessData(newItem, 'api', null);
         }
       });
-      
+
       if( foundAlbumID ) {
         G.O.displayBreadcrumb=true;
       }
@@ -2899,14 +2991,14 @@ THIS IS AN EARLY BETA VERSION.
       return temp;
     }
 
-      
+
     // ###################################
     // ##### LIST OF HREF ATTRIBUTES #####
     // ###################################
 
     function ProcessHREF(elements) {
       var foundAlbumID=false;
-      
+
       if( typeof G.O.dataSorting !== 'undefined' ) {
         if( G.O.dataSorting == 'random' ) {
           elements=AreaShuffle(elements);
@@ -2916,7 +3008,7 @@ THIS IS AN EARLY BETA VERSION.
         }
       }
 
-      
+
       jQuery.each(elements, function(i,item){
         var thumbsrc='';
         if( jQuery(item).attr('data-ngthumb') !== undefined && jQuery(item).attr('data-ngthumb').length>0 ) {
@@ -2945,7 +3037,7 @@ THIS IS AN EARLY BETA VERSION.
         if( src == '' ) {
           src=G.O.itemsBaseURL+jQuery(item).attr('href');
         }
-        
+
         //newObj.description=jQuery(item).attr('data-ngdesc');
         var description='';
         if( jQuery(item).attr('data-ngdesc') !== undefined && jQuery(item).attr('data-ngdesc').length>0 ) {
@@ -2972,7 +3064,7 @@ THIS IS AN EARLY BETA VERSION.
           albumID=jQuery(item).attr('data-ngAlbumID');
           foundAlbumID=true;
         }
-        
+
         var ID=null;
         if( jQuery(item).attr('data-ngid') !== undefined ) {
           ID=jQuery(item).attr('data-ngid');
@@ -2995,7 +3087,7 @@ THIS IS AN EARLY BETA VERSION.
         }
 
         var newItem=NGAddItem(title, thumbsrc, src, description, destURL, kind, '', ID, albumID );
-        
+
         // thumbnail image size
         var tw=0;
         if( jQuery(item).attr('data-ngthumbImgWidth') !== undefined && jQuery(item).attr('data-ngthumbImgWidth').length>0 ) {
@@ -3013,21 +3105,21 @@ THIS IS AN EARLY BETA VERSION.
           width: { l1 : { xs:tw, sm:tw, me:tw, la:tw, xl:tw }, lN : { xs:tw, sm:tw, me:tw, la:tw, xl:tw } },
           height: { l1 : { xs:th, sm:th, me:th, la:th, xl:th }, lN : { xs:th, sm:th, me:th, la:th, xl:th } }
         };
-        
+
         // custom data
         if( jQuery(item).data('customdata') !== undefined ) {
           newItem.customData=cloneJSObject(jQuery(item).data('customdata'));
         }
 
-        
+
         if( typeof G.O.fnProcessData == 'function' ) {
           G.O.fnProcessData(newItem, 'markup', null);
         }
 
       });
-      
+
       jQuery.each(elements, function(i,item){ jQuery(item).remove(); });
-      
+
       if( foundAlbumID ) {
         G.O.displayBreadcrumb=true;
       }
@@ -3049,10 +3141,10 @@ THIS IS AN EARLY BETA VERSION.
         }
         G.I[i].contentLength=nb;
       }
-      
+
     }
 
-    
+
     // ##########################
     // ##### CUSTOM STORAGE #####
     // ##########################
@@ -3060,19 +3152,18 @@ THIS IS AN EARLY BETA VERSION.
     function JsonProcessItems( albumIdx, processLocationHash, imageID, setLocationHash ) {
 
       manageGalleryToolbar(albumIdx);
-    
+
       if( G.I[albumIdx].contentIsLoaded ) {    // already loaded?
         DisplayAlbum(albumIdx,setLocationHash);
         return;
       }
 
       var url = G.O.jsonProvider + '?albumID='+encodeURIComponent(G.I[albumIdx].GetID());
-console.dir(url);
       PreloaderShow();
 
       jQuery.ajaxSetup({ cache: false });
       jQuery.support.cors = true;
-      
+
       var tId = setTimeout( function() {
         // workaround to handle JSONP (cross-domain) errors
         PreloaderHide();
@@ -3082,7 +3173,6 @@ console.dir(url);
         clearTimeout(tId);
         PreloaderHide();
 
-        
         JsonParseData(albumIdx, data);
 
         if( processLocationHash || G.O.openOnStart != '') {
@@ -3113,13 +3203,14 @@ console.dir(url);
         var err = textStatus + ', ' + error;
         nanoAlert("Could not retrieve JSON items list (jQuery): " + err);
       });
-    
+
     }
 
     function JsonConvertCharset( str ) {
-    
+      
       return decodeURIComponent(str);
-    
+
+
       // Pb %C3%A9 --> %E9
       // in UTF-8: \u00e9=\xe9 (e9 = hex value)
       switch( G.O.jsonCharset.toUpperCase() ) {
@@ -3132,18 +3223,18 @@ console.dir(url);
           break;
       }
     }
-    
+
     function JsonParseData(albumIdx, data) {
       var foundAlbumID=false;
       var nb=0;
       jQuery.each(data, function(i,item){
-        
+
         var title='';
         title=GetI18nItem(item,'title');
         if( title === undefined ) { title=''; }
 
         var baseURL=G.O.jsonProvider.substring(0, G.O.jsonProvider.indexOf('nanoPhotosProvider.php'));
-        
+
         var src=baseURL+JsonConvertCharset(item.src);
         var thumbsrc=baseURL+JsonConvertCharset(item.srct);
 
@@ -3166,7 +3257,7 @@ console.dir(url);
         if( item.ID !== undefined ) {
           ID=(item.ID);
         }
-        
+
         var kind='image';
         if( item.kind !== undefined && item.kind.length>0 ) {
           kind=item.kind;
@@ -3186,7 +3277,7 @@ console.dir(url);
         if( typeof G.O.fnProcessData == 'function' ) {
           G.O.fnProcessData(newItem, 'api', null);
         }
-        
+
         if( kind == 'image' ) {
           newItem.imageNumber=nb;
           nb++;
@@ -3195,16 +3286,16 @@ console.dir(url);
           }
         }
       });
-      
+
       if( foundAlbumID ) {
         G.O.displayBreadcrumb=true;
       }
 
       G.I[albumIdx].contentIsLoaded=true;
       G.I[albumIdx].contentLength=nb;
-      
+
     }
-  
+
 
     // ##########################
     // ##### FLICKR STORAGE #####
@@ -3213,7 +3304,7 @@ console.dir(url);
     function FlickrProcessItems( albumIdx, processLocationHash, imageID, setLocationHash) {
 
       manageGalleryToolbar(albumIdx);
-    
+
       if( G.I[albumIdx].contentIsLoaded ) {    // already loaded?
         DisplayAlbum(albumIdx,setLocationHash);
         return;
@@ -3243,7 +3334,7 @@ console.dir(url);
 
       jQuery.ajaxSetup({ cache: false });
       jQuery.support.cors = true;
-      
+
       var tId = setTimeout( function() {
         // workaround to handle JSONP (cross-domain) errors
         PreloaderHide();
@@ -3286,10 +3377,10 @@ console.dir(url);
         var err = textStatus + ', ' + error;
         nanoAlert("Could not retrieve Flickr photoset list (jQuery): " + err);
       });
-    
+
     }
 
-    
+
     function FlickrParsePhotoSets( albumIdx, data ) {
       var ok=true;
       if( data.stat !== undefined ) {
@@ -3301,7 +3392,7 @@ console.dir(url);
 
       if( ok ) {
         var nb=0;
-        
+
         var source = data.photosets.photoset;
         switch( G.O.albumSorting ) {
           case 'random':
@@ -3328,7 +3419,7 @@ console.dir(url);
         jQuery.each(source, function(i,item){
           //Get the title
           itemTitle = item.title._content;
-          
+
           if( CheckAlbumName(itemTitle, item.id) ) {
             itemID=item.id;
             //Get the description
@@ -3347,13 +3438,13 @@ console.dir(url);
                 tags=item.primary_photo_extras.tags;
               }
             }
-          
+
             var newItem=NGAddItem(itemTitle, '', '', itemDescription, '', 'album', tags, itemID, G.I[albumIdx].GetID() );
             //newItem.thumbImgWidth=item.primary_photo_extras['width_'+G.flickr.thumbSize];
             //newItem.thumbImgHeight=item.primary_photo_extras['height_'+G.flickr.thumbSize];
             newItem.contentLength=item.photos;
             newItem.thumbSizes=sizes;
-            
+
             var tn = {
               url: { l1 : { xs:'', sm:'', me:'', la:'', xl:'' }, lN : { xs:'', sm:'', me:'', la:'', xl:'' } },
               width: { l1 : { xs:0, sm:0, me:0, la:0, xl:0 }, lN : { xs:0, sm:0, me:0, la:0, xl:0 } },
@@ -3362,19 +3453,19 @@ console.dir(url);
             tn=FlickrRetrieveImages(tn, item.primary_photo_extras, 'l1' );
             tn=FlickrRetrieveImages(tn, item.primary_photo_extras, 'lN' );
             newItem.thumbs=tn;
-            
+
             nb++;
             if( nb >= G.maxAlbums ) {
               return false;
             }
           }
         });
-        
+
         G.I[albumIdx].contentIsLoaded=true;
         G.I[albumIdx].contentLength=nb;
       }
     }
-    
+
     function FlickrRetrieveImages(tn, item, level ) {
       var sizes=['xs','sm','me','la','xl'];
       for(var i=0; i<sizes.length; i++ ) {
@@ -3386,7 +3477,7 @@ console.dir(url);
           tn.width[level][sizes[i]]=one.width;
           tn.height[level][sizes[i]]=one.height;
         }
-        else 
+        else
           if( G.tn.settings.height[level][sizes[i]] == 'auto' ) {
             var sdir='width_';
             var tsize=Math.ceil(G.tn.settings.width[level][sizes[i]]*G.tn.scale);
@@ -3410,7 +3501,7 @@ console.dir(url);
       }
       return tn;
     }
-    
+
     function FlickrRetrieveOneImage(sdir, tsize, item ) {
       var one={ url:'', width:0, height:0 };
       var tnIndex=0;
@@ -3487,7 +3578,7 @@ console.dir(url);
         var itemTitle = item.title,
         itemID=item.id,
         itemDescription=item.description._content;    // Get the description
-        
+
         var imgUrl=item.url_sq;  //fallback size
         for(var i=G.flickr.photoSize; i>=0; i-- ) {
           if( item['url_'+G.flickr.photoAvailableSizesStr[i]] != undefined ) {
@@ -3502,7 +3593,7 @@ console.dir(url);
             sizes[p]=item[p];
           }
         }
-        
+
         if( G.O.thumbnailLabel.get('title') != '' ) {
           itemTitle=GetImageTitle(imgUrl);
         }
@@ -3535,15 +3626,16 @@ console.dir(url);
         if( nb >= G.maxPhotos ) {
           return false;
         }
-        
+
       });
       G.I[albumIdx].contentIsLoaded=true;
       G.I[albumIdx].contentLength=nb;
 
     }
-  
 
-    
+
+
+
     // ##########################
     // ##### PICASA STORAGE #####
     // ##########################
@@ -3559,26 +3651,26 @@ console.dir(url);
         else if( v1 > v2 ) {
           v=Math.ceil(v1*G.tn.scale)+c1;
         }
-        
+
       if( thumbSizes.length > 0 ) {
         thumbSizes+=',';
       }
       thumbSizes+=v;
       return thumbSizes;
     }
-    
+
     function PicasaProcessItems( albumIdx, processLocationHash, imageID, setLocationHash ) {
       manageGalleryToolbar(albumIdx);
-    
+
       if( G.I[albumIdx].contentIsLoaded ) {    // already loaded?
         //renderGallery(albumIdx,0);
         DisplayAlbum(albumIdx,setLocationHash);
         return;
       }
-      
+
       var url='',
       kind='album';
-     
+
       var thumbSizes='';
       thumbSizes=AddOneThumbSize(thumbSizes, G.tn.settings.width.l1.xs, G.tn.settings.height.l1.xs, G.tn.settings.width.l1.xsc, G.tn.settings.height.l1.xsc );
       thumbSizes=AddOneThumbSize(thumbSizes, G.tn.settings.width.l1.sm, G.tn.settings.height.l1.sm, G.tn.settings.width.l1.smc, G.tn.settings.height.l1.smc );
@@ -3591,7 +3683,7 @@ console.dir(url);
       thumbSizes=AddOneThumbSize(thumbSizes, G.tn.settings.width.lN.la, G.tn.settings.height.lN.la, G.tn.settings.width.lN.lac, G.tn.settings.height.lN.lac );
       thumbSizes=AddOneThumbSize(thumbSizes, G.tn.settings.width.lN.xl, G.tn.settings.height.lN.xl, G.tn.settings.width.lN.xlc, G.tn.settings.height.lN.xlc );
 
-      
+
       if( G.I[albumIdx].GetID() == 0 ) {
         // albums
         //url = G.picasa.url() + 'user/'+G.O.userID+'?alt=json&kind=album&imgmax=d&thumbsize='+G.picasa.thumbSize;
@@ -3621,7 +3713,7 @@ console.dir(url);
         nanoAlert('Could not retrieve Picasa/Google+ data...');
       }, 60000 );
 //      jQuery.getJSON(url, 'callback=?', function(data) {
-        
+
       var gi_getJSONfinished = function(data){
         clearTimeout(tId);
         PreloaderHide();
@@ -3648,19 +3740,19 @@ console.dir(url);
               DisplayAlbum(albumIdx,setLocationHash);
             }
           }
-      };	  
-	  
+      };
+
       var gi_data_loaded = null;
-      
+
       var gi_loadJSON = function(url,start_index){
       jQuery.getJSON(url+"&start-index="+start_index, 'callback=?', function(data) {
-				
+
 				if (gi_data_loaded===null){
 					gi_data_loaded = data;
 				}else{
 					gi_data_loaded.feed.entry=gi_data_loaded.feed.entry.concat(data.feed.entry);
 				}
-				
+
 				if (data.feed.openSearch$startIndex.$t+data.feed.openSearch$itemsPerPage.$t>=data.feed.openSearch$totalResults.$t){
 					//ok finito
 					gi_getJSONfinished(gi_data_loaded);
@@ -3669,13 +3761,13 @@ console.dir(url);
 					//altra chiamata per il rimanente
 					gi_loadJSON(url,data.feed.openSearch$startIndex.$t+data.feed.openSearch$itemsPerPage.$t);
 				}
-				
+
 			  })
 			  .fail( function(jqxhr, textStatus, error) {
 				clearTimeout(tId);
 				PreloaderHide();
 
-				
+
 				//alertObject(jqxhr);
 				var k=''
 				for(var key in jqxhr) {
@@ -3685,17 +3777,17 @@ console.dir(url);
 				var err = textStatus + ', ' + error + ' ' + k + '<br><br>URL:'+url;
 				nanoAlert("Could not retrieve Picasa/Google+ data. Error: " + err);
 
-			  });		  
+			  });
       };
-	  
+
       gi_loadJSON(url,1);
-          
-          
+
+
 //      })
       // .fail( function(jqxhr, textStatus, error) {
         // clearTimeout(tId);
         // PreloaderHide();
-        
+
         //alertObject(jqxhr);
         // var k=''
         // for(var key in jqxhr) {
@@ -3704,13 +3796,13 @@ console.dir(url);
         // var err = textStatus + ', ' + error + ' ' + k + '<br><br>URL:'+url;
         // nanoAlert("Could not retrieve Picasa/Google+ data. Error: " + err);
       // });
-      
+
     }
-    
+
     function PicasaParseData( albumIdx, data, kind ) {
       var nb=0,
       albumID=G.I[albumIdx].GetID();
-      
+
       var source = data.feed.entry;
       var sortOrder=G.O.albumSorting;
       if (kind =='image'){
@@ -3771,25 +3863,25 @@ console.dir(url);
       }
 
       jQuery.each(source, function(i,data){
-        
-        //Get the title 
+
+        //Get the title
         var itemTitle = data.media$group.media$title.$t;
         //Get the URL of the thumbnail
         var itemThumbURL = data.media$group.media$thumbnail[0].url;
-        //Get the ID 
+        //Get the ID
         var itemID = data.gphoto$id.$t;
         //Get the description
         var filename='';
         var itemDescription = data.media$group.media$description.$t;
-        if( kind == 'image') { 
+        if( kind == 'image') {
           filename=itemTitle;
           itemTitle=itemDescription;
           itemDescription='';
         }
-        
+
         var imgUrl=data.media$group.media$content[0].url;
-        
-        if( kind == 'image') { 
+
+        if( kind == 'image') {
           if( G.O.thumbnailLabel.get('title') != '' ) {
             itemTitle=GetImageTitle(unescape(unescape(unescape(unescape(imgUrl)))));
           }
@@ -3799,9 +3891,9 @@ console.dir(url);
         if( kind == 'album' ) {
           if( !CheckAlbumName(itemTitle, itemID) ) { ok=false; }
         }
-       
+
         var tags='';
-        
+
         if( ok ) {
 
           var picasaThumbBaseURL='';
@@ -3832,7 +3924,7 @@ console.dir(url);
             newItem.contentLength=data.gphoto$numphotos.$t;
           }
 
-          
+
           // OLD METHOD
           /*
           if( kind == 'image' ) {
@@ -3845,7 +3937,7 @@ console.dir(url);
             if( G.tn.settings.getH() == 'auto' ) {
               newItem.thumbImgWidth=G.picasa.thumbSize;
             }
-            else 
+            else
               if( G.tn.settings.getW() == 'auto' ) {
                 newItem.thumbImgHeight=G.picasa.thumbSize;
               }
@@ -3857,7 +3949,7 @@ console.dir(url);
           */
 
           // NEW METHOD
-          var tn = { 
+          var tn = {
             url: { l1 : { xs:'', sm:'', me:'', la:'', xl:'' }, lN : { xs:'', sm:'', me:'', la:'', xl:'' } },
             width: { l1 : { xs:0, sm:0, me:0, la:0, xl:0 }, lN : { xs:0, sm:0, me:0, la:0, xl:0 } },
             height: { l1 : { xs:0, sm:0, me:0, la:0, xl:0 }, lN : { xs:0, sm:0, me:0, la:0, xl:0 } }
@@ -3885,27 +3977,27 @@ console.dir(url);
           tn.height.lN.me=0;
           tn.height.lN.la=0;
           tn.height.lN.xl=0;
-          */        
+          */
           newItem.thumbs=tn;
-          
+
           if( typeof G.O.fnProcessData == 'function' ) {
             G.O.fnProcessData(newItem, 'picasa', data);
           }
-          
+
           nb++;
           if( nb >= (kind == 'album' ? G.maxAlbums : G.maxPhotos) ) {
             return false;
           }
 
         }
-        
+
       });
-      
+
       G.I[albumIdx].contentIsLoaded=true;
       G.I[albumIdx].contentLength=nb;
-      
+
     }
-    
+
     function PicasaThumbSetSizes(level, startI, tn, data, kind ) {
       var sizes=['xs','sm','me','la','xl'];
       for(var i=0; i<sizes.length; i++ ) {
@@ -3948,7 +4040,7 @@ console.dir(url);
             url=url.substring(0, url.lastIndexOf('/')) + '/';
             tn.url[level][sizes[i]]=url+'h'+G.tn.settings.height[level][sizes[i]]+'/';
           }
-          if( G.tn.settings.height[level][sizes[i]] != 'auto' ) { 
+          if( G.tn.settings.height[level][sizes[i]] != 'auto' ) {
             tn.height[level][sizes[i]]=data.media$group.media$thumbnail[startI+i].height;
           }
           else {
@@ -3962,13 +4054,14 @@ console.dir(url);
       }
       return tn;
     }
-    
 
-      
+
+
+
     // ################################
     // ##### NGITEMS MANIPULATION #####
     // ################################
-    
+
     function NGAddItem(title, thumbSrc, imageSrc, description, destinationURL, kind, tags, ID, albumID ) {
       var item=GetNGItem(ID);
       var isNew=false;
@@ -3996,7 +4089,7 @@ console.dir(url);
       }
       return item;
     }
-    
+
     function GetNGItem( ID ) {
       var l=G.I.length;
       for( var i=0; i<l; i++ ) {
@@ -4006,7 +4099,7 @@ console.dir(url);
       }
       return null;
     }
-    
+
     // check album name - blackList/whiteList
     function CheckAlbumName( title, ID) {
       var s=title.toUpperCase();
@@ -4034,16 +4127,16 @@ console.dir(url);
         if( G.blackList !== null ) {
           //blackList : ignore album cointaining one of the specified keyword in the title
           for( var j=0; j<G.blackList.length; j++) {
-            if( s.indexOf(G.blackList[j]) !== -1 ) { 
+            if( s.indexOf(G.blackList[j]) !== -1 ) {
               return false;
             }
           }
         }
-        
+
         return true;
       }
     }
-    
+
     // ###########################
     // ##### GALLERY TOOLBAR #####
     // ###########################
@@ -4062,8 +4155,8 @@ console.dir(url);
         DisplayAlbumFinalize( albumIdx, setLocationHash );
       }
     }
-    
-    
+
+
     function DisplayAlbumFinalize( albumIdx, setLocationHash ) {
       G.O.lazyBuild='none';
       G.delayedAlbumIdx=-1;
@@ -4080,7 +4173,7 @@ console.dir(url);
         }
         return;
       }
-      
+
       if( G.containerViewerDisplayed ) {
         CloseInternalViewer(false);
       }
@@ -4088,7 +4181,7 @@ console.dir(url);
       if( albumIdx == G.lastOpenAlbumID ) {
         return;
       }
-      
+
       if( G.O.locationHash ) {
         if( setLocationHash ) {
           var s='nanogallery/'+G.baseEltID+'/'+G.I[albumIdx].GetID();
@@ -4103,19 +4196,80 @@ console.dir(url);
       }
       G.lastOpenAlbumID=G.I[albumIdx].GetID();
       manageGalleryToolbar(albumIdx);
-     
+
       var p=0;
       if( G.I[albumIdx].paginationLastPage > 0 && G.I[albumIdx].paginationLastWidth == G.$E.conTnParent.width()) {
         p=G.I[albumIdx].paginationLastPage;
       }
       renderGallery(albumIdx,p);
-      
+
     }
-    
-    
+
+    // Display next album
+    function DisplayNextAlbum() {
+      var newAlbumIdx=GetNextAlbumIdx(G.curAlbumIdx);
+      var setLocationHash = newAlbumIdx > 0;
+
+      // DisplayAlbum(newAlbumIdx, setLocationHash);
+      OpenAlbum(newAlbumIdx, false, -1, setLocationHash);
+    };
+
+    // Display previous album
+    function DisplayPreviousAlbum() {
+      var newAlbumIdx=GetPreviousAlbumIdx(G.curAlbumIdx);
+      var setLocationHash = newAlbumIdx > 0;
+
+      // DisplayAlbum(newAlbumIdx, setLocationHash);
+      OpenAlbum(newAlbumIdx, false, -1, setLocationHash);
+    };
+
+    function GetNextAlbumIdx( curAlbumIdx ) {
+      var l=G.I.length;
+      var newAlbumIdx=-1;
+
+      for(var i=curAlbumIdx+1; i<l; i++ ){
+        if( G.I[i].albumID == G.I[curAlbumIdx].albumID && G.I[i].kind == 'album' ) {
+          newAlbumIdx=i;
+          break;
+        }
+      }
+      if( newAlbumIdx == -1 ) {
+        for(var i=0; i<=curAlbumIdx; i++ ){
+          if( G.I[i].albumID == G.I[curAlbumIdx].albumID && G.I[i].kind == 'album' ) {
+            newAlbumIdx=i;
+            break;
+          }
+        }
+      }
+
+      return newAlbumIdx;
+    }
+
+    function GetPreviousAlbumIdx( curAlbumIdx ) {
+      var l=G.I.length;
+      var newAlbumIdx=-1;
+
+      for(var i=curAlbumIdx-1; i>=0; i-- ){
+        if( G.I[i].albumID == G.I[curAlbumIdx].albumID && G.I[i].kind == 'album' ) {
+          newAlbumIdx=i;
+          break;
+        }
+      }
+      if( newAlbumIdx == -1 ) {
+        for(var i=G.I.length-1; i>=curAlbumIdx; i-- ){
+          if( G.I[i].albumID == G.I[curAlbumIdx].albumID && G.I[i].kind == 'album' ) {
+            newAlbumIdx=i;
+            break;
+          }
+        }
+      }
+
+      return newAlbumIdx;
+    }
+
     // add album to breadcrumb
     function breadcrumbAdd( albumIdx ) {
-      
+
       var cl="folder";
       if(albumIdx == 0 ) {
         cl="folderHome";
@@ -4143,7 +4297,7 @@ console.dir(url);
       });
     }
 
-    
+
     function manageGalleryToolbar( albumIdx ) {
       var displayToolbar=false;
 
@@ -4154,7 +4308,7 @@ console.dir(url);
         }
 
         displayToolbar=true;
-      
+
         // G.$E.conBC.children().not(':first').remove();
         G.$E.conBC.children().remove();
         breadcrumbAdd(0);
@@ -4162,10 +4316,10 @@ console.dir(url);
           var l=G.I.length,
           parentID=0,
           lstItems=[];
-          
+
           lstItems.push(albumIdx);
           var curIdx=albumIdx;
-          
+
           while( G.I[curIdx].albumID != 0 && G.I[curIdx].albumID != -1) {
             for(i=1; i < l; i++ ) {
               if( G.I[i].GetID() == G.I[curIdx].albumID ) {
@@ -4175,7 +4329,7 @@ console.dir(url);
               }
             }
           }
-          
+
           breadcrumbAddSeparator(0);
           for( i=lstItems.length-1; i>=0 ; i-- ) {
             breadcrumbAdd(lstItems[i]);
@@ -4184,7 +4338,7 @@ console.dir(url);
             }
           }
         }
-        
+
         var bcItems=G.$E.conBC.children(),
         l1=bcItems.length;
         if( l1 == 0 ) {
@@ -4243,7 +4397,7 @@ console.dir(url);
         }
         G.pgMaxNbThumbnailsPerRow=NbThumbnailsPerRow();
       }
-      
+
       // Tag-bar
       if( G.O.useTags ) {
         displayToolbar=true;
@@ -4251,14 +4405,14 @@ console.dir(url);
           G.containerTags =jQuery('<div class="nanoGalleryTags"></div>').appendTo(G.$E.conNavB);
         }
       }
-      
+
       if( G.O.galleryFullpageButton ) { displayToolbar=true; }
-      
+
       if( !G.containerNavigationbarContDisplayed && displayToolbar ) {
         G.containerNavigationbarContDisplayed=true;
         G.$E.conNavBCon.show();
       }
-      
+
     }
 
     function PreloaderShow() {
@@ -4266,14 +4420,14 @@ console.dir(url);
       // G.$E.conLoadingB.css({visibility:'visible'});
       G.$E.conLoadingB.addClass('nanoGalleryLBar').removeClass('nanoGalleryLBarOff');
     }
-    
+
     function PreloaderHide() {
       //if( G.O.displayBreadcrumb == true ) { G.$E.conBC.find('.oneFolder').last().removeClass('loading'); }
       // G.$E.conLoadingB.css({visibility:'hidden'});
       G.$E.conLoadingB.removeClass('nanoGalleryLBar').addClass('nanoGalleryLBarOff');
     }
 
-    
+
     // ##### Open one album
     function OpenAlbum ( albumIdx, processLocationHash, imageID, setLocationHash ) {
 
@@ -4304,13 +4458,13 @@ console.dir(url);
       }
     }
 
-    
+
     // ##### REPOSITION THUMBNAILS ON SCREEN RESIZE EVENT
     function ResizeGallery() {
       if( G.tn.settings.getH() == 'auto' ) {
         ResizeGalleryHeightAuto();
       }
-      else 
+      else
         if ( G.tn.settings.getW() == 'auto' ) {
           ResizeGalleryWidthtAuto();
         }
@@ -4342,13 +4496,13 @@ console.dir(url);
       else {
         gutterWidth=G.O.thumbnailGutterWidth;
       }
-      
+
       var nbCol=0;
       // first loop to retrieve the width of the area
       $thumbnails.each(function() {
         var $this=jQuery(this),
         n=$this.data("index");
-        
+
         if( n !== undefined ) {
           var curPosX=0,
           curPosY=0;
@@ -4356,10 +4510,10 @@ console.dir(url);
           if( curRow == 0 ) {
             curPosX=curCol*(G.tn.outerWidth.get()+gutterWidth);
             colHeight[curCol]=G.I[n].thumbFullHeight+gutterHeight;
-            
+
             curCol++;
             nbCol++;
-            if( curCol >= maxCol ) { 
+            if( curCol >= maxCol ) {
               curCol=0;
               curRow++;
             }
@@ -4379,7 +4533,7 @@ console.dir(url);
       $thumbnails.each(function() {
         var $this=jQuery(this),
         n=$this.data("index");
-        
+
         if( n !== undefined ) {
           if( G.O.thumbnailLabel.get('position') == 'onBottom' ) {
             setThumbnailSize($this,G.I[n]);      // [TODO] remove --> this should not be here but issue on labelHeight
@@ -4390,9 +4544,9 @@ console.dir(url);
           if( curRow == 0 ) {
             curPosX=curCol*(G.tn.outerWidth.get()+gutterWidth);
             colHeight[curCol]=G.I[n].thumbFullHeight+gutterHeight;
-            
+
             curCol++;
-            if( curCol >= maxCol ) { 
+            if( curCol >= maxCol ) {
               curCol=0;
               curRow++;
             }
@@ -4419,7 +4573,7 @@ console.dir(url);
 
           $this.css({ top: curPosY, left: x });
           ThumbnailAppear($this, G.I[n], cnt);
-          
+
           cnt++;
         }
       });
@@ -4453,19 +4607,19 @@ console.dir(url);
       var maxRowHeightHorizontal=0;   // max height of a row with horizontal thumbs
       var rowHasVertical=false;       // current row has vertical thumbs
       var rowHasHorizontal=false;     // current row has horizontal thumbs
-      
+
       var $thumbnails=G.$E.conTn.find('.nanoGalleryThumbnailContainer');
       $thumbnails.each(function() {
         var n=jQuery(this).data("index");
         if( n !== undefined && G.I[n] != undefined ) {
-          if( G.I[n].thumbImg().width > 0 ) {
+          if( G.I[n].thumbImg().width > 0 && G.I[n].thumbImg().height > 0 ) {
             var item=G.I[n],
             w=Math.floor(item.thumbImg().width/item.thumbImg().height*G.tn.settings.getH())+ G.tn.borderWidth+G.tn.imgcBorderWidth; // +gutterWidth;
-            if( G.O.thumbnailFeatured && cnt == 0 ) { 
+            if( G.O.thumbnailFeatured && cnt == 0 ) {
               w=w*2;
               tnFeaturedW=w;
             }
-            
+
             if( bNewRow ) {
               bNewRow=false;
               rowNum++;
@@ -4485,21 +4639,21 @@ console.dir(url);
             else {
               rowHasHorizontal = true;
             }
-            
+
             // down scale image resolution
             if( (curWidth + w + gutterWidth) < areaW ) {
               // last row
               curWidth+=w+gutterWidth;
               rowHeight[rowNum]=G.tn.settings.getH();
               // rowHeight[rowNum]=item.thumbFullHeight;
-              
+
               // prevent incomplete row from being heigher than the previous ones.
               // by grief-of-these-days
               var rowHeightLimit=Math.max(rowHasVertical ? maxRowHeightVertical : 0, rowHasHorizontal ? maxRowHeightHorizontal : 0);
               if( G.O.thumbnailAdjustLastRowHeight && rowHeightLimit > 0 ) {
                 rowHeight[rowNum]=Math.min(rowHeight[rowNum],rowHeightLimit);
               }
-              
+
               rowLastItem[rowNum]=n;
             }
             else {
@@ -4508,7 +4662,7 @@ console.dir(url);
               var rH=Math.floor(G.tn.settings.getH()*areaW/curWidth);
               // var rH=Math.floor(item.thumbFullHeight*areaW/curWidth);
               rowHeight[rowNum]=rH;
-              
+
               // save the max row height for each thumb orientation.
               // by grief-of-these-days
               if( rowHasVertical ) {
@@ -4517,11 +4671,11 @@ console.dir(url);
               if( rowHasHorizontal ) {
                 maxRowHeightHorizontal=Math.max(maxRowHeightHorizontal,rH);
               }
-              
+
               rowLastItem[rowNum]=n;
               bNewRow=true;
             }
-            
+
           cnt++;
           }
           else {
@@ -4529,9 +4683,9 @@ console.dir(url);
             return false;
           }
         }
-        
+
       });
-      
+
       rowNum=0;
       curPosY=0;
       lastPosX=0;
@@ -4540,12 +4694,12 @@ console.dir(url);
         var $this=jQuery(this),
         n=$this.data("index");
         if( n !== undefined && G.I[n] != undefined ) {
-          if( G.I[n].thumbImg().width > 0 ) {
+          if( G.I[n].thumbImg().width > 0 && G.I[n].thumbImg().height > 0 ) {
             var item=G.I[n],
             // w=Math.ceil(item.thumbImgWidth/item.thumbImg().height*rowHeight[rowNum]);//+G.tn.borderWidth+G.tn.imgContBorderWidth;
             w=Math.floor(item.thumbImg().width/item.thumbImg().height*rowHeight[rowNum]);//+G.tn.borderWidth+G.tn.imgContBorderWidth;
 
-            if( cnt == 0 && G.O.thumbnailFeatured ) { 
+            if( cnt == 0 && G.O.thumbnailFeatured ) {
               w=w*2;
               if( rowHeight.length == 1 ) {
                 // only 1 row
@@ -4555,7 +4709,7 @@ console.dir(url);
                 tnFeaturedH=parseInt(rowHeight[0])+parseInt(rowHeight[1])+G.tn.borderHeight+G.tn.imgcBorderHeight;
               }
             }
-            
+
             if( n == rowLastItem[rowNum] ) {
               // last row item
               if( rowLastItem.length != (rowNum+1) ) {
@@ -4569,7 +4723,7 @@ console.dir(url);
                 }
               }
             }
-            
+
             var rh=0;
             if( cnt == 0 && G.O.thumbnailFeatured ) {
             //  rh=tnFeaturedH;
@@ -4580,7 +4734,7 @@ console.dir(url);
             else {
               rh=rowHeight[rowNum];
             }
-            
+
             rh=parseInt(rh);
             w=parseInt(w);
             $this.width(w+G.tn.imgcBorderWidth).height(rh+G.tn.imgcBorderHeight+G.tn.labelHeight.get());
@@ -4597,15 +4751,15 @@ console.dir(url);
             item.thumbFullHeight=rh+G.tn.borderHeight+G.tn.imgcBorderHeight+G.tn.labelHeight.get();
             ThumbnailOverResize($this);
             ThumbnailAppear($this, item, cnt);
-            
+
             lastPosX+=w+G.tn.borderWidth+G.tn.imgcBorderWidth+gutterWidth;
-            
+
             if( n == rowLastItem[rowNum] ) {
               // curPosY+=rowHeight[rowNum]+G.tn.outerHeight+G.tn.labelHeight.get()+gutterHeight;
               curPosY+=rowHeight[rowNum]+G.tn.labelHeight.get()+gutterHeight+G.tn.imgcBorderHeight+G.tn.borderHeight;
               rowNum++;
               lastPosX=0;
-              if( rowNum == 1 && tnFeaturedW2 > 0 ) { 
+              if( rowNum == 1 && tnFeaturedW2 > 0 ) {
                 lastPosX= tnFeaturedW2;
                 tnFeaturedW2=0;
               }
@@ -4617,21 +4771,21 @@ console.dir(url);
           }
         }
       });
-      
+
       if( rowNum > 0 ) {
         curPosY-=gutterHeight;
       }
       tnFeaturedH=tnFeaturedH+G.tn.outerHeight.get()+G.tn.labelHeight.get();
       G.$E.conTn.width(areaW).height(curPosY>tnFeaturedH?curPosY:tnFeaturedH);  //+G.O.thumbnailHeight);
     }
-    
-    
+
+
     // Maximum number of thumbnails in one row
     function NbThumbnailsPerRow() {
-    
+
       var tnW=G.tn.settings.getW()+G.tn.borderWidth+G.tn.imgcBorderWidth;
       var areaW=G.$E.conTnParent.width();
-      
+
       var nbMaxTn=0;
       if( G.O.thumbnailAlignment == 'justified' ) {
         nbMaxTn=Math.floor((areaW)/(tnW));
@@ -4639,21 +4793,21 @@ console.dir(url);
       else {
         nbMaxTn=Math.floor((areaW+G.O.thumbnailGutterWidth)/(tnW+G.O.thumbnailGutterWidth));
       }
-      
+
       if(  G.O.maxItemsPerLine >0 && nbMaxTn >  G.O.maxItemsPerLine ) {
         nbMaxTn=G.O.maxItemsPerLine;
       }
-      
+
       if( nbMaxTn < 1 ) { nbMaxTn=1; }
-      
+
       return nbMaxTn
     }
-  
-    
+
+
     // GRID LAYOUT
     function ResizeGalleryGrid() {
       var curPosX=0,
-      curPosY=0,   
+      curPosY=0,
       gutterWidth=0,
       gutterHeight=G.O.thumbnailGutterHeight,
       areaW=G.$E.conTnParent.width(),
@@ -4665,7 +4819,7 @@ console.dir(url);
       curCol=0;
 
       G.L.nbMaxTnPerRow=NbThumbnailsPerRow();
-      var d=new Date();      
+      var d=new Date();
 
       // pagination - max lines per page mode
       if( G.pgMaxLinesPerPage > 0 ) {
@@ -4681,7 +4835,7 @@ console.dir(url);
 
       var $thumbnails=G.$E.conTn.find('.nanoGalleryThumbnailContainer'),
       nbTn=$thumbnails.length;
-      
+
       if( G.O.thumbnailAlignment == 'justified' ) {
         maxCol=Math.min(maxCol,nbTn);
         gutterWidth=(maxCol==1?0:(areaW-(maxCol*G.tn.outerWidth.get()))/(maxCol-1));
@@ -4705,7 +4859,7 @@ console.dir(url);
             else {
               return false;
             }
-            
+
             curCol++;
             if( curCol >= maxCol ){
               curCol=0;
@@ -4717,10 +4871,10 @@ console.dir(url);
         curPosY=0;
         curCol=0;
       }
-      
+
 
       var batch=[];
-      
+
       var lastN=0;
       $thumbnails.each(function() {
         var $this=jQuery(this);
@@ -4737,7 +4891,7 @@ console.dir(url);
             curPosX=cols[curCol];
             h=curPosY;
           }
-          
+
           var x=curPosX;
           if( G.O.RTL ) {
             x=parseInt(areaW)-curPosX-G.tn.outerWidth.get();
@@ -4754,13 +4908,14 @@ console.dir(url);
           cnt++;
         }
       });
-      
-      
+
       // window.requestAnimationFrame( function(d,w) {
         var n=batch.length;
+        var h=0
         for( var i=0; i<n; i++ ) {
           batch[i].$e.css({ top: batch[i].t , left: batch[i].l });
           ThumbnailAppear(batch[i].$e, batch[i].item, i);
+          h=batch[i].t;
         }
         batch=[];
         G.$E.conTn.width(w+G.tn.outerWidth.get()).height(h+G.tn.outerHeight.get());
@@ -4768,14 +4923,14 @@ console.dir(url);
           console.log('ResizeGalleryGrid: '+ (new Date()-d));
         }
       // });
-    } 
-    
+    }
+
     function ThumbnailAppear($this, item, n) {
-      // if( $this.css('opacity') == 0 ) {    // ==> DO NOT USE / TOO SLOW 
+      // if( $this.css('opacity') == 0 ) {    // ==> DO NOT USE / TOO SLOW
       if( $this.hasClass('nanogalleryHideElement') ) {
         $this.removeClass('nanogalleryHideElement');
         if( G.O.thumbnailDisplayTransition ) {
-          if( typeof G.O.fnThumbnailDisplayEffect == 'function' ) { 
+          if( typeof G.O.fnThumbnailDisplayEffect == 'function' ) {
             G.O.fnThumbnailDisplayEffect($this, item, 0);
           }
           else {
@@ -4794,8 +4949,8 @@ console.dir(url);
         }
       }
     }
-    
-    
+
+
     function FadeToAppear( $elt ) {
       var tweenable = new NGTweenable();
       tweenable.tween({
@@ -4810,7 +4965,7 @@ console.dir(url);
         }
       });
     }
-    
+
 
     function setGalleryToolbarWidth(pageNumber) {
       if( G.O.galleryToolbarWidthAligned ) {
@@ -4846,15 +5001,15 @@ console.dir(url);
     }
 
 
-    
+
     // ###################
     // ##### GALLERY #####
     // ###################
-    
+
     // Display pagination
     function managePagination( albumIdx, pageNumber ) {
       if( G.$E.conPagin == undefined ) return;
-      
+
       G.$E.conPagin.children().remove();
 
       //if( G.tn.settings.getH() == 'auto' || G.tn.settings.getW() == 'auto' ) { return; }
@@ -4862,11 +5017,11 @@ console.dir(url);
         // Hide pagination container, if not used.
         G.$E.conPagin.hide();
         return;
-      }    
-      
+      }
+
       // Must show the container for width calculation to work.
       G.$E.conPagin.show();
-      
+
       G.$E.conPagin.data('galleryIdx',albumIdx);
       G.$E.conPagin.data('currentPageNumber',pageNumber);
       var n2=0,
@@ -4902,7 +5057,7 @@ console.dir(url);
           }
         }
       }
-      
+
       // only one page -> do not display anything
       // if( n2==1 ) { return; }
       if( n2==1 ) {
@@ -4910,7 +5065,7 @@ console.dir(url);
         G.$E.conPagin.hide ();
         return;
       }
-      
+
       for(var i=firstPage; i < n2; i++ ) {
         var c='';
         if( i == pageNumber ) { c=' currentPage'; }
@@ -4943,13 +5098,13 @@ console.dir(url);
     function paginationNextPage() {
       var aIdx=G.$E.conPagin.data('galleryIdx'),
       n1=0;
-      
+
       // pagination - max lines per page mode
       if( G.pgMaxLinesPerPage > 0 ) {
         n1=G.I[aIdx].contentLength / (G.pgMaxLinesPerPage * G.pgMaxNbThumbnailsPerRow);
       }
       n2=Math.ceil(n1);
-      
+
       var pn=G.$E.conPagin.data('currentPageNumber');
       if( pn < (n2-1) ) {
         pn++;
@@ -4957,24 +5112,24 @@ console.dir(url);
       else {
         pn=0;
       }
-      
+
       if( !inViewportVert(G.$E.base, 0) ) {
         $('html, body').animate({scrollTop: G.$E.base.offset().top }, 200);
       }
 
       renderGallery(aIdx,pn);
     }
-    
+
     function paginationPreviousPage() {
       var aIdx=G.$E.conPagin.data('galleryIdx'),
       n1=0;
-      
+
       // pagination - max lines per page mode
       if( G.pgMaxLinesPerPage > 0 ) {
         n1=G.I[aIdx].contentLength / (G.pgMaxLinesPerPage * G.pgMaxNbThumbnailsPerRow);
       }
       n2=Math.ceil(n1);
-      
+
       var pn=G.$E.conPagin.data('currentPageNumber');
       if( pn > 0 ) {
         pn--;
@@ -4990,9 +5145,26 @@ console.dir(url);
       renderGallery(aIdx,pn);
     }
 
+    function galleryCountImages (imageIdx) {
+      var l=G.I.length;
+      var images = 0;
+      var currentItemIdx = imageIdx || G.GetCurrentViewedItemIdx();
+
+      if (currentItemIdx !== -1) {
+        for( var i=0; i <  l ; i++ ) {
+          if( G.I[i].albumID == G.I[currentItemIdx].albumID && G.I[i].kind == 'image' ) {
+            images++;
+          }
+        }
+        return images;
+      } else {
+        return 0;
+      }
+    }
+
     function renderGallery( albumIdx, pageNumber ) {
       G.curAlbumIdx=-1;
-      
+
       if( G.$E.conPagin == undefined ) {
         G.$E.conPagin.children().remove();
       }
@@ -5015,7 +5187,7 @@ console.dir(url);
           G.$E.conTn.hide(0).off().show(0).html('');
           var l=G.I.length;
           for( var i=0; i < l ; i++ ) {
-            
+
             G.I[i].$Elts = [];
             G.I[i].$elt = null;
             G.I[i].hoverInitDone=false;
@@ -5030,8 +5202,8 @@ console.dir(url);
       });
 
       return;
-      
-      
+
+
       // TODO: remove following
       $elt.animate({opacity: 0}, 100).promise().done(function(){
 
@@ -5077,7 +5249,7 @@ console.dir(url);
       var currentCounter=0,
       firstCounter=0,
       lastCounter=0;
-      
+
       if( G.pgMaxLinesPerPage > 0 && G.tn.settings.getH() != 'auto' && G.tn.settings.getW() != 'auto' ) {
         firstCounter=pageNumber*G.pgMaxLinesPerPage*G.pgMaxNbThumbnailsPerRow;
         lastCounter=firstCounter+G.pgMaxLinesPerPage*G.pgMaxNbThumbnailsPerRow;
@@ -5107,10 +5279,10 @@ console.dir(url);
                 return;
               }
             }
-            
+
             if( currentCounter > firstCounter ) {
               G.galleryItemsCount++;
-              
+
               // If the item is does not exists anymore
               var r=thumbnailBuild(item, idx, foundDesc);
               var $newDiv=r.e$;
@@ -5151,27 +5323,27 @@ console.dir(url);
         }
       })();
     }
-    
+
     function renderGallery2Complete( albumIdx, pageNumber ) {
       //if( G.O.thumbnailHeight == 'auto' || G.O.thumbnailWidth == 'auto' || G.O.thumbnailWidth == 'autoUpScale' ) {
         ResizeGallery();
       //}
-       
+
       // SetGalleryWidth(pageNumber);
       //setGalleryToolbarWidth(pageNumber);
       managePagination(albumIdx,pageNumber);
       G.containerThumbnailsDisplayed=true;
       G.curAlbumIdx=albumIdx;
-      
+
       if(typeof G.O.fnInitGallery === 'function'){
           G.O.fnInitGallery(albumIdx, pageNumber);
       }
 
       if( G.O.debugMode && console.timeline ) {
-        console.log('End-render: ' + (new Date() - G.startDateTime));      
+        console.log('End-render: ' + (new Date() - G.startDateTime));
         console.timelineEnd('nanoGALLERY');
       }
-      
+
       // Refresh select mode
       G.SetSelectMode();
     }
@@ -5180,9 +5352,9 @@ console.dir(url);
     function thumbnailBuild( item, idx, foundDesc ) {
       var newElt=[],
       newEltIdx=0;
-      
+
       item.$Elts=[];
-      
+
       var pos='';
       var ch=' nanogalleryHideElement'
       if( G.O.thumbnailLazyLoad && G.tn.settings.getW() == 'auto' ) {
@@ -5190,7 +5362,7 @@ console.dir(url);
 //        ch='';
       }
       newElt[newEltIdx++]='<div class="nanoGalleryThumbnailContainer'+ch+' nGEvent" style="display:block;opacity:0;'+pos+'" ><div class="subcontainer nGEvent" style="display:block;">';
-      
+
       var checkImageSize=false,
       src=G.emptyGif;
       if( (G.tn.settings.getH() == 'auto' && G.I[idx].thumbImg().height == 0) || (G.tn.settings.getW() == 'auto' && G.I[idx].thumbImg().width == 0) ) { checkImageSize=true; }
@@ -5199,7 +5371,7 @@ console.dir(url);
       }
       var sTitle=getThumbnailTitle(item),
       sDesc=getTumbnailDescription(item);
-      
+
       if( G.tn.settings.getH() == 'auto' ) {
         newElt[newEltIdx++]='<div class="imgContainer nGEvent" style="width:'+G.tn.settings.getW()+'px;"><img class="image nGEvent" src="'+src+'" alt="'+sTitle+'" style="max-width:'+G.tn.settings.getW()+'px;"></div>';
       }
@@ -5235,12 +5407,12 @@ console.dir(url);
           newElt[newEltIdx++]='<div class="labelImage nGEvent" style="width:'+G.tn.settings.getW()+'px;'+(G.O.RTL ? "direction:RTL;" :"")+(G.curNavLevel == 'l1' ? G.tn.styleL1LabelImage:G.tn.styleLabelImage)+'"><div class="labelImageTitle labelTitle nGEvent" style="'+(G.curNavLevel == 'l1' ? G.tn.styleL1ITitle:G.tn.styleITitle)+'">'+sTitle+'</div><div class="labelDescription nGEvent" style="'+(G.curNavLevel == 'l1' ? G.tn.styleL1Desc:G.tn.styleDesc)+'">'+sDesc+'</div></div>';
         }
       }
-      
+
       newElt[newEltIdx++]='</div>';
-      
+
       // checkbox for selection
       if( G.O.itemsSelectable ){
-          
+
         item.selected = false;
         if(G.O.keepSelection === true){
             for (it in G.selectedItems){
@@ -5257,9 +5429,9 @@ console.dir(url);
           newElt[newEltIdx++]='<input class="ngChekbox" type="checkbox" '+checked+' style="position:absolute;z-index:999;'+G.O.checkboxStyle+'">';
         }
       }
-      
+
       newElt[newEltIdx++]='</div>';
-      
+
       // var $newDiv =jQuery(newElt.join('')).appendTo(G.$E.conTnHid); //.animate({ opacity: 1},1000, 'swing');  //.show('slow'); //.fadeIn('slow').slideDown('slow');
       var $newDiv =jQuery(newElt.join('')).appendTo(G.$E.conTnHid); //.animate({ opacity: 1},1000, 'swing');  //.show('slow'); //.fadeIn('slow').slideDown('slow');
       if(typeof item.selected !== 'undefined' && item.selected === true){
@@ -5269,14 +5441,15 @@ console.dir(url);
       $newDiv.data('index',idx);
       item.$getElt('img').data('index',idx);
 
-      
+
       // Custom init function
-      if( typeof G.O.fnThumbnailInit == 'function' ) { 
+      if( typeof G.O.fnThumbnailInit == 'function' ) {
         G.O.fnThumbnailInit($newDiv, item, ExposedObjects());
       }
 
       var $p=$newDiv.detach();
       $p.appendTo( G.$E.conTn );
+
 
 
       if( checkImageSize ) {
@@ -5297,7 +5470,7 @@ console.dir(url);
             item.thumbSetImgWidth(instance.images[0].img.naturalWidth);
             b=true;
           }
-          
+
           if( b ) {
             ThumbnailOverInit(item.$elt);     // init hover effects
             setThumbnailSize(item.$elt, item);
@@ -5315,9 +5488,9 @@ console.dir(url);
 
       return { e$:$newDiv, cIS:checkImageSize };
     }
-    
+
     function getThumbnailTitle( item ) {
-    
+
       var sTitle=item.title;
       if( G.O.thumbnailLabel.get('display') == true ) {
         if( sTitle === undefined || sTitle.length == 0 ) { sTitle='&nbsp;'; }
@@ -5329,13 +5502,13 @@ console.dir(url);
           sTitle=sTitle.substring(0,G.O.thumbnailLabel.get('titleMaxLength'))+'...';
         }
       }
-      
+
       return sTitle;
     }
 
     function getTumbnailDescription( item ) {
       var sDesc='';
-      if( G.O.thumbnailLabel.get('displayDescription') == true ) { 
+      if( G.O.thumbnailLabel.get('displayDescription') == true ) {
         if( item.kind == 'album' ) {
           if( G.i18nTranslations.thumbnailImageDescription != '' ) {
             sDesc=G.i18nTranslations.thumbnailAlbumDescription;
@@ -5356,15 +5529,15 @@ console.dir(url);
           sDesc=sDesc.substring(0,G.O.thumbnailLabel.get('descriptionMaxLength'))+'...';
         }
       }
-      
+
       return sDesc;
     }
-    
+
 
     function thumbnailSelection(item, forceValue, refrehElt){
       var $e=item.$elt;
       var thumbnailCheckbox = $e.find('input[type=checkbox]');
-      
+
       if((G.selectMode === 'image' || G.selectMode === 'album') && item.kind !== G.selectMode ){
           item.selected = false;
           thumbnailCheckbox.prop('checked',false );
@@ -5389,7 +5562,7 @@ console.dir(url);
         G.O.fnThumbnailSelection($e, item);
       }
     }
-    
+
     function thumbnailSelectionEnd(){
       var oldSelection;
       if(G.O.keepSelection === true){
@@ -5425,7 +5598,7 @@ console.dir(url);
             }
           }
         });
-        if(G.selectMode !== true && G.selectMode !== 'image' && 
+        if(G.selectMode !== true && G.selectMode !== 'image' &&
                 G.selectMode !== 'album'){
           G.selectMode = true;
         }
@@ -5437,12 +5610,12 @@ console.dir(url);
         });
         G.selectMode = false;
       }
-      
+
       if (typeof G.O.fnChangeSelectMode === 'function'){
         G.O.fnChangeSelectMode(G.selectMode);
       }
     }
-  
+
     function setThumbnailSize( $elt, item ) {
 
       if( G.tn.settings.getH() == 'auto' ) {
@@ -5469,7 +5642,7 @@ console.dir(url);
         // JUSTIFIED LAYOUT
         if( G.tn.settings.getW() == 'auto' ) {
           return;
-          
+
           // everything is done in ResizeGalleryWidthtAuto()
           if( item.thumbImg().width > 0 ) {
             // var ratio=item.thumbImg().height/item.thumbImg().width;
@@ -5485,7 +5658,7 @@ console.dir(url);
           item.thumbFullHeight=G.tn.outerHeight.get()+G.tn.labelHeight.get();
           $elt.find('.subcontainer').width(item.thumbFullWidth-G.tn.borderWidth).height(G.tn.outerHeight.get()-G.tn.borderHeight); //.css({'overflow':'hidden'});
         }
-        
+
         else {
           // GRID LAYOUT
           item.thumbFullHeight=G.tn.outerHeight.get();  //+G.tn.labelHeight.get();  //G.tn.defaultFullHeight;
@@ -5500,11 +5673,11 @@ console.dir(url);
           item.$getElt('.subcontainer').width(item.thumbFullWidth-G.tn.borderWidth).height(item.thumbFullHeight-G.tn.borderHeight); //.css({'overflow':'hidden'});
         }
     }
-    
-    
+
+
     // TODO --> REMOVE
     function thumbnailPositionContentOLD( $e, item ) {
- 
+
       if(G.O.itemsSelectable === true && G.O.showCheckboxes === true){
         thumbnailCheckbox = $('<input>')
           .attr('type', 'checkbox')
@@ -5519,17 +5692,17 @@ console.dir(url);
         $e.append(thumbnailCheckbox);
         $e.data('selected',false);
       }
-      
-      if( typeof G.O.fnThumbnailInit == 'function' ) { 
+
+      if( typeof G.O.fnThumbnailInit == 'function' ) {
         G.O.fnThumbnailInit($e, item, ExposedObjects());
         return;
-      }    
-      
+      }
+
       return;
 
       if( !G.O.thumbnailLabel.get('display') ) { return; }
 
-      
+
       switch( G.O.thumbnailLabel.get('position') ){
         case 'onBottom':
           item.$getElt('.labelImage').css({top:0, position:'relative', left:0, right:0});
@@ -5539,7 +5712,7 @@ console.dir(url);
               item.$getElt('.labelFolderTitle').css({'white-space':'normal'});
             }
             else {
-              item.$getElt('.labelImageTitle').css({'white-space':'normal'});    
+              item.$getElt('.labelImageTitle').css({'white-space':'normal'});
             }
             item.$getElt('.labelDescription').css({'white-space':'normal'});
           }
@@ -5577,7 +5750,7 @@ console.dir(url);
           break;
       }
     }
-    
+
     function ThumbnailHoverOutAll() {
     // [TODO] --> only check displayed items
       var l=G.I.length;
@@ -5587,7 +5760,7 @@ console.dir(url);
         }
       }
     }
-    
+
     // init hover effects
     function ThumbnailOverInit( $e ) {
       var n=$e.data("index");
@@ -5611,7 +5784,7 @@ console.dir(url);
             $subCon.prepend(item.$getElt('.imgContainer', true).clone());
             $iC=item.$getElt('.imgContainer', true);
             setElementOnTop('', $iC);
-            
+
             newCSSTransform(item, 'imgContainer0', $iC.eq(0));
             SetCSSTransform(item, 'imgContainer0');
             newCSSTransform(item, 'imgContainer1', $iC.eq(1));
@@ -5621,7 +5794,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer3', $iC.eq(3));
             SetCSSTransform(item, 'imgContainer3');
             break;
-            
+
           case 'imageSplitVert':
             var $subCon=item.$getElt('.subcontainer'),
             $iC=item.$getElt('.imgContainer');
@@ -5636,7 +5809,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer1', $iC.eq(1));
             SetCSSTransform(item, 'imgContainer1');
             break;
-            
+
           case 'labelSplit4':
             var $subCon=item.$getElt('.subcontainer'),
             $lI=item.$getElt('.labelImage').css({top:0, bottom:0});
@@ -5644,7 +5817,7 @@ console.dir(url);
             $lI.clone().appendTo($subCon);
             item.$getElt('.labelImage',true).clone().appendTo($subCon);
             $lI=item.$getElt('.labelImage',true);
-            
+
             newCSSTransform(item, 'labelImage0', $lI.eq(0));
             SetCSSTransform(item, 'labelImage0');
             newCSSTransform(item, 'labelImage1', $lI.eq(1));
@@ -5655,14 +5828,14 @@ console.dir(url);
             SetCSSTransform(item, 'labelImage3');
 
             break;
-            
+
           case 'labelSplitVert':
             var $subCon=item.$getElt('.subcontainer'),
             $lI=item.$getElt('.labelImage');
             $subCon.css({overflow:'hidden', position:'relative'});
             $lI.clone().appendTo($subCon);
             $lI=item.$getElt('.labelImage',true);
-            
+
             newCSSTransform(item, 'labelImage0', $lI.eq(0));
             SetCSSTransform(item, 'labelImage0');
             newCSSTransform(item, 'labelImage1', $lI.eq(1));
@@ -5696,7 +5869,7 @@ console.dir(url);
             SetCSSTransform(item, 'labelImage3');
 
             break;
-            
+
           case 'labelAppearSplitVert':
             var $subCon=item.$getElt('.subcontainer'),
             $lI=item.$getElt('.labelImage');
@@ -5709,7 +5882,7 @@ console.dir(url);
             newCSSTransform(item, 'labelImage1', $lI.eq(1)).translateX=item.thumbFullWidth/2;
             SetCSSTransform(item, 'labelImage1');
             break;
-            
+
           case 'imageScale150Outside':
             G.$E.base.css({overflow: 'visible'});
             G.$E.conTn.css({overflow: 'visible'});
@@ -5720,7 +5893,7 @@ console.dir(url);
             SetCSSTransform(item, 'img0');
             setElementOnTop(item.$getElt('.imgContainer'), item.$getElt('.labelImage'));
             break;
-            
+
           case 'scale120':
             if( !G.$E.base.hasClass('fullpage') ) {
               G.$E.base.css({overflow: 'visible'});
@@ -5729,7 +5902,7 @@ console.dir(url);
             newCSSTransform(item, 'base', $e);
             SetCSSTransform(item, 'base');
             break;
-            
+
           case 'scaleLabelOverImage':
             var $t=item.$getElt('.imgContainer');
             var $l=item.$getElt('.labelImage');
@@ -5741,7 +5914,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0', $t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'overScale':
             $e.css({overflow: 'hidden'});
             var $t=item.$getElt('.imgContainer');
@@ -5755,7 +5928,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0', $t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'overScaleOutside':
             if( !G.$E.base.hasClass('fullpage') ) {
               G.$E.base.css({overflow: 'visible'});
@@ -5773,7 +5946,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0', $t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'rotateCornerBL':
             $e.css({overflow: 'hidden'});
             var $t=item.$getElt('.labelImage');
@@ -5786,7 +5959,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0', $t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'rotateCornerBR':
             $e.css({overflow: 'hidden'});
             var $t=item.$getElt('.labelImage');
@@ -5799,7 +5972,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0', $t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'imageRotateCornerBL':
             var $t=item.$getElt('.imgContainer');
             setElementOnTop($e, $t);
@@ -5809,7 +5982,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0', $t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'imageRotateCornerBR':
             var $t=item.$getElt('.imgContainer');
             setElementOnTop($e, $t);
@@ -5819,7 +5992,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0', $t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'slideUp':
             $e.css({overflow: 'hidden'});
             $t=item.$getElt('.labelImage');
@@ -5831,7 +6004,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0',$t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'slideDown':
             $e.css({overflow: 'hidden'});
             $t=item.$getElt('.labelImage');
@@ -5843,7 +6016,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0',$t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'slideRight':
             $e.css({overflow: 'hidden'});
             $t=item.$getElt('.labelImage');
@@ -5855,7 +6028,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0',$t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'slideLeft':
             $e.css({overflow: 'hidden'});
             $t=item.$getElt('.labelImage');
@@ -5867,7 +6040,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0',$t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'imageSlideUp':
           case 'imageSlideDown':
           case 'imageSlideRight':
@@ -5880,7 +6053,7 @@ console.dir(url);
             newCSSTransform(item, 'imgContainer0',$t);
             SetCSSTransform(item, 'imgContainer0');
             break;
-            
+
           case 'labelAppear':
           case 'labelAppear75':
             var c='rgb('+G.custGlobals.oldLabelRed+','+G.custGlobals.oldLabelGreen+','+G.custGlobals.oldLabelBlue+',0.01)';
@@ -5898,20 +6071,20 @@ console.dir(url);
           case 'descriptionAppear':
             item.$getElt('.labelDescription').css({opacity: 0});
             break;
-            
+
           case 'labelSlideUpTop':
             $e.css({overflow: 'hidden'});
             item.$getElt('.labelImage').css({top:0, bottom:0});
             newCSSTransform(item, 'labelImage0',item.$getElt('.labelImage')).translateY=item.thumbFullHeight;
             SetCSSTransform(item, 'labelImage0');
             break;
-            
+
           case 'labelSlideUp':
             $e.css({overflow: 'hidden'});
             newCSSTransform(item, 'labelImage0',item.$getElt('.labelImage')).translateY=item.thumbFullHeight;
             SetCSSTransform(item, 'labelImage0');
             break;
-            
+
           case 'labelSlideDown':
             $e.css({overflow: 'hidden'});
             newCSSTransform(item, 'labelImage0',item.$getElt('.labelImage')).translateY=-item.thumbFullHeight;
@@ -5931,7 +6104,7 @@ console.dir(url);
             // G.$E.base.css('overflow', 'visible');
             // G.$E.conTn.css('overflow', 'visible');
             // $e.css('overflow', 'visible');
-            
+
             setElementOnTop( '', $e);
             setElementOnTop( item.$getElt('.labelImage'), item.$getElt('.imgContainer'));
             var $subCon=item.$getElt('.subcontainer'),
@@ -5949,7 +6122,7 @@ console.dir(url);
             }
             $iC.remove();
             break;
-            
+
           case 'imageFlipHorizontal':
             switch( G.O.thumbnailLabel.get('position') ){
               case 'overImageOnTop':
@@ -5976,16 +6149,16 @@ console.dir(url);
             var n= Math.round(item.thumbFullHeight*1.2) + 'px';
             $t[0].style[G.CSSperspective] = n;
 
-            
+
             // item.$getElt('.imgContainer').data('ngRotateX','0');
             $t=item.$getElt('.imgContainer');
             $t[0].style[G.CSSbackfaceVisibilityName]= 'hidden';
             // $t[0].style[G.CSStransformName]= 'rotateX:(0deg)';
             newCSSTransform(item, 'imgContainer0', $t);
             SetCSSTransform(item, 'imgContainer0');
-            
+
             $e.find('.image')[0].style[G.CSSbackfaceVisibilityName] = 'hidden';
-            
+
             // item.$getElt('.labelImage').data('ngRotateX','180');
             $t=item.$getElt('.labelImage');
             $t[0].style[G.CSSbackfaceVisibilityName] = 'hidden';
@@ -5993,7 +6166,7 @@ console.dir(url);
             newCSSTransform(item, 'labelImage0',$t).rotateX=180;
             SetCSSTransform(item, 'labelImage0');
             break;
-            
+
           case 'imageFlipVertical':
             switch( G.O.thumbnailLabel.get('position') ){
               case 'overImageOnTop':
@@ -6024,33 +6197,33 @@ console.dir(url);
             $t[0].style[G.CSSbackfaceVisibilityName]= 'hidden';
             newCSSTransform(item, 'imgContainer0', $t);
             SetCSSTransform(item, 'imgContainer0');
-            
+
             $e.find('.image')[0].style[G.CSSbackfaceVisibilityName] = 'hidden';
-            
+
             $t=item.$getElt('.labelImage');
             $t[0].style[G.CSSbackfaceVisibilityName] = 'hidden';
             newCSSTransform(item, 'labelImage0',$t).rotateY=180;
             SetCSSTransform(item, 'labelImage0');
-            
+
             break;
-            
+
           // case 'flipHorizontal':  // ONLY TO TEST --> hover issue
             // var n= Math.round(item.thumbFullHeight*1.2) + 'px';
             // item.$getElt('.labelImage').css({ perspective: n, rotateX: '180deg', 'backface-visibility': 'hidden', 'opacity':'1', 'height':'100%' });
             // break;
-            
+
           // case 'flipVertical':  // OONLY TO TEST --> hover issue
             // var n= Math.round(item.thumbFullWidth*1.2) + 'px';
             // item.$getElt('.subcontainer').css({ perspective: n, rotateY: '0deg'});
             // item.$getElt('.labelImage').css({ perspective: n, rotateY: '180deg', 'backface-visibility': 'hidden', 'opacity':'1', 'height':'100%' });
             // break;
-            
+
           case 'imageScale150':
             $e.css({overflow: 'hidden'});
             newCSSTransform(item, 'img0', item.$getElt('img'));
             SetCSSTransform(item, 'img0');
             break;
-            
+
           case 'imageScaleIn80':
             $e.css({overflow: 'hidden'});
             newCSSTransform(item, 'img0', item.$getElt('img')).scale=120;
@@ -6069,7 +6242,7 @@ console.dir(url);
             item.customData.hoverEffectRDir=G.tn.getHE()[j].name;
             ThumbnailInitImageSlide($e, item);
             break;
-            
+
           case 'imageSlide2Random':
             $e.css({overflow:'hidden'});
             var dir= ['imageSlide2Up','imageSlide2Down','imageSlide2Left','imageSlide2Left','imageSlide2UpRight','imageSlide2UpLeft','imageSlide2DownRight','imageSlide2DownLeft'];
@@ -6081,7 +6254,7 @@ console.dir(url);
       item.hoverInitDone=true;
 
     }
-  
+
     function ThumbnailInitImageSlide( $e, item ) {
       // var w=item.thumbImgWidth;    //$e.outerWidth(true),
       // h=item.thumbImg().height,       //$e.outerHeight(true);
@@ -6145,7 +6318,7 @@ console.dir(url);
       // $e.find('img').css(c);  //.css({'width':w*1.5, 'height':h*1.5});
       //item.$getElt('.imgContainer').css(c).css({'width':w*1.5, 'height':h*1.5});
     }
-  
+
 
     function ThumbnailOverResize( $e ) {
       var n=$e.data("index");
@@ -6173,7 +6346,7 @@ console.dir(url);
             s='rect('+Math.ceil(h/2)+'px, '+Math.ceil(w/2)+'px, '+h+'px, 0px)';
             $iC.eq(3).css({ clip:s });
             break;
-            
+
           case 'imageSplitVert':
             var $iC=item.$getElt('.imgContainer'),
             w=item.thumbFullWidth-G.tn.borderWidth-G.tn.imgcBorderWidth,
@@ -6183,7 +6356,7 @@ console.dir(url);
             s='rect(0px, '+w+'px, '+h+'px, '+Math.ceil(w/2)+'px)';
             $iC.eq(1).css({clip:s });
             break;
-            
+
           case 'labelSplit4':
             var w=item.thumbFullWidth-G.tn.borderWidth-G.tn.imgcBorderWidth,
             h=item.thumbFullHeight-G.tn.borderHeight-G.tn.imgcBorderHeight,
@@ -6197,7 +6370,7 @@ console.dir(url);
             s='rect('+Math.ceil(h/2)+'px, '+Math.ceil(w/2)+'px, '+h+'px, 0px)';
             $lI.eq(3).css({ clip:s });
             break;
-            
+
           case 'labelSplitVert':
             var w=item.thumbFullWidth-G.tn.borderWidth-G.tn.imgcBorderWidth,
             h=item.thumbFullHeight-G.tn.borderHeight-G.tn.imgcBorderHeight,
@@ -6220,8 +6393,8 @@ console.dir(url);
             $lI.eq(2).css({ clip:s });
             s='rect('+Math.ceil(h/2)+'px, '+Math.ceil(w/2)+'px, '+h+'px, 0px)';
             $lI.eq(3).css({ clip:s });
-            
-            
+
+
             item.eltTransform['labelImage0'].translateX=-item.thumbFullWidth/2;
             item.eltTransform['labelImage0'].translateY=-item.thumbFullHeight/2;
             SetCSSTransform(item, 'labelImage0');
@@ -6235,7 +6408,7 @@ console.dir(url);
             item.eltTransform['labelImage3'].translateY=item.thumbFullHeight/2;
             SetCSSTransform(item, 'labelImage3');
             break;
-            
+
           case 'labelAppearSplitVert':
             var w=item.thumbFullWidth-G.tn.borderWidth-G.tn.imgcBorderWidth,
             h=item.thumbFullHeight-G.tn.borderHeight-G.tn.imgcBorderHeight;
@@ -6255,31 +6428,31 @@ console.dir(url);
             item.transformLabelImage[1].translateX=item.thumbFullWidth/2;
             SetCSSTransform($lI.eq(1),item.transformLabelImage[1]);
             break;
-          
+
           case 'slideUp':
             // item.$getElt('.labelImage').css({top:item.thumbFullHeight});
             item.eltTransform['labelImage0'].translateY=item.thumbFullHeight;
             SetCSSTransform(item, 'labelImage0');
             break;
-            
+
           case 'slideDown':
             // item.$getElt('.labelImage').css({bottom:item.thumbFullHeight});  //, 'background':'none'});
             item.eltTransform['labelImage0'].translateY=-item.thumbFullHeight;
             SetCSSTransform(item, 'labelImage0');
             break;
-            
+
           case 'slideRight':
             // item.$getElt('.labelImage').css({left:-item.thumbFullWidth});
             item.eltTransform['labelImage0'].translateX=-item.thumbFullWidth;
             SetCSSTransform(item, 'labelImage0');
             break;
-            
+
           case 'slideLeft':
             // item.$getElt('.labelImage').css({left:item.thumbFullWidth});
             item.eltTransform['labelImage0'].translateX=item.thumbFullWidth;
             SetCSSTransform(item, 'labelImage0');
             break;
-            
+
           case 'imageExplode':
             var $subCon=item.$getElt('.subcontainer'),
             $iC=item.$getElt('.imgContainer'),
@@ -6294,7 +6467,7 @@ console.dir(url);
               }
             }
             break;
-            
+
           case 'imageFlipHorizontal':
             var $t=item.$getElt('.subcontainer');
             var n= Math.round(item.thumbFullHeight*1.2) + 'px';
@@ -6302,7 +6475,7 @@ console.dir(url);
             // item.$getElt('.imgContainer').css({perspective: n, rotateX: '0deg', 'backface-visibility': 'hidden'});
             // item.$getElt('.labelImage').css({ perspective: n, rotateX: '180deg', 'backface-visibility': 'hidden','height':item.thumbFullHeight,'opacity':'1' });
             break;
-            
+
           case 'imageFlipVertical':
             var $t=item.$getElt('.subcontainer');
             var n= Math.round(item.thumbFullWidth*1.2) + 'px';
@@ -6310,7 +6483,7 @@ console.dir(url);
             //item.$getElt('.imgContainer').css({perspective: n, rotateY: '0deg', 'backface-visibility': 'hidden'});
             //item.$getElt('.labelImage').css({ perspective: n, rotateY: '180deg', 'backface-visibility': 'hidden','height':item.thumbFullHeight,'opacity':'1' });
             break;
-            
+
           case 'imageSlide2Up':
           case 'imageSlide2Down':
           case 'imageSlide2Left':
@@ -6339,13 +6512,13 @@ console.dir(url);
             item.eltTransform['labelImage0'].translateX=item.thumbFullWidth;
             SetCSSTransform(item, 'labelImage0');
             break;
-            
+
           case 'labelSlideUpTop':
           case 'labelSlideUp':
             item.eltTransform['labelImage0'].translateY=item.thumbFullHeight;
             SetCSSTransform(item, 'labelImage0');
             break;
-            
+
           case 'labelSlideDown':
             $e.css({overflow: 'hidden'});
             // item.$getElt('.labelImage').css({top:-item.thumbFullHeight, bottom:''});
@@ -6360,13 +6533,13 @@ console.dir(url);
             //item.eltTransform['labelImage0'].translateY=lh2;
             //SetCSSTransform(item, 'labelImage0');
 
-            
+
         }
       }
 
     };
 
-    
+
 
     function newCSSTransform(item, eltClass, $e) {
       if( item.eltTransform[eltClass] == undefined ) {
@@ -6375,18 +6548,18 @@ console.dir(url);
       }
       return item.eltTransform[eltClass];
     }
-    
+
     function removeCSSTransform(item) {
        for (var p in item.eltTransform) {
           delete item.eltTransform[p];
        }
     }
-    
+
     function InitCSSTransform() {
       var obj={translateX:0, translateY:0, rotateX:0, rotateY:0, rotateZ:0, scale:100};
       return obj;
     }
-    
+
     function SetCSSTransform(item, objClass) {
       var obj=item.eltTransform[objClass];
       // var v = 'translateX('+obj.translateX+'px) translateY('+obj.translateY+'px)  scale('+obj.scale/100+')';
@@ -6401,11 +6574,11 @@ console.dir(url);
         obj.$elt[0].style[G.CSStransformName]= v;
       }
     }
-    
+
 
     // ANIMATION OF ONE THUMBNAIL ELEMENT
     function TnAni( $e, n, anime, item, eltClass) {
-    
+
       // STEP 1: animate CSS transform
       var transform=['translateX','translateY', 'scale', 'rotateX', 'rotateY', 'rotateZ'];
       if( G.aengine == 'animate' ) {
@@ -6445,11 +6618,11 @@ console.dir(url);
           l++;
           break;
         }
-      }      
+      }
       if( l == 0 ) {
         return;
       }
- 
+
       // STEP 2: remaining animations
       if( G.aengine != 'transition' ) {
         // retrieve the 'from' values
@@ -6462,7 +6635,7 @@ console.dir(url);
           else {
             fr[key]=$e.css(key);
           }
-          if( fr[key] == 'transparent' ) {  // some browser return "transparent" as rgba(0,0,0,0), 
+          if( fr[key] == 'transparent' ) {  // some browser return "transparent" as rgba(0,0,0,0),
             if( $e.hasClass('labelImage') ) {
               fr[key]='rgb('+G.custGlobals.oldLabelRed+','+G.custGlobals.oldLabelGreen+','+G.custGlobals.oldLabelBlue+',0.01)';
             }
@@ -6503,10 +6676,10 @@ console.dir(url);
         }
       }
     }
-    
-    
+
+
     function ThumbnailHover( $e ) {
-    
+
       var n=$e.data('index');
       if( n == undefined ) { return; }    // required because can be fired on ghost elements
       if( G.aengine == 'velocity' ) {
@@ -6518,11 +6691,11 @@ console.dir(url);
       var item=G.I[n];
       item.hovered=true;
       var dscale=(G.aengine == 'animate' ? 1 : 100);
-      
-      if( typeof G.O.fnThumbnailHover == 'function' ) { 
+
+      if( typeof G.O.fnThumbnailHover == 'function' ) {
         G.O.fnThumbnailHover($e, item, ExposedObjects());
-      }    
-      
+      }
+
       try {
         for( j=0; j<G.tn.getHE().length; j++) {
           switch(G.tn.getHE()[j].name ) {
@@ -6533,13 +6706,13 @@ console.dir(url);
               TnAni($t.eq(2), j, {translateX:item.thumbFullWidth/2, translateY:item.thumbFullHeight/2}, item, 'imgContainer2' );
               TnAni($t.eq(3), j, {translateX:-item.thumbFullWidth/2, translateY:item.thumbFullHeight/2}, item, 'imgContainer3' );
               break;
-              
+
             case 'imageSplitVert':
               var $t=item.$getElt('.imgContainer');
               TnAni($t.eq(0), j, {translateX:-item.thumbFullWidth/2}, item, 'imgContainer0' );
               TnAni($t.eq(1), j, {translateX:item.thumbFullWidth/2}, item, 'imgContainer1' );
               break;
-              
+
             case 'labelSplit4':
               var $t=item.$getElt('.labelImage');
               TnAni($t.eq(0), j, {translateX:-item.thumbFullWidth/2, translateY:-item.thumbFullHeight/2}, item, 'labelImage0' );
@@ -6547,13 +6720,13 @@ console.dir(url);
               TnAni($t.eq(2), j, {translateX:item.thumbFullWidth/2, translateY:item.thumbFullHeight/2}, item, 'labelImage2' );
               TnAni($t.eq(3), j, {translateX:-item.thumbFullWidth/2, translateY:item.thumbFullHeight/2}, item, 'labelImage3' );
               break;
-              
+
             case 'labelSplitVert':
               var $t=item.$getElt('.labelImage');
               TnAni($t.eq(0), j, {translateX:-item.thumbFullWidth/2}, item, 'labelImage0' );
               TnAni($t.eq(1), j, {translateX:item.thumbFullWidth/2}, item, 'labelImage1' );
               break;
-              
+
             case 'labelAppearSplit4':
               var $t=item.$getElt('.labelImage');
               TnAni($t.eq(0), j, {translateX:0, translateY:0}, item, 'labelImage0' );
@@ -6561,24 +6734,24 @@ console.dir(url);
               TnAni($t.eq(2), j, {translateX:0, translateY:0}, item, 'labelImage2' );
               TnAni($t.eq(3), j, {translateX:0, translateY:0}, item, 'labelImage3' );
               break;
-              
+
             case 'labelAppearSplitVert':
               var $t=item.$getElt('.labelImage');
               TnAni($t.eq(0), j, {translateX:0}, item, 'labelImage0' );
               TnAni($t.eq(1), j, {translateX:0}, item, 'labelImage1' );
               break;
-              
+
             case 'scaleLabelOverImage':
               TnAni(item.$getElt('.labelImage'), j, { scale:100/dscale, opacity: '1'}, item, 'labelImage0' );
               TnAni(item.$getElt('.imgContainer'), j, { scale:50/dscale}, item, 'imgContainer0' );
               break;
-              
+
             case 'overScale':
             case 'overScaleOutside':
               TnAni(item.$getElt('.labelImage'), j, { opacity: '1', scale:100/dscale}, item, 'labelImage0' );
               TnAni(item.$getElt('.imgContainer'), j, { opacity: '0', scale:50/dscale}, item, 'imgContainer0' );
               break;
-              
+
             case 'imageInvisible':
               TnAni(item.$getElt('.imgContainer'), j, { opacity: '0'}, item );
               break;
@@ -6589,60 +6762,60 @@ console.dir(url);
               r=(G.aengine=='transition'?{rotate:'90deg'}:{rotateZ:'90'});
               TnAni(item.$getElt('.imgContainer'), j, r, item, 'imgContainer0' );
               break;
-              
+
             case 'rotateCornerBR':
               var r=(G.aengine=='transition'?{rotate:'0deg'}:{rotateZ:'0'});
               TnAni(item.$getElt('.labelImage'), j, r, item, 'labelImage0' );
               r=(G.aengine=='transition'?{rotate:'-90deg'}:{rotateZ:'-90'});
               TnAni(item.$getElt('.imgContainer'), j, r, item, 'imgContainer0' );
               break;
-              
+
             case 'imageRotateCornerBL':
               var r=(G.aengine=='transition'?{rotate:'90deg'}:{rotateZ:'90'});
               TnAni(item.$getElt('.imgContainer'), j, r, item, 'imgContainer0' );
               break;
-              
+
             case 'imageRotateCornerBR':
               var r=(G.aengine=='transition'?{rotate:'-90deg'}:{rotateZ:'-90'});
               TnAni(item.$getElt('.imgContainer'), j, r, item, 'imgContainer0' );
               break;
-              
+
             case 'slideUp':
               TnAni(item.$getElt('.imgContainer'), j, { translateY: -item.thumbFullHeight}, item, 'imgContainer0' );
               TnAni(item.$getElt('.labelImage'), j, { translateY: 0}, item, 'labelImage0' );
               break;
-              
+
             case 'slideDown':
               TnAni(item.$getElt('.imgContainer'), j, { translateY: item.thumbFullHeight}, item, 'imgContainer0' );
               TnAni(item.$getElt('.labelImage'), j, { translateY: 0}, item, 'labelImage0' );
               break;
-              
+
             case 'slideRight':
               TnAni(item.$getElt('.imgContainer'), j, { translateX: item.thumbFullWidth}, item, 'imgContainer0' );
               TnAni(item.$getElt('.labelImage'), j, { translateX: 0}, item, 'labelImage0' );
               break;
-              
+
             case 'slideLeft':
               TnAni(item.$getElt('.imgContainer'), j, { translateX: -item.thumbFullWidth}, item, 'imgContainer0' );
               TnAni(item.$getElt('.labelImage'), j, { translateX: 0}, item, 'labelImage0' );
               break;
-              
+
             case 'imageSlideUp':
               TnAni(item.$getElt('.imgContainer'), j, { translateY: -item.thumbFullHeight }, item, 'imgContainer0' );
               break;
-              
+
             case 'imageSlideDown':
               TnAni(item.$getElt('.imgContainer'), j, { translateY: item.thumbFullHeight }, item, 'imgContainer0' );
               break;
-              
+
             case 'imageSlideLeft':
               TnAni(item.$getElt('.imgContainer'), j, { translateX: -item.thumbFullWidth }, item, 'imgContainer0' );
               break;
-              
+
             case 'imageSlideRight':
               TnAni(item.$getElt('.imgContainer'), j, { translateX: item.thumbFullWidth }, item, 'imgContainer0' );
               break;
-              
+
             case 'labelAppear':
               if( G.aengine == 'velocity' ) {
                 TnAni(item.$getElt('.labelImage'), j, { backgroundColorRed:G.custGlobals.oldLabelRed, backgroundColorGreen:G.custGlobals.oldLabelGreen, backgroundColorBlue:G.custGlobals.oldLabelBlue, backgroundColorAlpha:1 }, item );
@@ -6659,7 +6832,7 @@ console.dir(url);
               }
               TnAni(item.$getElt('.labelDescription'), j, { opacity: '1'}, item );
               break;
-              
+
             case 'labelAppear75':
               if( G.aengine == 'velocity' ) {
                 TnAni(item.$getElt('.labelImage'), j, { backgroundColorRed:G.custGlobals.oldLabelRed, backgroundColorGreen:G.custGlobals.oldLabelGreen, backgroundColorBlue:G.custGlobals.oldLabelBlue, backgroundColorAlpha:0.75 }, item );
@@ -6676,20 +6849,20 @@ console.dir(url);
               }
               TnAni(item.$getElt('.labelDescription'), j, { opacity: '1'}, item );
               break;
-              
+
             case 'descriptionAppear':
               TnAni(item.$getElt('.labelDescription'), j, { opacity: '1'}, item );
               break;
-              
+
             case 'labelSlideDown':
               TnAni(item.$getElt('.labelImage'), j, { translateY: 0}, item, 'labelImage0' );
               break;
-              
+
             case 'labelSlideUpTop':
             case 'labelSlideUp':
               TnAni(item.$getElt('.labelImage'), j, { translateY: 0}, item, 'labelImage0' );
               break;
-              
+
             case 'descriptionSlideUp':
               var lh=(item.kind == 'album' ? item.$getElt('.labelFolderTitle').outerHeight(true) : item.$getElt('.labelImageTitle').outerHeight(true));
               var lh2=item.$getElt('.labelDescription').outerHeight(true);
@@ -6698,15 +6871,15 @@ console.dir(url);
               TnAni(item.$getElt('.labelImage'), j, { translateY:0, height:lh+lh2 }, item, 'labelImage0' );
               TnAni(item.$getElt('.labelDescription'), j, { opacity: '1'}, item );
               break;
-              
+
             case 'labelOpacity50':
               TnAni(item.$getElt('.labelImage'), j, { opacity: '0.5' }, item );
               break;
-              
+
             case 'imageOpacity50':
               TnAni(item.$getElt('.imgContainer'), j, { opacity: '0.5' }, item );
               break;
-              
+
             case 'borderLighter':
               if( G.aengine == 'velocity' ) {
                 var colorString=lighterColor(G.custGlobals.oldBorderColor,0.5),
@@ -6720,7 +6893,7 @@ console.dir(url);
                 TnAni($e, j, { borderColor: lighterColor(c,0.5) }, item );
               }
               break;
-              
+
             case 'borderDarker':
               if( G.aengine == 'velocity' ) {
                 var colorString=darkerColor(G.custGlobals.oldBorderColor,0.5),
@@ -6734,7 +6907,7 @@ console.dir(url);
                 TnAni($e, j, { borderColor: darkerColor(c,0.5) }, item );
               }
               break;
-              
+
             case 'imageScale150':
               TnAni(item.$getElt('img'), j, { scale: 150/dscale }, item, 'img0' );
               break;
@@ -6742,7 +6915,7 @@ console.dir(url);
             case 'imageScaleIn80':
               TnAni(item.$getElt('img'), j, { scale: 100/dscale }, item, 'img0' );
               break;
-              
+
             case 'imageSlide2Up':
             case 'imageSlide2Down':
             case 'imageSlide2Left':
@@ -6767,7 +6940,7 @@ console.dir(url);
                 case 'imageSlide2Right':
                   TnAni(item.$getElt('img'), j, { translateX: item.thumbFullWidth*.1 }, item, 'img0' );
                   break;
-                  
+
                 case 'imageSlide2UpRight':
                   TnAni(item.$getElt('img'), j, { translateY: -item.thumbFullHeight*.05, translateX: item.thumbFullWidth*.05 }, item, 'img0' );
                   break;
@@ -6782,12 +6955,12 @@ console.dir(url);
                   break;
               }
               break;
-              
+
             case 'imageScale150Outside':
               setElementOnTop('', $e);
               TnAni(item.$getElt('img'), j, { scale: 150/dscale }, item, 'img0');
               break;
-              
+
             case 'scale120':
               setElementOnTop('', $e);
               TnAni($e, j, { scale: 120/dscale }, item, 'base' );
@@ -6810,31 +6983,31 @@ console.dir(url);
                 }
               }
               break;
-              
+
             case 'imageFlipHorizontal':
               setElementOnTop('', $e);
               TnAni(item.$getElt('.imgContainer'), j, { rotateX: 180}, item, 'imgContainer0' );
               TnAni(item.$getElt('.labelImage'), j, { rotateX: 360}, item, 'labelImage0' );
               break;
-              
+
             case 'imageFlipVertical':
               setElementOnTop('', $e);
               TnAni(item.$getElt('.imgContainer'), j, { rotateY: 180}, item, 'imgContainer0' );
               TnAni(item.$getElt('.labelImage'), j, { rotateY: 360}, item, 'labelImage0' );
               break;
-              
+
             // case 'flipHorizontal':
               // setElementOnTop('', $e);
               // var n= Math.round(item.thumbFullHeight*1.2) + 'px';
               // TnAni($e, j, { perspective: n, rotateX: '180deg'}, item );
               // break;
-              
+
             // case 'flipVertical':
               // setElementOnTop('', $e);
               // var n= Math.round(item.thumbFullWidth*1.2) + 'px';
               // TnAni($e, j, { perspective: n, rotateY: '180deg'}, item );
               // break;
-              
+
             case 'TEST':
               //item.$getElt('img').stop(true, true);
               // TnAni(item.$getElt('.subcontainer'), j, { scale: 80//dscale }, item );
@@ -6842,15 +7015,15 @@ console.dir(url);
           }
         }
       }
-      catch (e) { 
+      catch (e) {
         nanoAlert( 'error on hover ' +e.message );
       }
     };
 
 
-  
+
     function TnAniO( $e, n, anime, item, eltClass) {
-      
+
       // STEP 1: animate CSS transform
       var transform=['translateX', 'translateY', 'scale', 'rotateX', 'rotateY', 'rotateZ'];
       if( G.aengine == 'animate' ) {
@@ -6878,7 +7051,7 @@ console.dir(url);
           }
         }
       }
-      
+
       // is there something else to animate?
       var l = 0;
       for( var key in anime ) {
@@ -6886,11 +7059,11 @@ console.dir(url);
           l++;
           break;
         }
-      }      
+      }
       if( l == 0 ) {
         return;
       }
- 
+
       // STEP 2: remaining animations
        if( G.aengine != 'transition' ) {
         // retrieve the 'from' values
@@ -6935,7 +7108,7 @@ console.dir(url);
         }
       }
     }
-    
+
 
     function ThumbnailHoverOut( $e ) {
       if( G.containerViewerDisplayed ) { return; }
@@ -6950,13 +7123,13 @@ console.dir(url);
         $e.find('*').filter(":animated").stop(true,false);
       }
       var item=G.I[n];
-      
+
       item.hovered=false;
       var dscale=(G.aengine == 'animate' ? 1 : 100);
 
-      if( typeof G.O.fnThumbnailHoverOut == 'function' ) { 
+      if( typeof G.O.fnThumbnailHoverOut == 'function' ) {
         G.O.fnThumbnailHoverOut($e, item, ExposedObjects());
-      }    
+      }
 
       try {
         for( j=0; j<G.tn.getHE().length; j++) {
@@ -6973,13 +7146,13 @@ console.dir(url);
               TnAniO($t.eq(2), j, {left:'0%', bottom:'0%'} );
               TnAniO($t.eq(3), j, {right:'0%', bottom:'0%'} );
               break;
-              
+
             case 'imageSplitVert':
               var $t=item.$getElt('.imgContainer');
               TnAniO($t.eq(0), j, {translateX:0}, item, 'imgContainer0' );
               TnAniO($t.eq(1), j, {translateX:0}, item, 'imgContainer1' );
               break;
-              
+
             case 'labelSplit4':
               var $t=item.$getElt('.labelImage');
               TnAniO($t.eq(0), j, {translateX:0, translateY:0}, item, 'labelImage0' );
@@ -6987,13 +7160,13 @@ console.dir(url);
               TnAniO($t.eq(2), j, {translateX:0, translateY:0}, item, 'labelImage2' );
               TnAniO($t.eq(3), j, {translateX:0, translateY:0}, item, 'labelImage3' );
               break;
-              
+
             case 'labelSplitVert':
               var $t=item.$getElt('.labelImage');
               TnAniO($t.eq(0), j, {translateX:0}, item, 'labelImage0' );
               TnAniO($t.eq(1), j, {translateX:0}, item, 'labelImage1' );
               break;
-              
+
             case 'labelAppearSplit4':
               var $t=item.$getElt('.labelImage');
               TnAniO($t.eq(0), j, {translateX:-item.thumbFullWidth/2, translateY:-item.thumbFullHeight/2}, item, 'labelImage0' );
@@ -7001,7 +7174,7 @@ console.dir(url);
               TnAniO($t.eq(2), j, {translateX:item.thumbFullWidth/2, translateY:item.thumbFullHeight/2}, item, 'labelImage2' );
               TnAniO($t.eq(3), j, {translateX:-item.thumbFullWidth/2, translateY:item.thumbFullHeight/2}, item, 'labelImage3' );
               break;
-              
+
             case 'labelAppearSplitVert':
               var $t=item.$getElt('.labelImage');
               TnAniO($t.eq(0), j, {translateX:-item.thumbFullWidth/2}, item, 'labelImage0' );
@@ -7012,67 +7185,67 @@ console.dir(url);
               TnAniO(item.$getElt('.labelImage'), j, { opacity: '0', scale: 50/dscale}, item, 'labelImage0' );
               TnAniO(item.$getElt('.imgContainer'), j, { scale: 100/dscale }, item, 'imgContainer0' );
               break;
-              
+
             case 'overScale':
             case 'overScaleOutside':
               TnAniO(item.$getElt('.labelImage'), j, { opacity: '0', scale:150/dscale}, item, 'labelImage0' );
               TnAniO(item.$getElt('.imgContainer'), j, { opacity: '1', scale:100/dscale}, item, 'imgContainer0' );
               break;
-              
+
             case 'imageInvisible':
               TnAniO(item.$getElt('.imgContainer'), j, { opacity: '1'} );
               break;
-              
+
             case 'rotateCornerBL':
               var r=(G.aengine=='transition'?{rotate:'-90deg'}:{rotateZ:'-90'});
               TnAniO(item.$getElt('.labelImage'), j, r, item, 'labelImage0' );
               r=(G.aengine=='transition'?{rotate:'0deg'}:{rotateZ:'0'});
               TnAniO(item.$getElt('.imgContainer'), j, r, item, 'imgContainer0' );
               break;
-              
+
             case 'rotateCornerBR':
               var r=(G.aengine=='transition'?{rotate:'90deg'}:{rotateZ:'90'});
               TnAniO(item.$getElt('.labelImage'), j, r, item, 'labelImage0' );
               r=(G.aengine=='transition'?{rotate:'0deg'}:{rotateZ:'0'});
               TnAniO(item.$getElt('.imgContainer'), j, r, item, 'imgContainer0' );
               break;
-              
+
             case 'imageRotateCornerBL':
             case 'imageRotateCornerBR':
               var r=(G.aengine=='transition'?{rotate:'0deg'}:{rotateZ:'0'});
               TnAniO(item.$getElt('.imgContainer'), j, r, item, 'imgContainer0' );
               break;
-              
+
             case 'slideUp':
               TnAniO(item.$getElt('.imgContainer'), j, { translateY: 0}, item, 'imgContainer0' );
               TnAniO(item.$getElt('.labelImage'), j, { translateY: item.thumbFullHeight}, item, 'labelImage0' );
               break;
-              
+
             case 'slideDown':
               TnAniO(item.$getElt('.imgContainer'), j, { translateY: 0}, item, 'imgContainer0' );
               TnAniO(item.$getElt('.labelImage'), j, { translateY: -item.thumbFullHeight}, item, 'labelImage0' );
               break;
-              
+
             case 'slideRight':
               TnAniO(item.$getElt('.imgContainer'), j, { translateX: 0}, item, 'imgContainer0' );
               TnAniO(item.$getElt('.labelImage'), j, { translateX: -item.thumbFullWidth}, item, 'labelImage0' );
               break;
-              
+
             case 'slideLeft':
               TnAniO(item.$getElt('.imgContainer'), j, { translateX: 0}, item, 'imgContainer0' );
               TnAniO(item.$getElt('.labelImage'), j, { translateX: item.thumbFullWidth}, item, 'labelImage0' );
               break;
-              
+
             case 'imageSlideUp':
             case 'imageSlideDown':
               TnAniO(item.$getElt('.imgContainer'), j, { translateY: 0 }, item, 'imgContainer0' );
               break;
-              
+
             case 'imageSlideLeft':
             case 'imageSlideRight':
               TnAniO(item.$getElt('.imgContainer'), j, { translateX: 0 }, item, 'imgContainer0' );
               break;
-              
+
             case 'labelAppear':
             case 'labelAppear75':
               if( G.aengine == 'velocity' ) {
@@ -7094,11 +7267,11 @@ console.dir(url);
             case 'descriptionAppear':
               TnAniO(item.$getElt('.labelDescription'), j, { opacity: '0' } );
               break;
-              
+
             case 'labelSlideDown':
               TnAniO(item.$getElt('.labelImage'), j, { translateY:-item.thumbFullHeight}, item, 'labelImage0' );
               break;
-              
+
             case 'labelSlideUpTop':
             case 'labelSlideUp':
               TnAniO(item.$getElt('.labelImage'), j, { translateY: item.thumbFullHeight}, item, 'labelImage0' );
@@ -7109,16 +7282,16 @@ console.dir(url);
               var p=item.thumbFullHeight - lh -G.tn.borderHeight-G.tn.imgcBorderHeight;
               TnAniO(item.$getElt('.labelImage'), j, {translateY:0, height:lh}, item, 'labelImage0' );
               break;
-              
-              
+
+
             case 'labelOpacity50':
               TnAniO(item.$getElt('.labelImage'), j, { opacity: G.custGlobals.oldLabelOpacity } );
               break;
-              
+
             case 'imageOpacity50':
               TnAniO(item.$getElt('.imgContainer'), j, { opacity: '1' } );
               break;
-              
+
             case 'borderLighter':
             case 'borderDarker':
               if( G.aengine == 'velocity' ) {
@@ -7131,7 +7304,7 @@ console.dir(url);
                 TnAniO($e, j, { borderColor: $e.data('ngcache_borderColor') } );
               }
               break;
-              
+
             case 'imageScale150':
             case 'imageScale150Outside':
               TnAniO(item.$getElt('img'), j, { scale: 100/dscale }, item, 'img0');
@@ -7165,7 +7338,7 @@ console.dir(url);
                 case 'imageSlide2Right':
                   TnAniO(item.$getElt('img'), j, { translateX: -item.thumbFullWidth*.1 }, item, 'img0' );
                   break;
-                  
+
                 case 'imageSlide2UpRight':
                   TnAniO(item.$getElt('img'), j, { translateY: item.thumbFullHeight*.05, translateX: -item.thumbFullWidth*.05 }, item, 'img0' );
                   break;
@@ -7182,7 +7355,7 @@ console.dir(url);
               break;
 
 
-              
+
             case 'scale120':
               TnAniO($e, j, { scale: 100/dscale }, item, 'base' );
               break;
@@ -7198,41 +7371,41 @@ console.dir(url);
               }
               break;
 
-              
+
             case 'imageFlipHorizontal':
               // var n= Math.round(item.thumbFullHeight*1.2) + 'px';
               TnAniO(item.$getElt('.imgContainer'), j, { rotateX: 0}, item, 'imgContainer0' );
               TnAniO(item.$getElt('.labelImage'), j, { rotateX: 180}, item, 'labelImage0' );
               break;
-              
+
             case 'imageFlipVertical':
               // var n= Math.round(item.thumbFullWidth*1.2) + 'px';
               TnAniO(item.$getElt('.imgContainer'), j, { rotateY: 0}, item, 'imgContainer0' );
               TnAniO(item.$getElt('.labelImage'), j, { rotateY: 180}, item, 'labelImage0' );
               break;
-              
+
             // case 'flipHorizontal':
               // var n= Math.round(item.thumbFullHeigh*1.2) + 'px';
               // TnAniO($e, j, { rotateX: '0deg'} );
               // break;
-              
+
             // case 'flipVertical':
               // var n= Math.round(item.thumbFullWidth*1.2) + 'px';
               // TnAniO($e, j, { rotateY: '0deg'} );
               // break;
-              
+
             case 'TEST':
               // TnAniO(item.$getElt('.subcontainer'), j, { scale: 0.85 } );
               break;
           }
         }
       }
-      catch (e) { 
+      catch (e) {
         nanoAlert( 'error on hoverOut ' +e.message );
       }
     };
 
-    
+
 
     // #########################
     // ##### IMAGE DISPLAY #####
@@ -7241,12 +7414,12 @@ console.dir(url);
     function DisplayImage( imageIdx ) {
 
       if( !G.O.thumbnailOpenImage ) { return; }
-    
-      if( typeof G.O.fnThumbnailOpen == 'function' ) { 
+
+      if( typeof G.O.fnThumbnailOpen == 'function' ) {
         OpenImageCustomViewer(imageIdx);
         return;
       }
-    
+
       if( G.O.viewer == 'fancybox' ) {
         OpenFancyBox(imageIdx);
       }
@@ -7259,7 +7432,7 @@ console.dir(url);
         }
       }
     };
-    
+
     function OpenInternalViewer( imageIdx ) {
 
       //if( !G.O.locationHash ) {
@@ -7270,7 +7443,7 @@ console.dir(url);
       // }
 
       G.containerViewerDisplayed=true;
-      
+
       G.$E.conVwCon=jQuery('<div  class="nanoGalleryViewerContainer" style="visibility:visible"></div>').appendTo('body');
       G.$E.conVwCon.addClass('nanogallery_theme_'+G.O.theme);
       SetColorSchemeViewer(G.$E.conVwCon);
@@ -7282,23 +7455,26 @@ console.dir(url);
       });
 
       // avoid pinch zoom
-      G.$E.conVw.css({msTouchAction:'none', touchAction:'none'});      
-      
+      G.$E.conVw.css({msTouchAction:'none', touchAction:'none'});
+
       var sImg='',
       l=G.I.length;
 
       sImg+='<img class="image nGEvent" src="'+G.I[imageIdx].responsiveURL()+'" alt=" " style="visibility:visible;opacity:0;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;zoom:1;" itemprop="contentURL">';
       sImg+='<img class="image nGEvent" src="'+G.I[imageIdx].responsiveURL()+'" alt=" " style="visibility:visible;opacity:0;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;zoom:1;" itemprop="contentURL">';
       sImg+='<img class="image nGEvent" src="'+G.I[imageIdx].responsiveURL()+'" alt=" " style="visibility:visible;opacity:0;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;zoom:1;" itemprop="contentURL">';
+// sImg+='<img class="image nGEvent" src="" alt=" " style="background-image:url('+G.I[imageIdx].responsiveURL()+');visibility:visible;opacity:0;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;zoom:1;" itemprop="contentURL">';
+// sImg+='<img class="image nGEvent" src="" alt=" " style="background-image:url('+G.I[imageIdx].responsiveURL()+');visibility:visible;opacity:0;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;zoom:1;" itemprop="contentURL">';
+// sImg+='<img class="image nGEvent" src="" alt=" " style="background-image:url('+G.I[imageIdx].responsiveURL()+');visibility:visible;opacity:0;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;zoom:1;" itemprop="contentURL">';
 
       G.$E.vwContent=jQuery('<div class="content nGEvent">'+sImg+'<div class="contentAreaPrevious nGEvent"></div><div class="contentAreaNext nGEvent"></div></div>').appendTo(G.$E.conVw);
       G.$E.vwImgP=G.$E.conVw.find('.image').eq(0);
       G.$E.vwImgC=G.$E.conVw.find('.image').eq(1);
       G.$E.vwImgN=G.$E.conVw.find('.image').eq(2);
-      
+
       // makes content unselectable --> avoid image drag effect during 'mouse swipe'
       G.$E.conVwCon.find('*').attr('draggable', 'false').attr('unselectable', 'on');
-      
+
       var $closeB=jQuery('<div class="closeButtonFloating nGEvent"></div>').appendTo(G.$E.conVw);
       $closeB.on("touchstart click",function(e){
       // $closeB.on( (G.isIOS ? "touchstart" : "click") ,function(e){     // IPAD
@@ -7323,7 +7499,7 @@ console.dir(url);
       }
       sTB+='</div></div>';
       G.$E.conVwTb=jQuery(sTB).appendTo(G.$E.conVw);
-      
+
       if( G.toolbarMode == 'min' || (G.O.viewerToolbar.autoMinimize > 0 && G.O.viewerToolbar.autoMinimize >= getViewport().w) ) {
         ToolbarVisibilityMin();
       }
@@ -7347,7 +7523,7 @@ console.dir(url);
       ResizeInternalViewer();
 
       G.timeImgChanged=new Date().getTime();
-      
+
       G.$E.conVwTb.find('.closeButton').on("touchstart click",function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -7356,22 +7532,22 @@ console.dir(url);
       });
 
 
-      G.$E.conVwTb.find('.playPauseButton').on("touchstart click",function(e){ 
+      G.$E.conVwTb.find('.playPauseButton').on("touchstart click",function(e){
         e.stopPropagation();
         SlideshowToggle();
       });
-      
-      G.$E.conVwTb.find('.minimizeButton').on("touchstart click",function(e){ 
+
+      G.$E.conVwTb.find('.minimizeButton').on("touchstart click",function(e){
         e.stopPropagation();
         ToolbarVisibilityToggle();
       });
-      
-      G.$E.conVwTb.find('.fullscreenButton').on("touchstart click",function(e){ 
+
+      G.$E.conVwTb.find('.fullscreenButton').on("touchstart click",function(e){
         e.stopPropagation();
         ViewerFullscreenToggle();
       });
-      
-      G.$E.conVwTb.find('.infoButton').on("touchstart click",function(e){ 
+
+      G.$E.conVwTb.find('.infoButton').on("touchstart click",function(e){
         e.stopPropagation();
         if( typeof G.O.fnViewerInfo == 'function' ) {
           G.O.fnViewerInfo(G.I[G.viewerCurrentItemIdx], ExposedObjects());
@@ -7399,15 +7575,15 @@ console.dir(url);
           }
         }
       });
-      
-      
-      G.$E.conVwTb.find('.linkOriginalButton').on("touchstart click",function(e){ 
+
+
+      G.$E.conVwTb.find('.linkOriginalButton').on("touchstart click",function(e){
         e.stopPropagation();
         if( G.O.kind == 'picasa') {
           var sU='https://plus.google.com/photos/'+G.O.userID+'/albums/'+G.I[G.viewerCurrentItemIdx].albumID+'/'+G.I[G.viewerCurrentItemIdx].GetID();
           window.open(sU,'_blank');
         }
-        
+
         if( G.O.kind == 'flickr') {
           var sU='https://www.flickr.com/photos/'+G.O.userID+'/'+G.I[G.viewerCurrentItemIdx].GetID();
           window.open(sU,'_blank');
@@ -7426,7 +7602,7 @@ console.dir(url);
         CloseInternalViewer(true);
         return false;
       });
-      
+
       // makes images unselectable (avoid blue overlay)
       G.$E.conVw.find('.image').attr('draggable', 'false').attr('unselectable', 'on').css({ '-moz-user-select':'none', '-khtml-user-select': 'none', '-webkit-user-select': 'none', '-o-user-select': 'none', 'user-select': 'none'});
 
@@ -7435,7 +7611,7 @@ console.dir(url);
       if( G.viewerSwipe == null ) {
         G.viewerSwipe = new ViewerSwipeSupport(G.$E.conVwCon[0]);
       }
-      
+
       if( G.O.slideshowAutoStart ) {
         G.playSlideshow=true;
         G.$E.conVwTb.find('.playPauseButton').removeClass('playButton').addClass('pauseButton');
@@ -7444,8 +7620,8 @@ console.dir(url);
       }
 
     };
-    
-    
+
+
     function ToolbarAddElt( elt ) {
       var r='',
       e=elt.replace(/^\s+|\s+$/g, '');    // remove trailing/leading whitespace
@@ -7494,7 +7670,7 @@ console.dir(url);
       }
       return r;
     }
-    
+
     // based on "Implement Custom Gestures" from Google
     // https://developers.google.com/web/fundamentals/input/touch-input/touchevents/
     function ViewerSwipeSupport(element) {
@@ -7504,12 +7680,12 @@ console.dir(url);
       lastTouchPos=null,
       currentXPosition=0,
       me=this;
-      
+
 
 
       function handleGestureStart(e) {
         if( !G.containerViewerDisplayed ) { return; }
-        
+
         G.timeLastTouchStart=new Date().getTime();
         e.preventDefault();
 
@@ -7527,7 +7703,7 @@ console.dir(url);
           document.addEventListener('touchmove', handleGestureMove, true);
           document.addEventListener('touchend', handleGestureEnd, true);
           document.addEventListener('touchcancel', handleGestureEnd, true);
-        
+
           // Add Mouse Listeners
           document.addEventListener('mousemove', handleGestureMove, true);
           document.addEventListener('mouseup', handleGestureEnd, true);
@@ -7538,23 +7714,23 @@ console.dir(url);
         e.preventDefault();
 
         lastTouchPos = getGesturePointFromEvent(e);
-        
+
         if(isAnimating) { return; }
-        
+
         isAnimating = true;
-        
+
         // window.requestAnimFrame(onAnimFrame);
         window.requestAnimationFrame(onAnimFrame);
       }
 
-      
+
       // Handle end gestures
       function handleGestureEnd(e) {
         if( e.cancelable ) { e.preventDefault(); }
         if(e.touches && e.touches.length > 0) { return; }
 
         isAnimating = false;
-        
+
         // Remove Event Listeners
         if (window.navigator.msPointerEnabled) {
           // Remove Pointer Event Listeners
@@ -7565,12 +7741,12 @@ console.dir(url);
           document.removeEventListener('touchmove', handleGestureMove, true);
           document.removeEventListener('touchend', handleGestureEnd, true);
           document.removeEventListener('touchcancel', handleGestureEnd, true);
-        
+
           // Remove Mouse Listeners
           document.removeEventListener('mousemove', handleGestureMove, true);
           document.removeEventListener('mouseup', handleGestureEnd, true);
         }
-        
+
         updateSwipeRestPosition();
       }
 
@@ -7579,12 +7755,12 @@ console.dir(url);
         if( lastTouchPos == null ) {      // touchend without touchmove
           currentXPosition=0;
           initialTouchPos=null;
-          return; 
+          return;
         }
 
         var differenceInX = initialTouchPos.x - lastTouchPos.x;
         currentXPosition = currentXPosition - differenceInX;
-      
+
         if( differenceInX < -50 ) {
           DisplayPreviousImage();
         }
@@ -7594,13 +7770,13 @@ console.dir(url);
         currentXPosition=0;
         initialTouchPos=null;
         lastTouchPos=null;
-          
+
         if(Math.abs(differenceInX) < 50) {
           ImageSwipeTranslateX(currentXPosition);
         }
         return;
       }
-      
+
 
       function getGesturePointFromEvent(e) {
         var point = {};
@@ -7616,15 +7792,15 @@ console.dir(url);
 
         return point;
       }
-      
+
 
       function onAnimFrame() {
         if(!isAnimating) { return; }
-        
+
         var differenceInX = initialTouchPos.x - lastTouchPos.x;
-        
+
         ImageSwipeTranslateX(currentXPosition - differenceInX);
-        
+
         isAnimating = false;
       }
 
@@ -7641,14 +7817,14 @@ console.dir(url);
           document.removeEventListener('touchmove', handleGestureMove, true);
           document.removeEventListener('touchend', handleGestureEnd, true);
           document.removeEventListener('touchcancel', handleGestureEnd, true);
-        
+
           // Remove Mouse Listeners
           document.removeEventListener('mousemove', handleGestureMove, true);
           document.removeEventListener('mouseup', handleGestureEnd, true);
           //elementToSwipe.removeEventListener('mousedown', this.handleGestureStart, true);
         }
       }
-      
+
       // Check if pointer events are supported.
       if (window.navigator.msPointerEnabled) {
         // Add Pointer Event Listener
@@ -7659,17 +7835,17 @@ console.dir(url);
         // Add Touch Listener
         // elementToSwipe.addEventListener('touchstart', this.handleGestureStart, true);
         elementToSwipe.addEventListener('touchstart', handleGestureStart, true);
-        
+
         // Add Mouse Listener
         //elementToSwipe.addEventListener('mousedown', this.handleGestureStart, true);
       }
-      
+
     }
 
     function ImageSwipeTranslateX( posX ) {
       G.imageSwipePosX=posX;
       if( G.CSStransformName == null ) {
-        G.$E.vwImgC.css({ left: posX }); 
+        G.$E.vwImgC.css({ left: posX });
       }
       else {
         G.$E.vwImgC[0].style[G.CSStransformName]= 'translateX('+posX+'px)';
@@ -7691,7 +7867,7 @@ console.dir(url);
         }
       }
     }
-    
+
     // Toggle viewer fullscreen mode on/off
     function ViewerFullscreenToggle(){
       if( ngscreenfull.enabled ) {
@@ -7708,7 +7884,7 @@ console.dir(url);
       }
     }
 
-    
+
     // toggle slideshow mode on/off
     function SlideshowToggle(){
       if( G.playSlideshow ) {
@@ -7723,7 +7899,7 @@ console.dir(url);
         G.playSlideshowTimerID=window.setInterval(function(){DisplayNextImage();},G.slideshowDelay);
       }
     }
-    
+
     // toggle toolbar visibility
     function ToolbarVisibilityToggle(){
       if( G.toolbarMode == 'std' ) {
@@ -7733,7 +7909,7 @@ console.dir(url);
         ToolbarVisibilityStd();
       }
     }
-    
+
     function ToolbarVisibilityStd() {
       G.toolbarMode='std';
       G.$E.conVwTb.find('.minimizeButton').removeClass('viewToolbarButton').addClass('hideToolbarButton');
@@ -7746,11 +7922,11 @@ console.dir(url);
       ToolbarSetItemsVisibility('min');
       ResizeInternalViewer();
     }
-    
+
     function ToolbarSetItemsVisibility( curMode ) {
       var t=G.O.viewerToolbar;
       var t= ( curMode == 'std' ? G.O.viewerToolbar.standard : G.O.viewerToolbar.minimized);
-      
+
       // standard elements
       var v=['minimizeButton', 'previousButton', 'pageCounter', 'nextButton', 'playPauseButton', 'fullscreenButton', 'infoButton', 'linkOriginalButton', 'closeButton', 'label'];
       for( var i=0, l=v.length; i<l; i++) {
@@ -7766,7 +7942,7 @@ console.dir(url);
           G.$E.conVwTb.find('.'+v[i]).css({ display:( t.indexOf(v[i]) >= 0 ? 'table-cell' : 'none') });
         }
       }
-      
+
       // custom elements
       G.$E.conVwTb.find('.ngCustomBtn').css({ display: 'none' });
       var vC=t.split(',');
@@ -7777,8 +7953,8 @@ console.dir(url);
         }
       }
     }
-    
-    
+
+
     // Display next image
     function DisplayNextImagePart1() {
       if( G.playSlideshow ) {
@@ -7795,7 +7971,7 @@ console.dir(url);
       var newImageIdx=GetNextImageIdx(G.viewerCurrentItemIdx);
       DisplayInternalViewer(newImageIdx, 'nextImage');
     };
-    
+
     // Display previous image
     function DisplayPreviousImage() {
       if( G.viewerImageIsChanged ) { return; }
@@ -7803,7 +7979,7 @@ console.dir(url);
       if( G.playSlideshow ) {
         SlideshowToggle();
       }
-      
+
       var newImageIdx=GetPreviousImageIdx(G.viewerCurrentItemIdx);
       DisplayInternalViewer(newImageIdx, 'previousImage');
     };
@@ -7813,7 +7989,7 @@ console.dir(url);
       G.timeImgChanged=new Date().getTime();
       G.viewerImageIsChanged=true;
       var displayNext=true;
-      
+
       if( G.O.locationHash ) {
         var s ='nanogallery/'+G.baseEltID+'/'+G.I[imageIdx].albumID+"/"+G.I[imageIdx].GetID();
         if( ('#'+s) != location.hash ) {
@@ -7841,12 +8017,13 @@ console.dir(url);
 
       // G.viewerResizeTimerID=window.setInterval( function() { ResizeInternalViewer() }, 100);
       G.viewerResizeTimerID=window.setTimeout( ResizeInternalViewer, 100);
-      
+
       G.viewerCurrentItemIdx=imageIdx;
-      
+
       if( displayType == '' ) {
         // first image --> just appear / no slide animation
         G.$E.vwImgC.css({ opacity:0, left:0, visibility: 'visible'}).attr('src',G.emptyGif).attr('src',G.I[imageIdx].responsiveURL());
+        // G.$E.vwImgC.css({ opacity:0, left:0, visibility: 'visible', 'background-image':'url('+G.I[imageIdx].responsiveURL()+')'}).attr('src',G.emptyGif);
         var tweenable = new NGTweenable();
         tweenable.tween({
           from: { o: 0  },
@@ -7875,7 +8052,7 @@ console.dir(url);
               attachment: { idx:imageIdx, dT:displayType, $e:$new },
               duration: 300,
               step: function (state, att) {
-                G.$E.vwImgC.css({ opacity: 1-state.o }); 
+                G.$E.vwImgC.css({ opacity: 1-state.o });
                 att.$e.css({ opacity: state.o });
               },
               finish: function (state, att) {
@@ -7885,14 +8062,14 @@ console.dir(url);
               }
             });
             break;
-            
+
           case 'slideBETA':
             var $new=(displayType == 'nextImage' ? G.$E.vwImgN : G.$E.vwImgP);
             $new.css({ opacity:1, left:0, visibility:'visible'});
             if( G.CSStransformName == null ) {
               // animate LEFT
               jQuery.when(
-                G.$E.vwImgC.animate({ left: (displayType == 'nextImage' ? -getViewport().w : getViewport().w)+'px', opacity: 0 }, 500), 
+                G.$E.vwImgC.animate({ left: (displayType == 'nextImage' ? -getViewport().w : getViewport().w)+'px', opacity: 0 }, 500),
                 $new.animate({ opacity: 1 }, 300)
               ).done(function () {
                 DisplayInternalViewerComplete(imageIdx, displayType);
@@ -7924,7 +8101,7 @@ console.dir(url);
               // animate LEFT
               $new.css({ opacity:0, left:0, visibility:'visible'});
               jQuery.when(
-                G.$E.vwImgC.animate({ left: (displayType == 'nextImage' ? -getViewport().w : getViewport().w)+'px' }, 500), 
+                G.$E.vwImgC.animate({ left: (displayType == 'nextImage' ? -getViewport().w : getViewport().w)+'px' }, 500),
                 $new.animate({ opacity: 1 }, 300)
               ).done(function () {
                 DisplayInternalViewerComplete(imageIdx, displayType);
@@ -7961,7 +8138,7 @@ console.dir(url);
               // animate LEFT
               $new.css({ opacity:0, left:0, visibility:'visible'});
               jQuery.when(
-                G.$E.vwImgC.animate({ left: ((displayType == 'nextImage' ? -getViewport().w : getViewport().w)*2)+'px' }, 500), 
+                G.$E.vwImgC.animate({ left: ((displayType == 'nextImage' ? -getViewport().w : getViewport().w)*2)+'px' }, 500),
                 $new.animate({ opacity: 1 }, 300)
               ).done(function () {
                 DisplayInternalViewerComplete(imageIdx, displayType);
@@ -7990,7 +8167,7 @@ console.dir(url);
               });
             }
             break;
-            
+
           case 'slideAppear':
           default:
             var dir= getViewport().w+'px';
@@ -8001,7 +8178,7 @@ console.dir(url);
             }
             $new.css({ opacity:0, left:0, visibility:'visible'});
             jQuery.when(
-              G.$E.vwImgC.animate({ left: dir, opacity: 0 }, 500), 
+              G.$E.vwImgC.animate({ left: dir, opacity: 0 }, 500),
               $new.animate({ opacity: 1 }, 300)
             ).done(function () {
               ImageSwipeTranslateX(0);
@@ -8011,7 +8188,7 @@ console.dir(url);
         }
       }
     }
-  
+
 
     function DisplayInternalViewerComplete( imageIdx, displayType ) {
       DisplayInternalViewerToolbar(imageIdx);
@@ -8022,12 +8199,12 @@ console.dir(url);
       if( typeof G.O.fnImgDisplayed === 'function'){
         if( !G.O.fnImgDisplayed(G.I[imageIdx].$elt, G.I[imageIdx]) ) { return; }
       }
-      
+
       G.imageSwipePosX=0;
-      
+
       G.$E.vwImgC.off("click");
       G.$E.vwImgC.removeClass('imgCurrent');
-    
+
       var $tmp=G.$E.vwImgC;
       switch( displayType ) {
         case 'nextImage':
@@ -8040,9 +8217,11 @@ console.dir(url);
           break;
       }
       G.$E.vwImgC.addClass('imgCurrent');
-      
+
       G.$E.vwImgN.css({ opacity:0, left:0, visibility:'hidden' }).attr('src',G.emptyGif).attr('src',G.I[GetNextImageIdx(imageIdx)].responsiveURL());
+      // G.$E.vwImgN.css({ opacity:0, left:0, visibility:'hidden', 'background-image':'url('+G.I[GetNextImageIdx(imageIdx)].responsiveURL()+')' }).attr('src',G.emptyGif);
       G.$E.vwImgP.css({ opacity:0, left:0, visibility:'hidden'}).attr('src',G.emptyGif).attr('src',G.I[GetPreviousImageIdx(imageIdx)].responsiveURL());
+      // G.$E.vwImgP.css({ opacity:0, left:0, visibility:'hidden', 'background-image':'url('+G.I[GetPreviousImageIdx(imageIdx)].responsiveURL()+')'}).attr('src',G.emptyGif);
 
       G.$E.vwImgC.on("click",function(e){
         e.stopPropagation();
@@ -8057,7 +8236,7 @@ console.dir(url);
       ResizeInternalViewer();
 
       // TODO: this code does not work
-      //jQuery(G.containerViewerContent).item.$getElt('img').on('resize', function(){ 
+      //jQuery(G.containerViewerContent).item.$getElt('img').on('resize', function(){
       //  ResizeInternalViewer('.imgCurrent');
       //  console.log('resized');
       //});
@@ -8083,7 +8262,7 @@ console.dir(url);
           }
         }
       }
-      
+
       return newImageIdx;
     }
 
@@ -8103,16 +8282,16 @@ console.dir(url);
           }
         }
       }
-      
+
       return newImageIdx;
     }
 
     function HideInternalViewerToolbar() {
       G.$E.conVwTb.css({'visibility':'hidden'});
     }
-    
+
     function DisplayInternalViewerToolbar( imageIdx ) {
-      
+
       if( !G.O.viewerToolbar.display ) { return; }
 
       G.$E.conVwTb.css({'visibility':'visible'});
@@ -8133,7 +8312,7 @@ console.dir(url);
       else {
         G.$E.conVwTb.find('.description').html('');
       }
-      
+
       // custom elements
       var $cu=G.$E.conVwTb.find('.ngCustomBtn');
       if( $cu.length > 0 && typeof G.O.fnImgToolbarCustDisplay == 'function' ) {
@@ -8149,20 +8328,14 @@ console.dir(url);
       }
 
       // set page number
-      var viewerMaxImages=0;
-      var l=G.I.length;
-      for( var i=0; i <  l ; i++ ) {
-        if( G.I[i].albumID == G.I[imageIdx].albumID && G.I[i].kind == 'image' ) {
-          viewerMaxImages++;
-        }
-      }
+      var viewerMaxImages= galleryCountImages();
       if( viewerMaxImages > 0 ) {
         G.$E.conVwTb.find('.pageCounter').html((G.I[imageIdx].imageNumber+1)+'/'+viewerMaxImages);
       }
-      
+
       //ResizeInternalViewer();
     }
-    
+
     function CloseInternalViewer( setLocationHash ) {
 
       if( G.viewerImageIsChanged ) {
@@ -8175,7 +8348,7 @@ console.dir(url);
 
         // window.clearInterval(G.viewerResizeTimerID);
         window.clearTimeout(G.viewerResizeTimerID);
-        
+
         if( G.playSlideshow ) {
           window.clearInterval(G.playSlideshowTimerID);
           G.playSlideshow=false;
@@ -8192,9 +8365,9 @@ console.dir(url);
           G.viewerIsFullscreen=false;
           ngscreenfull.exit();
         }
-        
+
         G.$E.conVwCon.hide(0).off().show(0).html('').remove();
-      
+
         G.containerViewerDisplayed=false;
         if( G.albumIdxToOpenOnViewerClose != -1 ) {
           DisplayAlbum(G.albumIdxToOpenOnViewerClose,true);
@@ -8216,15 +8389,15 @@ console.dir(url);
         G.timeImgChanged=new Date().getTime();
       }
     };
-    
+
 
     function ResizeInternalViewer() {
-    
+
       if( !G.containerViewerDisplayed ) { return; }
-      
+
       if( (new Date().getTime()) - G.viewerResizeTimerLastRun < 100 ) { return; }
 
-      
+
       //window.clearInterval(G.viewerResizeTimerID);
       //G.viewerResizeTimerID=window.setInterval(function(){ResizeInternalViewer()},200);
 
@@ -8240,7 +8413,7 @@ console.dir(url);
 
         var $tb=G.$E.conVwTb.find('.toolbar'),
         tb_OHt=$tb.outerHeight(true);
-        
+
         if( vwImgC_H <= 40 || !G.O.viewerToolbar.display ) {
           G.$E.conVwTb.css({visibility:'hidden'});
         }
@@ -8262,7 +8435,7 @@ console.dir(url);
         }
         var h=windowsH-toolbarH-contentOuterWidthV,
         w=windowsW-contentOuterWidthH;
-            
+
         switch( G.O.viewerToolbar.position ) {
           case 'top':
             G.$E.vwContent.css({height:h, width:w, top:toolbarH  });
@@ -8289,32 +8462,38 @@ console.dir(url);
             G.$E.conVwTb.css({bottom: posY});
             break;
         }
-        
+
         if( G.O.viewerToolbar.style == 'innerImage' ) {
           $tb.css({'max-width': vwImgC_W});
         }
-        
+
         if( G.O.viewerToolbar.style == 'fullWidth' ) {
           $tb.css({width: w});
         }
 
         G.$E.conVwTb.css({ height: tb_OHt });   // resize toolbar container to toolbar size
+        
+        
         G.$E.vwContent.children('img').css({'max-width':(w-tH), 'max-height':(h-tV) });
+        // G.$E.vwContent.children('img').css({'width':'100%', 'height':'100%' });
+        // G.$E.vwContent.children('img').css({'background-size':'contain', 'background-position':'center', 'background-repeat':'no-repeat' });
+        G.$E.vwContent.children('img').css({'object-fit':'contain' });
 
         G.viewerResizeTimerID=window.setTimeout( ResizeInternalViewer, 100);
         G.viewerResizeTimerLastRun=new Date().getTime();
-        
+
       });
     }
-    
-    
+
+
+
     function OpenImageCustomViewer( imageIdx ) {
       var n=imageIdx,
       items=[],
       current=0;
 
       items.push(G.I[n]);
-      
+
       var l=G.I.length;
       for( var j=n+1; j<l ; j++) {
         if( G.I[j].kind == 'image' && G.I[j].albumID == G.I[imageIdx].albumID && G.I[j].destinationURL == '' ) {
@@ -8330,7 +8509,8 @@ console.dir(url);
       }
       G.O.fnThumbnailOpen(items);
     }
-    
+
+
     function OpenFancyBox( imageIdx ) {
       var n=imageIdx,
       lstImages=[],
@@ -8339,7 +8519,7 @@ console.dir(url);
       lstImages[current]=new Object;
       lstImages[current].href=G.I[n].responsiveURL();
       lstImages[current].title=G.I[n].title;
-      
+
       var l=G.I.length;
       for( var j=n+1; j<l ; j++) {
         if( G.I[j].kind == 'image' && G.I[j].albumID == G.I[imageIdx].albumID && G.I[j].destinationURL == '' ) {
@@ -8366,12 +8546,12 @@ console.dir(url);
         });
       }
     };
-    
+
     // ##### BREADCRUMB/THUMBNAIL COLOR SCHEME #####
     function SetColorScheme( element ) {
       var cs=null;
       switch(toType(G.O.colorScheme)) {
-        case 'object':    // user custom color scheme object 
+        case 'object':    // user custom color scheme object
           cs=G.colorScheme_default;
           jQuery.extend(true,cs,G.O.colorScheme);
           G.colorSchemeLabel='nanogallery_colorscheme_custom_'+G.baseEltID;
@@ -8417,9 +8597,9 @@ console.dir(url);
           return;
       }
 
-      
-   
-      
+
+
+
       //var s1='.nanogallery_theme_'+G.O.theme+' ';
       var s1='.' + G.colorSchemeLabel + ' ';
       var s=s1+'.nanoGalleryNavigationbar { background:'+cs.navigationbar.background+' !important; }'+'\n';
@@ -8460,7 +8640,7 @@ console.dir(url);
         s+=s1+'.nanoGalleryPaginationDot > .paginationItem { border:'+cs.thumbnail.paginationDotBorder+' !important; background:'+cs.thumbnail.paginationDotBack+' !important;}'+'\n';
         s+=s1+'.nanoGalleryPaginationDot > .currentPage { background:'+cs.thumbnail.paginationDotSelBack+' !important;}'+'\n';
       }
-      
+
       // gallery fullpage background color
       var gbg='nanogallery_galleryfullpage_bgcolor_'+G.baseEltID;
       s+='.' + gbg +'.fullpage { background:'+G.O.galleryFullpageBgColor+' !important; }'+'\n';
@@ -8470,13 +8650,13 @@ console.dir(url);
       jQuery(element).addClass(gbg);
 
     };
-    
+
     // ##### VIEWER COLOR SCHEME #####
     function SetColorSchemeViewer( element ) {
 
       var cs=null;
       switch(toType(G.O.colorSchemeViewer)) {
-        case 'object':    // user custom color scheme object 
+        case 'object':    // user custom color scheme object
           cs=G.colorSchemeViewer_default;
           jQuery.extend(true,cs,G.O.colorSchemeViewer);
           G.colorSchemeLabel='nanogallery_colorschemeviewer_custom';
@@ -8521,7 +8701,7 @@ console.dir(url);
           return;
       }
 
-      
+
       //var s1='.nanogallery_theme_'+G.O.theme+' ';
       var s1='.' + G.colorSchemeLabel + ' ';
       var s=s1+'.nanoGalleryViewer { background:'+cs.background+' !important; }'+'\n';
@@ -8539,11 +8719,11 @@ console.dir(url);
     };
 
 
-  
+
     // #################
     // ##### TOOLS #####
     // #################
-  
+
     // Display a message
     function nanoAlert( msg, verbose ) {
       nanoConsoleLog(msg);
@@ -8558,19 +8738,19 @@ console.dir(url);
         //alert('nanoGALLERY: ' + msg);
       }
     };
-    
+
     // write to console log
     function nanoConsoleLog( msg ) {
       if (window.console) { console.log('nanoGALLERY: ' + msg + ' ['+G.baseEltID+']'); }
     };
-    
+
     // get viewport coordinates and size
     function getViewport() {
       var $win = jQuery(window);
-      
+
       // to simulate smaller device screen width
       vpW=$win.width();
-      if( G.O.demoViewportWidth > 0 ) {   
+      if( G.O.demoViewportWidth > 0 ) {
         if( G.O.demoViewportWidth < vpW) {
           vpW=G.O.demoViewportWidth;
         }
@@ -8580,7 +8760,7 @@ console.dir(url);
         jQuery(G.$E.base).css({'margin-right':'auto'});
       }
 
-      
+
       return {
         l: $win.scrollLeft(),
         t: $win.scrollTop(),
@@ -8595,9 +8775,9 @@ console.dir(url);
       eltOS=$elt.offset(),
       th=$elt.outerHeight(true),
       tw=$elt.outerWidth(true);
-      if( eltOS.top >= (wp.t-threshold) 
+      if( eltOS.top >= (wp.t-threshold)
         && (eltOS.top+th) <= (wp.t+wp.h+threshold)
-        && eltOS.left >= (wp.l-threshold) 
+        && eltOS.left >= (wp.l-threshold)
         && (eltOS.left+tw) <= (wp.l+wp.w+threshold) ) {
         return true;
       }
@@ -8614,7 +8794,7 @@ console.dir(url);
 
       if( wp.t == 0 && (eltOS.top) <= (wp.t+wp.h ) ) { return true; }
 
-      if( eltOS.top >= (wp.t) 
+      if( eltOS.top >= (wp.t)
         && (eltOS.top+th) <= (wp.t+wp.h-threshold) ) {
           return true;
       }
@@ -8623,7 +8803,7 @@ console.dir(url);
       }
     }
 
-    
+
     // set z-index to display element on top of all others
     function setElementOnTop( start, elt ) {
       var highest_index = 0;
@@ -8649,14 +8829,14 @@ console.dir(url);
       jQuery(elt1).css('z-index',highest_index);
     };
 
-    
+
     // return the real type of the object
     var toType = function( obj ) {
       // by Angus Croll - http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
       return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
     };
 
-    
+
     // return true if current jQuery version match the minimum required
     function jQueryMinVersion( version ) {
       var $vrs = window.jQuery.fn.jquery.split('.'),
@@ -8668,16 +8848,16 @@ console.dir(url);
       }
       return true;
     };
-    
-    
+
+
     //+ Jonas Raoni Soares Silva
     //@ http://jsfromhell.com/array/shuffle [v1.0]
     function AreaShuffle(o){ //v1.0
         for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
         return o;
     };
-   
-    
+
+
     // color lighter or darker
     // found on http://stackoverflow.com/questions/1507931/generate-lighter-darker-color-in-css-using-javascript/5747818#5747818
     // Ratio is between 0 and 1
@@ -8759,7 +8939,7 @@ console.dir(url);
       }
       return num;
     };
-    
+
   }
 
 // END NANOGALLERY
@@ -9460,7 +9640,7 @@ colors = jQuery.Color.names = {
  */
 
 (function () {
-	
+
 
 	/**
 	 * Class for managing events.
@@ -10009,7 +10189,7 @@ if ( typeof define === 'function' && define.amd ) {
  * MIT License
  */
 
-( function( window, factory ) { 
+( function( window, factory ) {
   // universal module definition
 
   /*global define: false, module: false, require: false */
@@ -10498,7 +10678,6 @@ function makeArray( obj ) {
 		window.ngscreenfull = ngscreenfull;
 	}
 })();
-
 
 
 

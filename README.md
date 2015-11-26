@@ -67,11 +67,12 @@ Custom settings are defined in `nanoPhotosProvider.cfg`
 Section | Option | default value | Description
 ------------ | ------------- | ------------ | -------------
 config | fileExtensions | "jpg\|jpeg\|png\|gif" | Supported file extensions
+ | contentFolder | "/nanoPhotosContent" | Folder where albums and images are stored
  | sortOrder | "asc" | Filename sort ordr
  | titleDescSeparator | "$$" | Separator between title and description in the name of the file
  | albumBlackListDetector | "!!!!!" | Ignore albums (folders) containing this sequence in their name
- | albumCoverDetector | "@@@@@" | Set leading sequence in filename of the images to be used as album covers  
- | contentFolder | "/nanoPhotosContent" | Folder where albums and images are stored
+ | imageBlackListDetector | "_hidden" | Ignore images containing this sequence in their name
+ | albumCoverDetector | "@@@@@" | Leading sequence in the filename of the image to be used as an album cover  
 thumbnailSizes | width | 150 | Thumbnail width in pixels
  | height | 150 | Thumbnail height in pixels
  | crop | false | Crop images to avoid black borders
@@ -96,4 +97,3 @@ Only for personal, non-profit organizations, or open source projects (without an
 * nanoGALLERY (http://nanogallery.brisbois.fr)
 * Webserver
 * PHP >= v5.2 with GD-Library
-

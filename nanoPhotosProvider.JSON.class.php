@@ -13,10 +13,12 @@
  *
  *
  * PHP 5.2+
- * @version       0.9.0
+ * @version       0.9.2
  * @author        Christophe BRISBOIS - http://www.brisbois.fr/
  * @Contributor   Ruplahlava - https://github.com/Ruplahlava
- * @copyright     Copyright 2014
+ * @Contributor   EelcoA  - https://github.com/EelcoA
+ * @Contributor   eae710 - https://github.com/eae710
+ * @copyright     Copyright 2015
  * @license       CC BY-NC 3.0
  * @link          https://github.com/Kris-B/nanoPhotosProvider
  * @Support       https://github.com/Kris-B/nanoPhotosProvider/issues
@@ -80,21 +82,33 @@ class galleryJSON
         
         $dh = opendir($this->data->fullDir);
 
-        $hideFilesContaining = $this->config['hideFilesContaining'];
-
         // loop the folder to retrieve images and albums
         if ($dh != false) {
-            while (false !== ($filename = readdir($dh))) {
-                if ($filename != '.' &&
-                        $filename != '..' &&
-                        $filename != '_thumbnails' &&
-                        strpos($filename, $hideFilesContaining) == false &&
-                        substr($filename, 0, strlen($this->config['albumBlackListDetector'])) != $this->config['albumBlackListDetector'])
-                {
-                    $lstImages[] = $this->prepare_data($filename);
-                }
+          while (false !== ($filename = readdir($dh))) {
+            $filenameU=strtoupper($filename);
+            if (is_file($this->data->fullDir . $filename) ) {
+              // it's a file
+              if ($filename != '.' &&
+                      $filename != '..' &&
+                      $filename != '_thumbnails' &&
+                      preg_match("/\.(" . $this->config['fileExtensions'] . ")*$/i", $filename) &&
+                      strpos($filename, $this->config['imageBlackListDetector']) == false )
+              {
+                $lstImages[] = $this->prepare_data($filename, 'IMAGE');
+              }
             }
-            closedir($dh);
+            else {
+              // it's a folder
+              if ($filename != '.' &&
+                      $filename != '..' &&
+                      $filename != '_thumbnails' &&
+                      strpos($filename, $this->config['albumBlackListDetector']) == false )
+              {
+                $lstAlbums[] = $this->prepare_data($filename, 'ALBUM');
+              }
+            }
+          }
+          closedir($dh);
         }
 
         // sort data
@@ -119,10 +133,10 @@ class galleryJSON
         $this->config['contentFolder']          = $config['config']['contentFolder'];
         $this->config['fileExtensions']         = $config['config']['fileExtensions'];
         $this->config['sortOrder']              = strtoupper($config['config']['sortOrder']);
-        $this->config['titleDescSeparator']     = strtoupper($config['config']['titleDescSeparator']);
-        $this->config['albumCoverDetector']     = strtoupper($config['config']['albumCoverDetector']);
+        $this->config['titleDescSeparator']     = $config['config']['titleDescSeparator'];
+        $this->config['albumCoverDetector']     = $config['config']['albumCoverDetector'];
         $this->config['albumBlackListDetector'] = strtoupper($config['config']['albumBlackListDetector']);
-        $this->config['hideFilesContaining']    = $config['config']['hideFilesContaining'];
+        $this->config['imageBlackListDetector'] = $config['config']['imageBlackListDetector'];
 
 
         if (isset($config['thumbnailSizes']['width']) && isset($config['thumbnailSizes']['height'])) {
@@ -362,22 +376,22 @@ class galleryJSON
 
         $oneItem = new item();
         if (strpos($filename, $this->config['titleDescSeparator']) > 0) {
-            // title and description
-            $s              = explode($this->config['titleDescSeparator'], $filename);
-            $oneItem->title = $this->CustomEncode($s[0]);
-            if ($isImage) {
-                $oneItem->description = $this->CustomEncode(preg_replace('/.[^.]*$/', '', $s[1]));
-            } else {
-                $oneItem->description = $this->CustomEncode($s[1]);
-            }
+          // title and description
+          $s              = explode($this->config['titleDescSeparator'], $filename);
+          $oneItem->title = $this->CustomEncode($s[0]);
+          if ($isImage) {
+            $oneItem->description = $this->CustomEncode(preg_replace('/.[^.]*$/', '', $s[1]));
+          } else {
+            $oneItem->description = $this->CustomEncode($s[1]);
+          }
         } else {
-            // only title
-            if ($isImage) {
-                $oneItem->title = $this->CustomEncode($filename);  //(preg_replace('/.[^.]*$/', '', $filename));
-            } else {
-                $oneItem->title = $this->CustomEncode($filename);
-            }
-            $oneItem->description = '';
+          // only title
+          if ($isImage) {
+            $oneItem->title = $this->CustomEncode($filename);  //(preg_replace('/.[^.]*$/', '', $filename));
+          } else {
+            $oneItem->title = $this->CustomEncode($filename);
+          }
+          $oneItem->description = '';
         }
 
         $oneItem->title = str_replace($this->config['albumCoverDetector'], '', $oneItem->title);   // filter cover detector string
@@ -431,10 +445,11 @@ class galleryJSON
         // return $s;
     }
 
-    protected function prepare_data($filename)
+    protected function prepare_data($filename, $kind)
     {
         $oneItem = new item();
-        if (is_file($this->data->fullDir . $filename) && preg_match("/\.(" . $this->config['fileExtensions'] . ")*$/i", $filename)) {
+        // if (is_file($this->data->fullDir . $filename) && preg_match("/\.(" . $this->config['fileExtensions'] . ")*$/i", $filename)) {
+        if ( $kind == 'IMAGE' ) {
             // ONE IMAGE
 
             $oneItem->kind = 'image';
@@ -493,3 +508,4 @@ class galleryJSON
     }
 
 }
+?>

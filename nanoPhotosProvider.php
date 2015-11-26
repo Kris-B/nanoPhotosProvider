@@ -13,10 +13,12 @@
  *
  *
  * PHP 5.2+
- * @version       0.9.0
+ * @version       0.9.2
  * @author        Christophe BRISBOIS - http://www.brisbois.fr/
  * @Contributor   Ruplahlava - https://github.com/Ruplahlava
- * @copyright     Copyright 2014
+ * @Contributor   EelcoA  - https://github.com/EelcoA
+ * @Contributor   eae710 - https://github.com/eae710
+ * @copyright     Copyright 2015
  * @license       CC BY-NC 3.0
  * @link          https://github.com/Kris-B/nanoPhotosProvider
  * @Support       https://github.com/Kris-B/nanoPhotosProvider/issues
@@ -51,3 +53,5 @@ switch (ENVIRONMENT) {
 }
 
 $t = new galleryJSON();
+
+?>

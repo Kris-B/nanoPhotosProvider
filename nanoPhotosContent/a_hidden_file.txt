@@ -1,5 +1,0 @@
-The nanoPhotosProvder.cfg contains the following:
-
-  hideFilesContaining="_hidden"
-
-Due to this, this file will not show up in the gallery, nor do anything else, because the it contains '_hidden' in the name.

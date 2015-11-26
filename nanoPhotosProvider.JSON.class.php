@@ -80,13 +80,16 @@ class galleryJSON
         
         $dh = opendir($this->data->fullDir);
 
+        $hideFilesContaining = $this->config['hideFilesContaining'];
+
         // loop the folder to retrieve images and albums
         if ($dh != false) {
             while (false !== ($filename = readdir($dh))) {
                 if ($filename != '.' &&
                         $filename != '..' &&
                         $filename != '_thumbnails' &&
-                        substr($filename, 0, strlen($this->config['albumBlackListDetector'])) != $this->config['albumBlackListDetector']) 
+                        strpos($filename, $hideFilesContaining) == false &&
+                        substr($filename, 0, strlen($this->config['albumBlackListDetector'])) != $this->config['albumBlackListDetector'])
                 {
                     $lstImages[] = $this->prepare_data($filename);
                 }
@@ -119,6 +122,7 @@ class galleryJSON
         $this->config['titleDescSeparator']     = strtoupper($config['config']['titleDescSeparator']);
         $this->config['albumCoverDetector']     = strtoupper($config['config']['albumCoverDetector']);
         $this->config['albumBlackListDetector'] = strtoupper($config['config']['albumBlackListDetector']);
+        $this->config['hideFilesContaining']    = $config['config']['hideFilesContaining'];
 
 
         if (isset($config['thumbnailSizes']['width']) && isset($config['thumbnailSizes']['height'])) {

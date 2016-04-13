@@ -73,8 +73,8 @@ config | fileExtensions | "jpg\|jpeg\|png\|gif" | Supported file extensions
  | albumBlackListDetector | "!!!!!" | Ignore albums (folders) containing this sequence in their name
  | imageBlackListDetector | "_hidden" | Ignore images containing this sequence in their name
  | albumCoverDetector | "@@@@@" | Leading sequence in the filename of the image to be used as an album cover  
-thumbnailSizes | width | 150 | Thumbnail width in pixels
- | height | 150 | Thumbnail height in pixels
+thumbnailSizes | width | 150 | Thumbnail width in pixels (note: the value must match the value of `thumbnailWidth` in your nanoGALLERY)
+ | height | 150 | Thumbnail height in pixels (note: the value must match the value of `thumbnailHeight` in your nanoGALLERY)
  | crop | false | Crop images to avoid black borders
  
 

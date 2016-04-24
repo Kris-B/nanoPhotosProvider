@@ -13,7 +13,7 @@
  *
  *
  * PHP 5.2+
- * @version       0.9.2
+ * @version       0.9.3
  * @author        Christophe BRISBOIS - http://www.brisbois.fr/
  * @Contributor   Ruplahlava - https://github.com/Ruplahlava
  * @Contributor   EelcoA  - https://github.com/EelcoA
@@ -99,10 +99,12 @@ class galleryJSON
             }
             else {
               // it's a folder
+              $files = glob($this->data->fullDir . $filename."/*.{".str_replace("|",",",$this->config['fileExtensions'])."}", GLOB_BRACE);    // to check if folder contains images
               if ($filename != '.' &&
                       $filename != '..' &&
                       $filename != '_thumbnails' &&
-                      strpos($filename, $this->config['albumBlackListDetector']) == false )
+                      strpos($filename, $this->config['albumBlackListDetector']) == false && 
+                      !empty($files) )
               {
                 $lstAlbums[] = $this->prepare_data($filename, 'ALBUM');
               }
@@ -127,6 +129,8 @@ class galleryJSON
         }
     }
 
+    
+    
     protected function setConfig($filePath)
     {
         $config                                 = parse_ini_file($filePath, true);
@@ -423,6 +427,8 @@ class galleryJSON
         return preg_replace('/.[^.]*$/', '', $filename);
     }
 
+    
+    
     /**
      * 
      * @param string $s

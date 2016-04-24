@@ -7,6 +7,12 @@ nanoPhotosProvider - nanoGALLERY plugin
 ChangeLog 
 ------
 
+v0.9.3
+------
+
+- folders without images are ignored
+
+
 v0.9.2
 ------
 

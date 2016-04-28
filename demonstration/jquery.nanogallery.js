@@ -1,5 +1,5 @@
 /**!
- * @preserve nanoGALLERY v5.9.1
+ * @preserve nanoGALLERY v5.10.0
  * Plugin for jQuery by Christophe Brisbois
  * Demo: http://nanogallery.brisbois.fr
  * Sources: https://github.com/Kris-B/nanoGALLERY
@@ -22,11 +22,15 @@
 
 /*
 
-nanoGALLERY v5.9.1 release notes.
+nanoGALLERY v5.10.0 release notes.
 
-- bugfix: issue #97 - ThumbnailL1 issue  
-- bugfix: images incorrectly displayed in some cases
-
+##### New options
+- **paginationVisiblePages**: thumbnail pagination - maximum visible pages.
+  *integer; Default: 10*  
+- content source nanoPhotosProvider now supports options `albumList`, `whiteList`, `blackList`, `album`
+  
+##### Misc
+- spanish translation (thanks to eae710 - https://github.com/eae710)  
 
 **Visit nanoGALLERY homepage for usage details: [http://nanogallery.brisbois.fr](http://www.nanogallery.brisbois.fr/)**
 
@@ -115,6 +119,7 @@ nanoGALLERY v5.9.1 release notes.
     keepSelection: false,
     jsonCharset: 'Latin', jsonProvider: '',
     paginationMaxLinesPerPage : 0, paginationDots : false, paginationSwipe : true,
+    paginationVisiblePages : 10,
     maxWidth : 0,
     viewer : 'internal',
     viewerFullscreen: false,
@@ -159,14 +164,15 @@ nanoGALLERY v5.9.1 release notes.
     lazyBuild : 'none', lazyBuildTreshold : 150,
     debugMode: false,
     i18n : {
-      'breadcrumbHome' : 'Galleries', 'breadcrumbHome_FR' : 'Galeries',
-      'paginationPrevious' : 'Previous', 'paginationPrevious_FR' : 'Pr&eacute;c&eacute;dent', 'paginationPrevious_DE' : 'Zur&uuml;ck', 'paginationPrevious_IT' : 'Indietro',
-      'paginationNext' : 'Next', 'paginationNext_FR' : 'Suivant', 'paginationNext_DE' : 'Weiter', 'paginationNext_IT' : 'Avanti',
+      'breadcrumbHome' : 'Galleries', 'breadcrumbHome_FR' : 'Galeries', 'breadcrumbHome_ES' : 'Galer&iacute;as',
+      'paginationPrevious' : 'Previous', 'paginationPrevious_FR' : 'Pr&eacute;c&eacute;dent', 'paginationPrevious_DE' : 'Zur&uuml;ck', 'paginationPrevious_IT' : 'Indietro',' paginationPrevious_ES' : 'Anterior',
+      'paginationNext' : 'Next', 'paginationNext_FR' : 'Suivant', 'paginationNext_DE' : 'Weiter', 'paginationNext_IT' : 'Avanti', 'paginationNext_ES' : 'Siguiente',
       'thumbnailLabelItemsCountPart1' : '', //'| ',
       'thumbnailLabelItemsCountPart2' : '', //' photos', 'thumbnailLabelItemsCountPart2_DE' : ' Fotos',
       'thumbnailImageTitle' : '', 'thumbnailAlbumTitle' : '',
       'thumbnailImageDescription' : '', 'thumbnailAlbumDescription' : '',
-      'infoBoxPhoto' : 'Photo', 'infoBoxDate' : 'Date', 'infoBoxAlbum' : 'Album', 'infoBoxDimensions' : 'Dimensions', 'infoBoxFilename' : 'Filename', 'infoBoxFileSize' : 'File size', 'infoBoxCamera' : 'Camera', 'infoBoxFocalLength' : 'Focal length', 'infoBoxExposure' : 'Exposure', 'infoBoxFNumber' : 'F Number', 'infoBoxISO' : 'ISO', 'infoBoxMake' : 'Make', 'infoBoxFlash' : 'Flash', 'infoBoxViews' : 'Views', 'infoBoxComments' : 'Comments'
+      'infoBoxPhoto' : 'Photo', 'infoBoxDate' : 'Date', 'infoBoxAlbum' : 'Album', 'infoBoxDimensions' : 'Dimensions', 'infoBoxFilename' : 'Filename', 'infoBoxFileSize' : 'File size', 'infoBoxCamera' : 'Camera', 'infoBoxFocalLength' : 'Focal length', 'infoBoxExposure' : 'Exposure', 'infoBoxFNumber' : 'F Number', 'infoBoxISO' : 'ISO', 'infoBoxMake' : 'Make', 'infoBoxFlash' : 'Flash', 'infoBoxViews' : 'Views', 'infoBoxComments' : 'Comments',
+      'infoBoxPhoto_ES' : 'Foto',	'infoBoxDate_ES' : 'Fecha',	'infoBoxAlbum_ES' : 'Album',	'infoBoxDimensions_ES' : 'Dimensiones',	'infoBoxFilename_ES' : 'Nombre', 'infoBoxFileSize_ES' : 'Tama&ntilde;o', 'infoBoxCamera_ES' : 'C&aacute;mara', 'infoBoxFocalLength_ES' : 'Longitud focal', 'infoBoxExposure_ES' : 'Exposici&oacute;n', 'infoBoxFNumber_ES' : 'N&uacute;mero F', 'infoBoxISO_ES' : 'ISO', 'infoBoxMake_ES' : 'Hacer', 'infoBoxFlash_ES' : 'Flash', 'infoBoxViews_ES' : 'Vistas', 'infoBoxComments_ES' : 'Comentarios'
     }
   };
 
@@ -1403,7 +1409,7 @@ nanoGALLERY v5.9.1 release notes.
 
         // CUSTOM STORAGE
         case 'json':
-          NGAddItem(G.i18nTranslations.breadcrumbHome, '', '', '', '', 'album', '', '0', '-1' );
+          NGAddItem(G.i18nTranslations.breadcrumbHome, '', '', '', '', 'album', '', G.O.album.length > 0 ? encodeURIComponent(G.O.album) : '0', '-1' );
           JsonProcessItems(0,true,-1,false);
           break;
 
@@ -1601,6 +1607,7 @@ nanoGALLERY v5.9.1 release notes.
         // open URL
         if( G.I[n].destinationURL !== undefined && G.I[n].destinationURL.length >0 ) {
           window.location = G.I[n].destinationURL;
+          //window.open(G.I[n].destinationURL, '_blank');
           return;
         }
 
@@ -2033,7 +2040,7 @@ nanoGALLERY v5.9.1 release notes.
       if( G.O.whiteList != '' ) { G.whiteList=G.O.whiteList.toUpperCase().split('|'); }
       if( G.O.albumList != '' ) { G.albumList=G.O.albumList.toUpperCase().split('|'); }
 
-      if( G.O.kind == 'picasa' || G.O.kind == 'flickr' ) {
+      if( G.O.kind == 'picasa' || G.O.kind == 'flickr' || G.O.kind == 'json' ) {
         G.O.displayBreadcrumb=true;
       }
       // flickr
@@ -3159,6 +3166,7 @@ nanoGALLERY v5.9.1 release notes.
       }
 
       var url = G.O.jsonProvider + '?albumID='+encodeURIComponent(G.I[albumIdx].GetID());
+console.log(url);
       PreloaderShow();
 
       jQuery.ajaxSetup({ cache: false });
@@ -3247,48 +3255,56 @@ nanoGALLERY v5.9.1 release notes.
         if( description === undefined ) { description=''; }
 
         var destinationURL='';
-
-        var albumID=0;
-        if( item.albumID !== undefined  ) {
-          albumID=(item.albumID);
-          foundAlbumID=true;
-        }
-        var ID=null;
-        if( item.ID !== undefined ) {
-          ID=(item.ID);
-        }
-
+        
         var kind='image';
         if( item.kind !== undefined && item.kind.length>0 ) {
           kind=item.kind;
         }
 
-        var newItem=NGAddItem(title, thumbsrc, src, description, destinationURL, kind, '', ID, albumID );
-        // thumbnail image size
-        var tw=item.imgtWidth;
-        var th=item.imgtHeight;
-
-        newItem.thumbs = {
-          url: { l1 : { xs:thumbsrc, sm:thumbsrc, me:thumbsrc, la:thumbsrc, xl:thumbsrc }, lN : { xs:thumbsrc, sm:thumbsrc, me:thumbsrc, la:thumbsrc, xl:thumbsrc } },
-          width: { l1 : { xs:tw, sm:tw, me:tw, la:tw, xl:tw }, lN : { xs:tw, sm:tw, me:tw, la:tw, xl:tw } },
-          height: { l1 : { xs:th, sm:th, me:th, la:th, xl:th }, lN : { xs:th, sm:th, me:th, la:th, xl:th } }
-        };
-
-        if( typeof G.O.fnProcessData == 'function' ) {
-          G.O.fnProcessData(newItem, 'api', null);
+        var ID=null;
+        if( item.ID !== undefined ) {
+          ID=(item.ID);
         }
 
-        if( kind == 'image' ) {
-          newItem.imageNumber=nb;
-          nb++;
-          if( nb >= G.maxAlbums ) {
-            return false;
+        var ok=true;
+        if( kind == 'album' ) {
+          if( !CheckAlbumName(title, ID) ) { ok=false; }
+        }
+
+        if( ok ) {
+          var albumID=0;
+          if( item.albumID !== undefined  ) {
+            albumID=(item.albumID);
+            foundAlbumID=true;
+          }
+
+          var newItem=NGAddItem(title, thumbsrc, src, description, destinationURL, kind, '', ID, albumID );
+          // thumbnail image size
+          var tw=item.imgtWidth;
+          var th=item.imgtHeight;
+
+          newItem.thumbs = {
+            url: { l1 : { xs:thumbsrc, sm:thumbsrc, me:thumbsrc, la:thumbsrc, xl:thumbsrc }, lN : { xs:thumbsrc, sm:thumbsrc, me:thumbsrc, la:thumbsrc, xl:thumbsrc } },
+            width: { l1 : { xs:tw, sm:tw, me:tw, la:tw, xl:tw }, lN : { xs:tw, sm:tw, me:tw, la:tw, xl:tw } },
+            height: { l1 : { xs:th, sm:th, me:th, la:th, xl:th }, lN : { xs:th, sm:th, me:th, la:th, xl:th } }
+          };
+
+          if( typeof G.O.fnProcessData == 'function' ) {
+            G.O.fnProcessData(newItem, 'api', null);
+          }
+
+          if( kind == 'image' ) {
+            newItem.imageNumber=nb;
+            nb++;
+            if( nb >= G.maxAlbums ) {
+              return false;
+            }
           }
         }
       });
 
       if( foundAlbumID ) {
-        G.O.displayBreadcrumb=true;
+       // G.O.displayBreadcrumb=true;
       }
 
       G.I[albumIdx].contentIsLoaded=true;
@@ -4076,6 +4092,7 @@ nanoGALLERY v5.9.1 release notes.
       item.destinationURL=destinationURL;
       item.kind=kind;
       item.albumID=albumID;
+      item.ID = ID;
       if( tags.length == 0 ) {
         item.tags=null;
       }
@@ -4103,7 +4120,8 @@ nanoGALLERY v5.9.1 release notes.
     // check album name - blackList/whiteList
     function CheckAlbumName( title, ID) {
       var s=title.toUpperCase();
-
+      ID=ID.toUpperCase();
+      
       if( G.albumList !== null ) {
         for( var j=0; j<G.albumList.length; j++) {
           if( s == G.albumList[j].toUpperCase() || ID == G.albumList[j] ) {
@@ -5037,23 +5055,32 @@ nanoGALLERY v5.9.1 release notes.
       var firstPage=0;
       // pagination - max lines per page mode
       if( G.pgMaxLinesPerPage > 0 && G.tn.settings.getH() != 'auto' && G.tn.settings.getW() != 'auto' ) {
+        // number of pages
         n2=Math.ceil(G.I[albumIdx].contentLength/(G.pgMaxLinesPerPage*G.pgMaxNbThumbnailsPerRow));
       }
 
+      var lastPage=n2;
       // no previous/next
-      if( G.O.paginationDots ) {
-        firstPage=0;
-      }
-      else {
-        if( pageNumber >= 5 ) {
-          firstPage=pageNumber-5;
-          if( n2 > pageNumber+6 ) {
-            n2=pageNumber+6;
-          }
+      if( !G.O.paginationDots ) {
+        var vp=G.O.paginationVisiblePages;
+        if( vp >= n2 ) {
+          firstPage=0;
         }
         else {
-          if( n2 > 10 ) {
-            n2=10;
+          // we have more pages than we want to display
+          if( isOdd(vp) ) {
+            firstPage=pageNumber-(vp-1)/2;
+            lastPage=pageNumber+(vp-1)/2;
+          }
+          else {
+            firstPage=pageNumber - vp/2;
+            lastPage=pageNumber + Math.max((vp/2-1),1);
+          }
+          if( lastPage >= n2 ) {
+            firstPage=n2-vp;
+          }
+          if( firstPage < 0 ) {
+            firstPage=0;
           }
         }
       }
@@ -5080,6 +5107,10 @@ nanoGALLERY v5.9.1 release notes.
           }
           renderGallery(aIdx,pn);
         });
+        
+        if( (i-firstPage) >=  (vp-1) ) {
+          break;
+        }
 
       }
 
@@ -5094,6 +5125,8 @@ nanoGALLERY v5.9.1 release notes.
       G.$E.conPagin.width(w);
 
     }
+
+    function isOdd(num) { return (num % 2) == 1;}
 
     function paginationNextPage() {
       var aIdx=G.$E.conPagin.data('galleryIdx'),
@@ -5268,6 +5301,7 @@ nanoGALLERY v5.9.1 release notes.
             onComplete(albumIdx, pageNumber);
             return;
           }
+
           var item=G.I[idx];
           if( item.albumID == G.I[albumIdx].GetID() ) {
             currentCounter++;
@@ -5361,7 +5395,7 @@ nanoGALLERY v5.9.1 release notes.
         pos='top:0px;left:0px;';
 //        ch='';
       }
-      newElt[newEltIdx++]='<div class="nanoGalleryThumbnailContainer'+ch+' nGEvent" style="display:block;opacity:0;'+pos+'" ><div class="subcontainer nGEvent" style="display:block;">';
+      newElt[newEltIdx++]='<div class="nanoGalleryThumbnailContainer'+ch+' nGEvent" style="display:block;opacity:0;'+pos+'" data-originalid="' + item.ID + '" ><div class="subcontainer nGEvent" style="display:block;">';
 
       var checkImageSize=false,
       src=G.emptyGif;
@@ -10678,6 +10712,7 @@ function makeArray( obj ) {
 		window.ngscreenfull = ngscreenfull;
 	}
 })();
+
 
 
 

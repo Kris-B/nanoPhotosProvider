@@ -10,7 +10,9 @@ ChangeLog
 v0.9.3
 ------
 
-- folders without images are ignored
+- nanoGALLERY support for options `albumList`, `whiteList`, `blackList`, `album`  
+- folders without images are ignored  
+- nanoGALLERY v5.10.0 included in the demonstration folder    
 
 
 v0.9.2

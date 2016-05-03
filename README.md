@@ -86,7 +86,7 @@ JPEG, GIF and PNG.
 
 ### :warning: limitations
 - The nanoGALLERY option `locationHash` should not be enabled if albums have more than 2 levels.  
-- Empty directories are not supported.
+- multiple thumbnail resolutions are not supported.  
   
 ### :copyright: License
 nanoPhotosProvider is licensed under [CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/).  

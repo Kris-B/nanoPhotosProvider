@@ -1,9 +1,5 @@
 {
     "require": {
         "ext-gd": "*"
-    },
-    "config": {
-      "disable-tls": true,
-      "secure-http": false
     }
 }

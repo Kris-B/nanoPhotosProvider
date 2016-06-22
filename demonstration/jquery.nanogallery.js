@@ -25,6 +25,7 @@
 nanoGALLERY v5.10.3 release notes.
 
 - nanoPhotosProvider : underscores are replaced with spaces in title an description
+- nanoPhotosProvider : removes leading @@NNNN in title
 
 
 **Visit nanoGALLERY homepage for usage details: [http://nanogallery.brisbois.fr](http://www.nanogallery.brisbois.fr/)**
@@ -3245,7 +3246,12 @@ nanoGALLERY v5.10.3 release notes.
           title=GetImageTitle((item.src));
         }
 
+        // replace underscores qith spaces
         title=title.replaceAll('_',' ');
+        // remove leading @@NNNN (used to sort manually the albums)
+        if( title.search(/@@\d\d\d\d/) == 0 ) {
+          title=title.substring(6);
+        }
         
         var description='';     //'&nbsp;';
         description=GetI18nItem(item,'description');

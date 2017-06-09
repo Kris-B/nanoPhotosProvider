@@ -28,6 +28,7 @@ On your webserver:
   - edit the `nanoPhotosProvider.cfg` file for custom settings  
 
 <br />
+
 ##### :two: Step 2: configure your HTML page
 
 - The page can be located anywhere on your webserver.
@@ -52,6 +53,7 @@ Example:
 ```
 <br />
 <br />
+
 ##### :three: Step 3: test your page to see the result ;-)
 
 <br />

@@ -57,6 +57,7 @@ Example:
 ##### :three: Step 3: test your page to see the result ;-)
 
 <br />
+
 ##### :four: Step 4: add/change content
 Add files and folders, or renaname them.
 Please note that the generated thumbnails are never purged, so you may delete the `_thumbnails` folders to force a new generation.

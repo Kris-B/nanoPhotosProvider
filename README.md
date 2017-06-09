@@ -1,4 +1,13 @@
 # nanoPhotosProvider
+<br />
+<br />
+
+### :warning: new version available
+Please check the new version: [nanoPhotosProvider2](https://github.com/nanostudio-org/nano_photos_provider2)
+<br />
+<br />
+<br />
+
 ### :white_circle: extension for nanoGALLERY
     
   
